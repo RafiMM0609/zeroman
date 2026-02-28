@@ -39,7 +39,7 @@ export default function Navigation() {
 
         <div className="flex items-center gap-3">
           <a
-            href="https://wa.me/6281234567890"
+            href="https://wa.me/6282322607990?text=Halo%20Rafi!%20%F0%9F%91%8B%20Saya%20tertarik%20dengan%20layanan%20Sistem%20Aplikasi%20kamu.%20Boleh%20tahu%20lebih%20lanjut%20soal%20jasa%20yang%20kamu%20tawarkan%3F"
             className="text-whatsapp hover:scale-110 transition-transform"
             aria-label="Contact on WhatsApp"
           >
