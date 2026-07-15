@@ -1,733 +1,631 @@
 /* ============================================================
-   ZEROMAN PORTFOLIO — main.js
-   Bioluminescent Deep Ocean Experience
-   
-   Features:
-   1. Bioluminescent particle canvas (plankton-like organisms)
-   2. Custom luminescent cursor with trailing light
-   3. Scroll-triggered animations (IntersectionObserver)
-   4. Counter animations
-   5. Typing effect — keyword rotator
-   6. Nav scroll state
-   7. Skill bars animation
-   8. Bottom sheet modal
-   9. Portfolio data loader from JSON
+   ZEROMAN PORTFOLIO — COSMIC HARMONY SYSTEM
+   Warm cinematic particles with star twinkling and Z-effects
    ============================================================ */
 
 (function () {
   'use strict';
 
   /* ──────────────────────────────────────────────────────────
-     PORTFOLIO DATA — loaded from JSON
+     COSMIC HARMONY — Star twinkling + Warm cinematic particles
      ────────────────────────────────────────────────────────── */
-  let portfolioData = null;
-
-  async function loadPortfolioData() {
-    try {
-      const res = await fetch('/public/data/portfolio.json');
-      if (!res.ok) throw new Error('Failed to load data');
-      portfolioData = await res.json();
-      return portfolioData;
-    } catch (e) {
-      console.warn('Portfolio data not loaded:', e.message);
-      return null;
-    }
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     1. BIOLUMINESCENT PARTICLE CANVAS
-        — Mimics deep-sea plankton and bioluminescent organisms
-     ────────────────────────────────────────────────────────── */
-  function initBioCanvas() {
+  function initCosmicHarmony() {
     const canvas = document.getElementById('bio-canvas');
     if (!canvas) return;
-    // Respect reduced-motion: skip the animated particle loop entirely.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    
+    // Respect motion preferences
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      canvas.style.display = 'none';
+      return;
+    }
 
     const ctx = canvas.getContext('2d');
     let W, H;
+    let stars = [];
+    let shootingStars = [];
     let particles = [];
+    let zParticles = [];
+    let gravitySparks = [];
     let mouseX = -1000, mouseY = -1000;
-
-    const COLORS = [
-      [0, 229, 255],   // cyan
-      [0, 255, 198],   // teal
-      [68, 136, 255],  // cobalt
-      [155, 89, 255],  // violet
-      [0, 255, 157],   // aurora
-      [255, 209, 102], // gold (rare)
+    let lastSpawnX = 0, lastSpawnY = 0;
+    let lastTime = 0;
+    
+    // Warm cinematic particle colors
+    const PARTICLE_COLORS_RGB = [
+      { r: 212, g: 165, b: 116, a: 0.35 },  // warm ivory
+      { r: 255, g: 154, b: 90, a: 0.25 },   // warm orange
+      { r: 255, g: 179, b: 71, a: 0.2 },    // golden orange
+      { r: 184, g: 92, b: 54, a: 0.25 }     // deep terracotta
+    ];
+    
+    // Star colors for variety
+    const STAR_COLORS_RGB = [
+      { r: 255, g: 255, b: 255, a: 0.8 },
+      { r: 212, g: 165, b: 116, a: 0.6 },
+      { r: 255, g: 179, b: 71, a: 0.5 },
+      { r: 0, g: 229, b: 255, a: 0.4 }
     ];
 
     function resize() {
-      W = canvas.width  = window.innerWidth;
+      W = canvas.width = window.innerWidth;
       H = canvas.height = window.innerHeight;
+      
+      // Redistribute stars on resize
+      stars = [];
+      const starCount = Math.min(150, Math.floor((W * H) / 6000));
+      for (let i = 0; i < starCount; i++) {
+        stars.push(new Star());
+      }
     }
 
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
-
-    // Bio-organism class — each is a tiny glowing creature
-    class BioOrganism {
+    class Star {
       constructor() {
-        this.reset(true);
-      }
-
-      reset(init = false) {
         this.x = Math.random() * W;
-        this.y = init ? Math.random() * H : H + 20;
-        this.size = Math.random() * 2.5 + 0.5;
-        this.speedY = -(Math.random() * 0.4 + 0.1); // drift upward slowly
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.life = 0;
-        this.maxLife = Math.random() * 400 + 200;
-        this.colorIdx = Math.floor(Math.random() * COLORS.length);
-        this.pulseSpeed = Math.random() * 0.02 + 0.01;
-        this.pulseOffset = Math.random() * Math.PI * 2;
-        this.type = Math.random(); // 0-0.7: dot, 0.7-0.9: ring, 0.9-1: jellyfish
-        this.trail = [];
-        this.maxTrail = Math.floor(Math.random() * 8 + 3);
-        this.wander = Math.random() * Math.PI * 2;
-        this.wanderSpeed = (Math.random() - 0.5) * 0.02;
-        this.opacity = 0;
+        this.y = Math.random() * H;
+        this.size = Math.random() * 2;
+        this.twinkleSpeed = Math.random() * 0.015 + 0.005;
+        this.twinklePhase = Math.random() * Math.PI * 2;
+        const baseColor = STAR_COLORS_RGB[Math.floor(Math.random() * STAR_COLORS_RGB.length)];
+        this.r = baseColor.r;
+        this.g = baseColor.g;
+        this.b = baseColor.b;
+        this.baseAlpha = baseColor.a;
       }
-
+      
       update() {
-        // Wander drift — organic movement
-        this.wander += this.wanderSpeed;
-        this.speedX += Math.cos(this.wander) * 0.005;
-        this.speedX = Math.max(-0.5, Math.min(0.5, this.speedX));
-
-        // Mouse repulsion — shy away from cursor
-        const dx = this.x - mouseX;
-        const dy = this.y - mouseY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          const force = (120 - dist) / 120;
-          this.speedX += (dx / dist) * force * 0.8;
-          this.speedY += (dy / dist) * force * 0.8;
-        }
-
-        // Save trail
-        this.trail.unshift({ x: this.x, y: this.y });
-        if (this.trail.length > this.maxTrail) this.trail.pop();
-
-        this.x += this.speedX;
-        this.y += this.speedY;
-        this.life++;
-
-        // Fade in / fade out
-        if (this.life < 60) {
-          this.opacity = this.life / 60;
-        } else if (this.life > this.maxLife - 60) {
-          this.opacity = (this.maxLife - this.life) / 60;
-        } else {
-          this.opacity = 1;
-        }
-
-        // Pulse
-        const pulse = Math.sin(this.life * this.pulseSpeed + this.pulseOffset) * 0.5 + 0.5;
-        this.currentAlpha = this.opacity * (0.3 + pulse * 0.4);
-
-        // Reset when out of life or off screen
-        if (this.life >= this.maxLife || this.x < -50 || this.x > W + 50 || this.y < -100) {
-          this.reset();
-        }
+        this.twinklePhase += this.twinkleSpeed;
+        return Math.sin(this.twinklePhase) * 0.4 + 0.6;
       }
-
-      draw() {
-        const [r, g, b] = COLORS[this.colorIdx];
-        const alpha = this.currentAlpha;
-
-        ctx.save();
-
-        // Draw luminescent trail
-        for (let i = 0; i < this.trail.length; i++) {
-          const t = this.trail[i];
-          const trailAlpha = alpha * (1 - i / this.trail.length) * 0.4;
-          ctx.beginPath();
-          ctx.arc(t.x, t.y, this.size * (1 - i / this.trail.length), 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r},${g},${b},${trailAlpha})`;
-          ctx.fill();
-        }
-
-        if (this.type < 0.7) {
-          // Glowing dot — plankton
-          const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4);
-          gradient.addColorStop(0, `rgba(${r},${g},${b},${alpha})`);
-          gradient.addColorStop(0.5, `rgba(${r},${g},${b},${alpha * 0.3})`);
-          gradient.addColorStop(1, `rgba(${r},${g},${b},0)`);
-
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
-          ctx.fillStyle = gradient;
-          ctx.fill();
-
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
-          ctx.fill();
-
-        } else if (this.type < 0.9) {
-          // Ring — micro-organism
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.5})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(${r},${g},${b},${alpha})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-
+      
+      draw(twinkle) {
+        const alpha = this.baseAlpha * twinkle * (this.size / 2);
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.r}, ${this.g}, ${this.b}, ${alpha})`;
+        if (this.size > 1.4) {
+          ctx.shadowBlur = 6 * twinkle;
+          ctx.shadowColor = `rgba(${this.r}, ${this.g}, ${this.b}, ${alpha * 0.8})`;
         } else {
-          // Star/cross — rare crystalline form
-          ctx.strokeStyle = `rgba(${r},${g},${b},${alpha * 0.7})`;
-          ctx.lineWidth = 0.5;
-          for (let angle = 0; angle < Math.PI * 2; angle += Math.PI / 3) {
-            ctx.beginPath();
-            ctx.moveTo(this.x, this.y);
-            ctx.lineTo(
-              this.x + Math.cos(angle + this.life * 0.01) * this.size * 4,
-              this.y + Math.sin(angle + this.life * 0.01) * this.size * 4
-            );
-            ctx.stroke();
-          }
-
-          // Center glow
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
-          ctx.fill();
+          ctx.shadowBlur = 0;
         }
+        ctx.fill();
+      }
+    }
 
+    class ShootingStar {
+      constructor() {
+        this.reset();
+      }
+      
+      reset() {
+        this.x = Math.random() * W;
+        this.y = Math.random() * H * 0.3;
+        this.length = Math.random() * 80 + 40;
+        this.speed = Math.random() * 5 + 3;
+        this.angle = Math.PI / 6 + (Math.random() - 0.5) * 0.25;
+        this.life = 1;
+        this.decay = Math.random() * 0.015 + 0.01;
+        const baseColor = STAR_COLORS_RGB[Math.floor(Math.random() * STAR_COLORS_RGB.length)];
+        this.r = baseColor.r;
+        this.g = baseColor.g;
+        this.b = baseColor.b;
+      }
+      
+      update() {
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+        this.life -= this.decay;
+      }
+      
+      draw() {
+        if (this.life <= 0) return;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+        
+        const grad = ctx.createLinearGradient(0, 0, -this.length, 0);
+        grad.addColorStop(0, `rgba(${this.r}, ${this.g}, ${this.b}, ${this.life})`);
+        grad.addColorStop(1, `rgba(${this.r}, ${this.g}, ${this.b}, 0)`);
+        
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(-this.length, 0);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.2;
+        ctx.shadowBlur = 8 * this.life;
+        ctx.shadowColor = `rgba(${this.r}, ${this.g}, ${this.b}, ${this.life * 0.5})`;
+        ctx.stroke();
         ctx.restore();
       }
     }
 
-    // Create initial population
-    const PARTICLE_COUNT = Math.min(80, Math.floor(W * H / 12000));
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push(new BioOrganism());
-    }
-
-    // Track mouse for repulsion
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    }, { passive: true });
-
-    function animate() {
-      ctx.clearRect(0, 0, W, H);
-
-      // Add new organisms occasionally
-      if (particles.length < PARTICLE_COUNT && Math.random() < 0.1) {
-        particles.push(new BioOrganism());
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.size = Math.random() * 3 + 1;
+        this.glowPhase = Math.random() * Math.PI * 2;
+        this.glowSpeed = Math.random() * 0.02 + 0.005;
+        const baseColor = PARTICLE_COLORS_RGB[Math.floor(Math.random() * PARTICLE_COLORS_RGB.length)];
+        this.r = baseColor.r;
+        this.g = baseColor.g;
+        this.b = baseColor.b;
+        this.baseAlpha = baseColor.a;
       }
 
-      particles.forEach(p => {
-        p.update();
-        p.draw();
+      update(mouseX, mouseY, deltaTime) {
+        const isSpecialPage = window.location.pathname.includes('/contact') || 
+                           window.location.pathname.includes('/about');
+        
+        if (!isSpecialPage) {
+          const dx = mouseX - this.x;
+          const dy = mouseY - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist < 180) {
+            const force = (180 - dist) / 180;
+            this.vx += (dx / dist) * force * 0.04;
+            this.vy += (dy / dist) * force * 0.04;
+          }
+        }
+
+        this.vx *= 0.97;
+        this.vy *= 0.97;
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0) this.x = W;
+        if (this.x > W) this.x = 0;
+        if (this.y < 0) this.y = H;
+        if (this.y > H) this.y = 0;
+
+        this.glowPhase += this.glowSpeed;
+      }
+
+      draw() {
+        const glow = Math.sin(this.glowPhase) * 0.3 + 0.7;
+        const alpha = this.baseAlpha * glow;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.r}, ${this.g}, ${this.b}, ${alpha})`;
+        if (this.size > 2.2) {
+          ctx.shadowBlur = 8 * glow;
+          ctx.shadowColor = `rgba(${this.r}, ${this.g}, ${this.b}, ${alpha * 0.8})`;
+        } else {
+          ctx.shadowBlur = 0;
+        }
+        ctx.fill();
+      }
+    }
+
+    class ZParticle {
+      constructor() {
+        this.x = W / 2;
+        this.y = H / 2;
+        this.vx = (Math.random() - 0.5) * 4;
+        this.vy = (Math.random() - 0.5) * 4;
+        this.size = Math.random() * 5 + 2;
+        this.opacity = 1;
+        this.color = Math.random() > 0.5 ? { r: 0, g: 229, b: 255 } : { r: 212, g: 165, b: 116 };
+        this.trail = [];
+      }
+      
+      update() {
+        this.vx *= 0.96;
+        this.vy *= 0.96;
+        this.vx += (Math.random() - 0.5) * 0.15;
+        this.vy += (Math.random() - 0.5) * 0.15;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.opacity -= 0.015;
+        
+        this.trail.push({x: this.x, y: this.y, opacity: this.opacity});
+        if (this.trail.length > 15) this.trail.shift();
+      }
+      
+      draw() {
+        if (this.opacity <= 0) return;
+        ctx.save();
+        ctx.shadowBlur = 10 * this.opacity;
+        ctx.shadowColor = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.opacity})`;
+        
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.opacity})`;
+        ctx.fill();
+        ctx.restore();
+        
+        this.drawTrail();
+      }
+      
+      drawTrail() {
+        for (let i = 0; i < this.trail.length; i++) {
+          const point = this.trail[i];
+          if (point.opacity <= 0) continue;
+          const trailOpacity = point.opacity * (i / this.trail.length) * 0.5;
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${trailOpacity})`;
+          ctx.fill();
+        }
+      }
+    }
+
+    class GravitySpark {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 2 + 1;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+        this.size = Math.random() * 2.5 + 1.2;
+        this.opacity = 1.0;
+        this.decay = Math.random() * 0.02 + 0.015;
+        
+        const colors = [
+          'rgba(0, 229, 255, ',   // cyan
+          'rgba(212, 165, 116, ',  // warm ivory
+          'rgba(255, 154, 90, ',   // warm orange
+          'rgba(0, 255, 157, '    // aurora
+        ];
+        this.colorStr = colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      update() {
+        const dx = mouseX - this.x;
+        const dy = mouseY - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist > 10) {
+          const force = Math.min(dist, 250) / 250;
+          this.vx += (dx / dist) * force * 0.15;
+          this.vy += (dy / dist) * force * 0.15;
+          
+          const orbitForce = (1 - force) * 0.1;
+          this.vx += (-dy / dist) * orbitForce;
+          this.vy += (dx / dist) * orbitForce;
+        }
+
+        this.vx *= 0.94;
+        this.vy *= 0.94;
+        this.vy -= 0.02;
+
+        this.x += this.vx;
+        this.y += this.vy;
+        
+        this.opacity -= this.decay;
+        this.size *= 0.97;
+      }
+
+      draw() {
+        if (this.opacity <= 0) return;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `${this.colorStr}${this.opacity})`;
+        ctx.fill();
+      }
+    }
+
+    function initElements() {
+      // Initial population of stars
+      const starCount = Math.min(150, Math.floor((W * H) / 6000));
+      for (let i = 0; i < starCount; i++) {
+        stars.push(new Star());
+      }
+      
+      const shootingStarInterval = setInterval(() => {
+        if (Math.random() < 0.3) {
+          shootingStars.push(new ShootingStar());
+        }
+      }, 3000);
+      
+      const zParticleInterval = setInterval(() => {
+        if (Math.random() < 0.2) {
+          zParticles.push(new ZParticle());
+        }
+      }, 2000);
+      
+      return () => {
+        clearInterval(shootingStarInterval);
+        clearInterval(zParticleInterval);
+      };
+    }
+
+    function drawHarmony() {
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      
+      stars.forEach(star => {
+        const twinkle = star.update();
+        star.draw(twinkle);
       });
+      
+      shootingStars.forEach((shootingStar, index) => {
+        shootingStar.update();
+        shootingStar.draw();
+        if (shootingStar.life <= 0) {
+          shootingStars.splice(index, 1);
+        }
+      });
+      
+      zParticles.forEach((zParticle, index) => {
+        zParticle.update();
+        zParticle.draw();
+        if (zParticle.opacity <= 0) {
+          zParticles.splice(index, 1);
+        }
+      });
+      
+      // Update and draw gravity sparks (max 50)
+      if (gravitySparks.length > 50) {
+        gravitySparks.shift();
+      }
+      
+      gravitySparks.forEach((spark, index) => {
+        spark.update();
+        spark.draw();
+        if (spark.opacity <= 0) {
+          gravitySparks.splice(index, 1);
+        }
+      });
+
+      // Draw constellation connections between sparks and mouse
+      for (let i = 0; i < gravitySparks.length; i++) {
+        const s1 = gravitySparks[i];
+        
+        // Line to mouse
+        const dxMouse = mouseX - s1.x;
+        const dyMouse = mouseY - s1.y;
+        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+        if (distMouse < 100) {
+          ctx.beginPath();
+          ctx.moveTo(mouseX, mouseY);
+          ctx.lineTo(s1.x, s1.y);
+          ctx.strokeStyle = `rgba(212, 165, 116, ${0.15 * (1 - distMouse / 100) * s1.opacity})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+
+        // Lines to other sparks
+        for (let j = i + 1; j < gravitySparks.length; j++) {
+          const s2 = gravitySparks[j];
+          const dx = s1.x - s2.x;
+          const dy = s1.y - s2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 60) {
+            ctx.beginPath();
+            ctx.moveTo(s1.x, s1.y);
+            ctx.lineTo(s2.x, s2.y);
+            const alpha = 0.12 * (1 - dist / 60) * ((s1.opacity + s2.opacity) / 2);
+            ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      
+      ctx.restore();
+    }
+
+    function initParticles() {
+      const particleCount = Math.min(60, Math.floor((W * H) / 10000));
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle(
+          Math.random() * W,
+          Math.random() * H
+        ));
+      }
+    }
+
+    function animate(time) {
+      const deltaTime = (time - lastTime) / 16.67;
+      lastTime = time;
+
+      ctx.clearRect(0, 0, W, H);
+
+      const gradient = ctx.createRadialGradient(W * 0.5, H * 0.5, 0, W * 0.5, H * 0.5, Math.max(W, H) * 0.8);
+      gradient.addColorStop(0, 'rgba(13, 10, 7, 0)');
+      gradient.addColorStop(1, 'rgba(13, 10, 7, 0.45)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, W, H);
+
+      particles.forEach(particle => {
+        particle.update(mouseX, mouseY, deltaTime);
+        particle.draw();
+      });
+      
+      drawHarmony();
 
       requestAnimationFrame(animate);
     }
 
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      
+      // Throttle spark spawning based on move distance
+      const dx = mouseX - lastSpawnX;
+      const dy = mouseY - lastSpawnY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      
+      if (dist > 8) {
+        gravitySparks.push(new GravitySpark(mouseX, mouseY));
+        lastSpawnX = mouseX;
+        lastSpawnY = mouseY;
+      }
+      
+      // Trigger Z particle burst on mouse move for interactive effect
+      if (Math.random() < 0.03) {
+        zParticles.push(new ZParticle());
+      }
+    }, { passive: true });
+
+    resize();
+    initParticles();
+    const cleanup = initElements();
     animate();
+
+    window.addEventListener('resize', () => {
+      resize();
+      initParticles();
+    });
+
+    return () => {
+      cleanup();
+    };
   }
 
   /* ──────────────────────────────────────────────────────────
-     2. LUMINESCENT CURSOR — trailing glow effect
+      2. SMOOTH SCROLL WITH COSMIC HARMONY
      ────────────────────────────────────────────────────────── */
-  function initCursor() {
-    const dot  = document.getElementById('cursor-dot');
+  function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          if (target.id.includes('form') || target.id.includes('contact')) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            target.style.boxShadow = '0 0 20px rgba(212, 165, 116, 0.3)';
+            setTimeout(() => {
+              target.style.boxShadow = 'none';
+            }, 2000);
+          } else {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+      3. ENHANCED FOCUS STATES
+     ────────────────────────────────────────────────────────── */
+  function initFocusStates() {
+    document.querySelectorAll('input, select, textarea').forEach(input => {
+      input.addEventListener('focus', function() {
+        if (this.parentElement) this.parentElement.style.transform = 'translateY(-2px)'
+        this.style.borderColor = 'var(--accent-primary)'
+        this.style.boxShadow = '0 0 12px rgba(212, 165, 116, 0.2)'
+      })
+
+      input.addEventListener('blur', function() {
+        if (this.parentElement) this.parentElement.style.transform = 'none'
+        this.style.borderColor = 'var(--border)'
+        this.style.boxShadow = 'none'
+      })
+    })
+  }
+
+  /* ──────────────────────────────────────────────────────────
+      4. CONTACT PAGE HARMONIZATION
+     ────────────────────────────────────────────────────────── */
+  function initContactHarmony() {
+    if (!window.location.pathname.includes('/contact')) return;
+
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    const submitBtn = document.getElementById('form-submit');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', function(e) {
+        const span = this.querySelector('span');
+        if (span) span.textContent = 'Sending...';
+        this.style.background = 'linear-gradient(135deg, var(--accent-tertiary), var(--accent-deep))'
+        
+        setTimeout(() => {
+          if (span) span.textContent = 'Kirim Pesan →';
+          this.style.background = 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))'
+        }, 2000)
+      })
+    }
+
+    const canvas = document.getElementById('bio-canvas');
+    if (canvas) {
+      canvas.style.opacity = '0.25'
+      canvas.style.filter = 'blur(0.5px)'
+    }
+  }
+
+  /* ──────────────────────────────────────────────────────────
+      5. CUSTOM CURSOR SYSTEM
+     ────────────────────────────────────────────────────────── */
+  function initCustomCursor() {
+    const dot = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
-
     if (!dot || !ring) return;
-    if (!window.matchMedia('(pointer: fine)').matches) return;
-    // Respect reduced-motion: keep the native cursor, no custom trailing glow.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    let mx = -200, my = -200;
-    let rx = -200, ry = -200;
+    let mouseX = 0, mouseY = 0;
+    let dotX = 0, dotY = 0;
+    let ringX = 0, ringY = 0;
+    let isMoving = false;
+
+    function tick() {
+      dotX += (mouseX - dotX) * 0.3;
+      dotY += (mouseY - dotY) * 0.3;
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+
+      dot.style.left = `${dotX}px`;
+      dot.style.top = `${dotY}px`;
+      ring.style.left = `${ringX}px`;
+      ring.style.top = `${ringY}px`;
+
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
 
     window.addEventListener('mousemove', (e) => {
-      mx = e.clientX;
-      my = e.clientY;
-    }, { passive: true });
-
-    // Expand ring on interactive elements
-    const interactives = 'a, button, .project-item, .service-card, .stat-card, .skill-cloud-tag, .testimonial-card, .contact-link-item';
-
-    document.querySelectorAll(interactives).forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
-    });
-
-    // Use MutationObserver to catch dynamically added elements (modal content)
-    const observer = new MutationObserver(() => {
-      document.querySelectorAll(interactives).forEach(el => {
-        if (!el._cursorBound) {
-          el._cursorBound = true;
-          el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
-          el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
-        }
-      });
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    function moveCursor() {
-      dot.style.transform = `translate(${mx}px, ${my}px)`;
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.transform = `translate(${rx}px, ${ry}px)`;
-      requestAnimationFrame(moveCursor);
-    }
-    requestAnimationFrame(moveCursor);
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     3. SCROLL ANIMATIONS — IntersectionObserver
-     ────────────────────────────────────────────────────────── */
-  function initScrollAnimations() {
-    const animEls = document.querySelectorAll('.fade-up, .fade-left, .fade-right');
-    if (!animEls.length) return;
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    animEls.forEach(el => io.observe(el));
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     4. COUNTER ANIMATION — animated stat numbers
-     ────────────────────────────────────────────────────────── */
-  function initCounters() {
-    const counters = document.querySelectorAll('.stat-number[data-target]');
-    if (!counters.length) return;
-
-    const cIo = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-
-        const el     = entry.target;
-        const target = parseInt(el.dataset.target, 10);
-        const suffix = el.dataset.suffix || '+';
-        let current  = 0;
-        const step   = Math.max(1, Math.ceil(target / 50));
-
-        const tick = () => {
-          current = Math.min(current + step, target);
-          el.textContent = current + suffix;
-          if (current < target) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-        cIo.unobserve(el);
-      });
-    }, { threshold: 0.5 });
-
-    counters.forEach(el => cIo.observe(el));
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     5. TYPING EFFECT — hero rotating words
-     ────────────────────────────────────────────────────────── */
-  function initTyping() {
-    const el = document.getElementById('typed-text');
-    if (!el) return;
-
-    const words   = ['Software', 'AI Agents', 'Backend', 'Web Apps', 'Systems'];
-    let wordIdx   = 0;
-    let charIdx   = 0;
-    let deleting  = false;
-    let pauseTimer = null;
-
-    function typeLoop() {
-      const word    = words[wordIdx];
-      const current = deleting
-        ? word.substring(0, charIdx - 1)
-        : word.substring(0, charIdx + 1);
-
-      el.textContent = current;
-
-      if (!deleting && current === word) {
-        setTimeout(() => {
-          deleting = true;
-          typeLoop();
-        }, 2000);
-        return;
-      } else if (deleting && current === '') {
-        deleting = false;
-        wordIdx  = (wordIdx + 1) % words.length;
-        charIdx  = 0;
-        setTimeout(typeLoop, 350);
-        return;
-      }
-
-      charIdx = deleting ? charIdx - 1 : charIdx + 1;
-      setTimeout(typeLoop, deleting ? 55 : 90);
-    }
-
-    typeLoop();
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     6. NAV SCROLL STATE
-     ────────────────────────────────────────────────────────── */
-  function initNav() {
-    const nav = document.getElementById('main-nav');
-    if (!nav) return;
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!isMoving) {
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+        isMoving = true;
       }
     }, { passive: true });
-  }
 
-  /* ──────────────────────────────────────────────────────────
-     7. SKILL BARS ANIMATION — sonar ping effect
-     ────────────────────────────────────────────────────────── */
-  function initSkillBars() {
-    const bars = document.querySelectorAll('.skill-bar-fill[data-level]');
-    if (!bars.length) return;
+    document.addEventListener('mouseleave', () => {
+      dot.style.opacity = '0';
+      ring.style.opacity = '0';
+      isMoving = false;
+    });
 
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const bar   = entry.target;
-          const level = bar.dataset.level;
-          setTimeout(() => {
-            bar.style.width = level + '%';
-          }, 100);
-          io.unobserve(bar);
-        }
+    const updateClickableHovers = () => {
+      const clickables = document.querySelectorAll('a, button, input, select, textarea, [role="link"], .project-item, .project-card');
+      clickables.forEach(el => {
+        if (el.dataset.cursorBound) return;
+        el.dataset.cursorBound = 'true';
+
+        el.addEventListener('mouseenter', () => {
+          document.body.classList.add('cursor-hover');
+        });
+        el.addEventListener('mouseleave', () => {
+          document.body.classList.remove('cursor-hover');
+        });
       });
-    }, { threshold: 0.3 });
-
-    bars.forEach(bar => io.observe(bar));
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     8. BOTTOM SHEET MODAL — project details
-     ────────────────────────────────────────────────────────── */
-  function initModal() {
-    const modal      = document.getElementById('project-modal');
-    const modalBody  = document.getElementById('modal-content-body');
-    const closeBtn   = document.getElementById('modal-close-btn');
-    const projectLinks = document.querySelectorAll('.project-item');
-
-    if (!modal || !projectLinks.length) return;
-
-    projectLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const href = link.getAttribute('data-href');
-        if (href) {
-          e.preventDefault();
-          openModal(href);
-          history.pushState({ modalOpen: true, href }, '', href);
-        }
-      });
-    });
-
-    function openModal(url) {
-      modal.classList.add('active');
-      document.body.classList.add('modal-open');
-      modal.setAttribute('aria-hidden', 'false');
-
-      if (modalBody) {
-        modalBody.innerHTML = `
-          <div class="modal-spinner-container">
-            <div class="modal-spinner"></div>
-            <p style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.1em;color:var(--fg-muted);">LOADING DATA...</p>
-          </div>`;
-
-        fetch(url)
-          .then(r => { if (!r.ok) throw new Error('Gagal memuat'); return r.text(); })
-          .then(html => {
-            const doc    = new DOMParser().parseFromString(html, 'text/html');
-            const detail = doc.querySelector('.project-detail');
-            if (detail) {
-              modalBody.innerHTML = '';
-              modalBody.appendChild(detail);
-            } else {
-              modalBody.innerHTML = `<p style="color:var(--bio-coral);text-align:center;margin-top:40px;font-family:var(--font-mono)">Detail tidak ditemukan.</p>`;
-            }
-          })
-          .catch(err => {
-            modalBody.innerHTML = `<p style="color:var(--bio-coral);text-align:center;margin-top:40px;font-family:var(--font-mono)">${err.message}</p>`;
-          });
-      }
-    }
-
-    function closeModal(pushHistory = true) {
-      modal.classList.remove('active');
-      document.body.classList.remove('modal-open');
-      modal.setAttribute('aria-hidden', 'true');
-      if (pushHistory && window.location.pathname === '/project') {
-        history.pushState({ modalOpen: false }, '', '/');
-      }
-    }
-
-    if (closeBtn) closeBtn.addEventListener('click', () => closeModal());
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-    });
-
-    window.addEventListener('popstate', () => {
-      const p = new URL(window.location.href);
-      if (p.pathname === '/project') openModal(p.pathname + p.search);
-      else closeModal(false);
-    });
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     9. SKILLS PAGE — dynamic skill bars from JSON data
-     ────────────────────────────────────────────────────────── */
-  function renderSkillsFromData() {
-    const skillBarsContainer = document.getElementById('skill-bars-container');
-    const skillCloudContainer = document.getElementById('skill-cloud-container');
-
-    if (!portfolioData || !portfolioData.skills) return;
-
-    // Render skill bars (top 8 skills)
-    if (skillBarsContainer) {
-      const topSkills = portfolioData.skills.slice(0, 8);
-      skillBarsContainer.innerHTML = topSkills.map(skill => `
-        <div class="skill-bar-item fade-up">
-          <div class="skill-bar-header">
-            <span class="skill-bar-name">${skill.name}</span>
-            <span class="skill-bar-level">${skill.level}%</span>
-          </div>
-          <div class="skill-bar-track">
-            <div class="skill-bar-fill" data-level="${skill.level}" style="--glow-color:${skill.glow}"></div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // Render skill cloud (all skills)
-    if (skillCloudContainer) {
-      skillCloudContainer.innerHTML = portfolioData.skills.map(skill => `
-        <span class="skill-cloud-tag fade-up" data-cat="${skill.category}">${skill.name}</span>
-      `).join('');
-    }
-
-    // Re-init skill bars & scroll animations after DOM update
-    initSkillBars();
-    initScrollAnimations();
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     10. PROJECTS PAGE — dynamic projects from JSON data
-     ────────────────────────────────────────────────────────── */
-  function renderProjectsFromData() {
-    const projectList = document.getElementById('project-list');
-    if (!projectList || !portfolioData || !portfolioData.projects) return;
-
-    const statusLabel = {
-      live: 'Live',
-      complete: 'Complete',
-      client: 'Client Work'
     };
 
-    projectList.innerHTML = portfolioData.projects.map(p => `
-      <div class="project-item fade-up" data-href="/project?id=${p.id}" role="link" tabindex="0">
-        <div class="project-num">${p.num}</div>
-        <div class="project-info">
-          <h3 class="project-name">${p.title}</h3>
-          <p class="project-desc">${p.short_desc}</p>
-          <div class="project-meta">
-            <div class="project-tags">
-              ${p.tags.slice(0, 4).map(t => `<span class="tag">${t}</span>`).join('')}
-            </div>
-            <span class="project-status ${p.status}">${statusLabel[p.status] || p.status}</span>
-          </div>
-        </div>
-        <div class="project-arrow">↗</div>
-      </div>
-    `).join('');
+    updateClickableHovers();
 
-    // Keyboard accessibility
-    document.querySelectorAll('.project-item[data-href]').forEach(el => {
-      el.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          el.click();
-        }
-      });
+    const observer = new MutationObserver(() => {
+      updateClickableHovers();
     });
-
-    initScrollAnimations();
-    initModal();
+    observer.observe(document.body, { childList: true, subtree: true });
   }
 
   /* ──────────────────────────────────────────────────────────
-     11. TESTIMONIALS — dynamic render
+     INITIALIZATION
      ────────────────────────────────────────────────────────── */
-  function renderTestimonialsFromData() {
-    const container = document.getElementById('testimonials-container');
-    if (!container || !portfolioData || !portfolioData.testimonials) return;
-
-    container.innerHTML = portfolioData.testimonials.map((t, i) => `
-      <div class="testimonial-card fade-up delay-${i + 1}">
-        <div class="testimonial-stars">
-          ${'<span>★</span>'.repeat(t.rating)}
-        </div>
-        <p class="testimonial-text">${t.text}</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">${t.avatar}</div>
-          <div>
-            <div class="testimonial-name">${t.name}</div>
-            <div class="testimonial-role">${t.role} @ ${t.company}</div>
-          </div>
-        </div>
-      </div>
-    `).join('');
-
-    initScrollAnimations();
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     12. TICKER — dynamic from JSON
-     ────────────────────────────────────────────────────────── */
-  function renderTickerFromData() {
-    const track = document.getElementById('ticker-track');
-    if (!track || !portfolioData || !portfolioData.ticker_items) return;
-
-    const items = [...portfolioData.ticker_items, ...portfolioData.ticker_items]; // duplicate for seamless loop
-    track.innerHTML = items.map(item => `<span class="ticker-item">${item}</span>`).join('');
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     13. HOLOGRAPHIC ID CARD TILT EFFECT — 3D perspective
-     ────────────────────────────────────────────────────────── */
-  function initCardTilt() {
-    const card = document.querySelector('.id-card');
-    if (!card) return;
-    if (!window.matchMedia('(pointer: fine)').matches) return;
-
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top  + rect.height / 2;
-      const rotateX = ((e.clientY - centerY) / (rect.height / 2)) * -8;
-      const rotateY = ((e.clientX - centerX) / (rect.width  / 2)) * 8;
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-      card.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-      setTimeout(() => { card.style.transition = ''; }, 600);
-    });
-
-    card.addEventListener('mouseenter', () => {
-      card.style.transition = 'transform 0.1s linear';
-    });
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     14. SERVICE CARDS — mouse tracking spotlight
-     ────────────────────────────────────────────────────────── */
-  function initServiceSpotlight() {
-    const cards = document.querySelectorAll('.service-card');
-    if (!cards.length) return;
-    if (!window.matchMedia('(pointer: fine)').matches) return;
-
-    cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width)  * 100;
-        const y = ((e.clientY - rect.top)  / rect.height) * 100;
-        card.style.setProperty('--mouse-x', x + '%');
-        card.style.setProperty('--mouse-y', y + '%');
-      });
-    });
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     15. BACK LINK HOVER
-     ────────────────────────────────────────────────────────── */
-  function initBackLink() {
-    const backLink = document.getElementById('back-link');
-    if (!backLink) return;
-    backLink.addEventListener('mouseenter', () => { backLink.style.color = 'var(--bio-cyan)'; });
-    backLink.addEventListener('mouseleave', () => { backLink.style.color = ''; });
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     16. STATS — render from JSON
-     ────────────────────────────────────────────────────────── */
-  function renderStatsFromData() {
-    const container = document.getElementById('hero-stats');
-    if (!container || !portfolioData || !portfolioData.stats) return;
-
-    container.innerHTML = portfolioData.stats.map((s, i) => `
-      <div class="stat-card fade-up delay-${i + 1}">
-        <span class="stat-number" data-target="${s.number}" data-suffix="${s.suffix}">0${s.suffix}</span>
-        <span class="stat-label">${s.label}</span>
-      </div>
-    `).join('');
-
-    initCounters();
-    initScrollAnimations();
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     INIT — Boot sequence
-     ────────────────────────────────────────────────────────── */
-  async function init() {
-    // Always init these immediately (they don't need data)
-    initBioCanvas();
-    initCursor();
-    initNav();
-    initTyping();
-    initScrollAnimations();
-    initCounters();
-    initSkillBars();
-    initCardTilt();
-    initServiceSpotlight();
-    initBackLink();
-
-    // Load JSON data, then render dynamic parts — BUT only if the server
-    // hasn't already rendered them (SSR via fillPage). This avoids a
-    // visible re-render flash and double work.
-    await loadPortfolioData();
-
-    if (portfolioData) {
-      const needsRender = (id) => {
-        const el = document.getElementById(id);
-        // Empty or still showing a RENDER marker => not SSR-filled.
-        return el && (el.children.length === 0 || /RENDER:/.test(el.innerHTML));
-      };
-
-      if (needsRender('ticker-track')) renderTickerFromData();
-      if (needsRender('project-list')) renderProjectsFromData();
-      if (needsRender('hero-stats')) renderStatsFromData();
-      if (needsRender('skill-bars-container') || needsRender('skill-cloud-container')) renderSkillsFromData();
-      if (needsRender('testimonials-container')) renderTestimonialsFromData();
-    }
-
-    // Modal is wired to project-items; re-bind even if SSR rendered them.
-    initModal();
-  }
-
-  // Run on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-
+  document.addEventListener('DOMContentLoaded', () => {
+    initCosmicHarmony();
+    initSmoothScroll();
+    initFocusStates();
+    initContactHarmony();
+    initCustomCursor();
+  });
 })();
