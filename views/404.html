@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Halaman Tidak Ditemukan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+
+<body>
+
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <nav id="main-nav">
+        <a href="/" class="nav-logo">zero<span>man</span></a>
+        <div class="nav-links">
+            <a href="/" class="nav-link" id="nav-home">Home</a>
+            <a href="/about" class="nav-link" id="nav-about">About</a>
+            <a href="/contact" class="nav-cta" id="nav-contact">Hire Me →</a>
+        </div>
+    </nav>
+
+    <div class="page-wrapper">
+        <div class="page-404">
+            <div class="big-num">404</div>
+            <div class="page-404-content">
+                <div class="hero-chip" style="margin: 0 auto 24px; display: inline-flex;">Error 404</div>
+                <h1 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px; line-height: 1.1;">
+                    Halaman<br><span style="color: var(--fg-dim); font-weight: 300;">tidak ditemukan.</span>
+                </h1>
+                <p style="color: var(--fg-muted); font-size: 0.95rem; margin-bottom: 40px; font-family: var(--font-mono);">
+                    Sepertinya URL yang Anda minta tidak ada di sini.
+                </p>
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <a href="/" class="btn-primary" id="notfound-home">Balik ke Home →</a>
+                    <a href="/contact" class="btn-ghost" id="notfound-contact">Hubungi Saya</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/public/js/main.js"></script>
+</body>
+
+</html>
