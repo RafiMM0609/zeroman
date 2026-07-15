@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id" class="js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hubungi Anton — Software Engineer & AI Architect. Siap membantu proyek Anda dari konsultasi hingga eksekusi penuh.">
+    <meta property="og:title" content="Hire Me — Anton, Software Engineer">
+    <meta property="og:description" content="Mari bangun produk digital yang bergerak cepat dan berpikir lebih cerdas. Hubungi Anton sekarang.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Hire Me — Anton, Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+
+<body>
+
+    <canvas id="bio-canvas" aria-hidden="true"></canvas>
+    <div id="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
+
+    <nav id="main-nav" role="navigation" aria-label="Navigasi utama">
+        <a href="/" class="nav-logo" id="nav-logo">
+            <span class="logo-zero">zero</span><span class="logo-man">man</span><span class="logo-cursor" aria-hidden="true"></span>
+        </a>
+        <div class="nav-links">
+            <a href="/" class="nav-link" id="nav-home">Home</a>
+            <a href="/about" class="nav-link" id="nav-about">About</a>
+            <a href="/contact" class="nav-cta" style="background:rgba(0,229,255,0.1); color:var(--bio-cyan); border:1px solid rgba(0,229,255,0.3);" id="nav-contact">Hire Me →</a>
+        </div>
+    </nav>
+
+    <div class="page-wrapper">
+        <section class="section" style="padding-top: 80px;">
+            <div class="container">
+
+                <div class="contact-wrapper">
+                    <!-- LEFT: Info -->
+                    <div class="fade-left">
+                        <div class="section-eyebrow" style="margin-bottom: 24px;">// mulai dari sini</div>
+
+                        <h1 class="contact-info-title">
+                            Ada project<br>
+                            <span style="color: var(--fg-dim); font-weight: 200;">yang perlu</span><br>
+                            <span class="accent-gradient">diselesaikan?</span>
+                        </h1>
+
+                        <p class="contact-info-desc">
+                            Saya terbuka untuk proyek freelance, konsultasi teknis, atau posisi penuh waktu.
+                            Ceritakan kebutuhan Anda — saya akan respons dalam 24 jam.
+                        </p>
+
+                        <!-- Contact Links -->
+                        <div class="contact-links">
+                            <a href="mailto:hello@zeroman.dev" class="contact-link-item" id="contact-email-link">
+                                <span class="contact-link-icon">✉</span>
+                                <div>
+                                    <div class="contact-link-title">Email</div>
+                                    <div class="contact-link-sub">hello@zeroman.dev</div>
+                                </div>
+                            </a>
+                            <a href="https://github.com/zeroman" class="contact-link-item" id="contact-github-link" target="_blank" rel="noopener">
+                                <span class="contact-link-icon" style="font-family:var(--font-mono); font-size:0.8rem;">GH</span>
+                                <div>
+                                    <div class="contact-link-title">GitHub</div>
+                                    <div class="contact-link-sub">github.com/zeroman</div>
+                                </div>
+                            </a>
+                            <a href="https://linkedin.com/in/zeroman" class="contact-link-item" id="contact-linkedin-link" target="_blank" rel="noopener">
+                                <span class="contact-link-icon" style="font-family:var(--font-mono); font-size:0.8rem;">LI</span>
+                                <div>
+                                    <div class="contact-link-title">LinkedIn</div>
+                                    <div class="contact-link-sub">linkedin.com/in/zeroman</div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Availability indicator -->
+                        <div class="avail-card">
+                            <div class="avail-dot"></div>
+                            <div>
+                                <div class="avail-label">Available Now</div>
+                                <div class="avail-sub">Siap mulai project baru segera</div>
+                            </div>
+                        </div>
+
+                        <!-- Trust indicators -->
+                        <div style="
+                            margin-top: 40px;
+                            padding-top: 32px;
+                            border-top: 1px solid var(--border);
+                            display: flex;
+                            gap: 32px;
+                            flex-wrap: wrap;
+                        ">
+                            <div>
+                                <div style="font-family:var(--font-mono); font-size:1.5rem; font-weight:700; color:var(--bio-cyan); text-shadow: 0 0 12px rgba(0,229,255,0.4);">10+</div>
+                                <div style="font-size:0.78rem; color:var(--fg-muted); font-family:var(--font-mono); letter-spacing:0.06em;">Happy Clients</div>
+                            </div>
+                            <div>
+                                <div style="font-family:var(--font-mono); font-size:1.5rem; font-weight:700; color:var(--bio-aurora); text-shadow: 0 0 12px rgba(0,255,157,0.4);">&lt;24h</div>
+                                <div style="font-size:0.78rem; color:var(--fg-muted); font-family:var(--font-mono); letter-spacing:0.06em;">Response Time</div>
+                            </div>
+                            <div>
+                                <div style="font-family:var(--font-mono); font-size:1.5rem; font-weight:700; color:var(--bio-cobalt); text-shadow: 0 0 12px rgba(68,136,255,0.4);">100%</div>
+                                <div style="font-size:0.78rem; color:var(--fg-muted); font-family:var(--font-mono); letter-spacing:0.06em;">Project Done</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Form -->
+                    <div class="fade-right">
+                        <form action="/send-message" method="POST" class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Nama / Perusahaan</label>
+                                <input type="text" id="name" name="name" placeholder="John Doe / Acme Corp" required autocomplete="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="john@company.com" autocomplete="email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="budget">Estimasi Budget</label>
+                                <select id="budget" name="budget">
+                                    <option value="" disabled selected style="color:#444">Pilih range budget...</option>
+                                    <option value="< Rp 5 Juta">&lt; Rp 5 Juta</option>
+                                    <option value="Rp 5-20 Juta">Rp 5 – 20 Juta</option>
+                                    <option value="Rp 20-50 Juta">Rp 20 – 50 Juta</option>
+                                    <option value="> Rp 50 Juta">&gt; Rp 50 Juta</option>
+                                    <option value="Diskusi lebih lanjut">Diskusi lebih lanjut</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Ceritakan Project Anda</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Apa yang ingin Anda bangun? Apa masalah yang perlu dipecahkan? Detail lebih banyak = estimasi lebih akurat." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit" id="form-submit">
+                                <span>Kirim Pesan →</span>
+                            </button>
+
+                            <p style="
+                                text-align: center;
+                                font-family: var(--font-mono);
+                                font-size: 0.68rem;
+                                color: var(--fg-muted);
+                                margin-top: 16px;
+                                letter-spacing: 0.06em;
+                            ">🔒 Data Anda aman. Tidak ada spam, tidak ada FOMO.</p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="footer-inner">
+                    <a href="/" class="footer-logo" id="footer-logo">
+                        <span class="logo-zero">zero</span><span class="logo-man">man</span>
+                    </a>
+                    <p class="footer-copy">© 2026 — Dibangun dengan tangan, bukan template.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" title="GitHub" id="footer-github">GH</a>
+                        <a href="#" class="social-link" title="LinkedIn" id="footer-linkedin">LI</a>
+                        <a href="/contact" class="social-link" title="Email" id="footer-email">✉</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/public/js/main.js"></script>
+</body>
+
+</html>
