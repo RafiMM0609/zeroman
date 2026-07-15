@@ -552,70 +552,27 @@
   }
 
   /* ──────────────────────────────────────────────────────────
-      5. CUSTOM CURSOR SYSTEM
+      5. PROJECT ITEM REDIRECTION SYSTEM
      ────────────────────────────────────────────────────────── */
-  function initCustomCursor() {
-    const dot = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    if (!dot || !ring) return;
+  function initProjectRedirects() {
+    document.querySelectorAll('[data-href]').forEach(el => {
+      el.style.cursor = 'pointer';
+      
+      const navigate = () => {
+        const href = el.getAttribute('data-href');
+        if (href) {
+          window.location.href = href;
+        }
+      };
 
-    let mouseX = 0, mouseY = 0;
-    let dotX = 0, dotY = 0;
-    let ringX = 0, ringY = 0;
-    let isMoving = false;
-
-    function tick() {
-      dotX += (mouseX - dotX) * 0.3;
-      dotY += (mouseY - dotY) * 0.3;
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
-
-      dot.style.left = `${dotX}px`;
-      dot.style.top = `${dotY}px`;
-      ring.style.left = `${ringX}px`;
-      ring.style.top = `${ringY}px`;
-
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (!isMoving) {
-        dot.style.opacity = '1';
-        ring.style.opacity = '1';
-        isMoving = true;
-      }
-    }, { passive: true });
-
-    document.addEventListener('mouseleave', () => {
-      dot.style.opacity = '0';
-      ring.style.opacity = '0';
-      isMoving = false;
-    });
-
-    const updateClickableHovers = () => {
-      const clickables = document.querySelectorAll('a, button, input, select, textarea, [role="link"], .project-item, .project-card');
-      clickables.forEach(el => {
-        if (el.dataset.cursorBound) return;
-        el.dataset.cursorBound = 'true';
-
-        el.addEventListener('mouseenter', () => {
-          document.body.classList.add('cursor-hover');
-        });
-        el.addEventListener('mouseleave', () => {
-          document.body.classList.remove('cursor-hover');
-        });
+      el.addEventListener('click', navigate);
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          navigate();
+        }
       });
-    };
-
-    updateClickableHovers();
-
-    const observer = new MutationObserver(() => {
-      updateClickableHovers();
     });
-    observer.observe(document.body, { childList: true, subtree: true });
   }
 
   /* ──────────────────────────────────────────────────────────
@@ -626,6 +583,6 @@
     initSmoothScroll();
     initFocusStates();
     initContactHarmony();
-    initCustomCursor();
+    initProjectRedirects();
   });
 })();
