@@ -1,201 +1,208 @@
 <!DOCTYPE html>
-<html lang="id" class="js">
-
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Anton — Software Engineer & AI Architect. Membangun aplikasi web performa tinggi, AI agents, dan sistem backend yang skalabel. Tersedia untuk hire.">
-    <meta name="keywords" content="software engineer, AI engineer, fullstack developer, Node.js, Go, portofolio">
-    <meta property="og:title" content="Anton — Software Engineer & AI Architect">
-    <meta property="og:description" content="Membangun produk digital yang bergerak cepat dan berpikir lebih cerdas.">
+    <meta name="description" content="Stories in Light and Shadow — A melancholic, warm photographic journey captured by Anton, featuring emotive portraits and cityscapes at dusk.">
+    <meta name="keywords" content="photography portfolio, dark aesthetic, warm tone, storytelling, Anton, Zeroman">
+    <meta property="og:title" content="Stories in Light and Shadow — Anton Photography">
+    <meta property="og:description" content="I capture fleeting moments where light meets emotion — a visual diary of twilight and shadows.">
     <meta property="og:type" content="website">
-    <title>Anton — Software Engineer & AI Architect</title>
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Stories in Light and Shadow — Anton Photography</title>
+
+    <!-- Fonts: Playfair Display for headings, Inter for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/public/css/style.css">
 </head>
-
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+        <nav>
+            <a href="#" class="logo">Stories in Light and Shadow</a>
+            <ul>
+                <li><a href="javascript:void(0)" class="active">PORTOFOLIO</a></li>
+                <li><a href="/about">ABOUT</a></li>
+                <li><a href="#projects" id="nav-journal">JOURNAL</a></li>
+                <li><a href="/contact">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Bioluminescent Particle Canvas -->
-    <canvas id="bio-canvas" aria-hidden="true"></canvas>
-
-    <!-- Custom Cursor -->
-    <div id="cursor-dot" aria-hidden="true"></div>
-    <div id="cursor-ring" aria-hidden="true"></div>
-
-    <!-- Navigation -->
-    <nav id="main-nav" role="navigation" aria-label="Navigasi utama">
-        <a href="/" class="nav-logo" id="nav-logo">
-            <span class="logo-zero">zero</span><span class="logo-man">man</span><span class="logo-cursor" aria-hidden="true"></span>
-        </a>
-        <div class="nav-links">
-            <a href="/" class="nav-link active" id="nav-home">Home</a>
-            <a href="/about" class="nav-link" id="nav-about">About</a>
-            <a href="/contact" class="nav-cta" id="nav-contact">Hire Me →</a>
-        </div>
-    </nav>
-
-    <div class="page-wrapper">
-
-        <!-- ═══════════════════════ HERO ═══════════════════════ -->
-        <section id="hero" aria-label="Hero section">
-            <div class="hero-inner">
-
-                <!-- LEFT — Identity & CTA -->
-                <div class="hero-left">
-                    <div class="status-chip" id="status-chip">
-                        <span class="status-pulse" aria-hidden="true"></span>
-                        Open to Work
-                    </div>
-
-                    <h1 class="hero-title">
-                        <span class="line-sub">Saya membangun</span>
-                        <span class="line-typed" id="typed-text">Software</span><span class="type-cursor" aria-hidden="true"></span>
-                        <span class="line-static">yang berpikir.</span>
-                    </h1>
-
-                    <p class="hero-desc">
-                        <strong>Software Engineer & AI Architect</strong> yang fokus pada
-                        performa, skalabilitas, dan pengalaman produk yang benar-benar
-                        dirasakan pengguna. Tidak ada magic — hanya sistem yang dirancang dengan teliti.
-                    </p>
-
-                    <div class="hero-actions">
-                        <a href="/contact" class="btn-primary" id="hero-cta-hire">
-                            Mulai Project →
-                        </a>
-                        <a href="/about" class="btn-ghost" id="hero-cta-about">
-                            Tentang Saya
-                        </a>
-                    </div>
-                </div>
-
-                <!-- RIGHT — Holographic ID Card -->
-                <div class="hero-right">
-                    <div class="id-card" id="hero-id-card">
-                        <!-- HUD Corners -->
-                        <div class="id-card-hud" aria-hidden="true">
-                            <span class="hud-corner tl"></span>
-                            <span class="hud-corner tr"></span>
-                            <span class="hud-corner bl"></span>
-                            <span class="hud-corner br"></span>
-                        </div>
-
-                        <div class="id-card-image">
-                            <img src="/public/images/foto-1.png" alt="Anton - Software Engineer & AI Architect" loading="eager">
-                            <div class="image-overlay" aria-hidden="true"></div>
-                            <div class="avail-badge">
-                                <span class="status-pulse" aria-hidden="true"></span>
-                                Available for hire
-                            </div>
-                        </div>
-
-                        <div class="id-card-body">
-                            <div class="id-card-name">Anton</div>
-                            <div class="id-card-role">Software Engineer & AI Architect</div>
-                            <div class="id-card-chips">
-                                <span class="id-chip">Node.js</span>
-                                <span class="id-chip">Go</span>
-                                <span class="id-chip">AI Agents</span>
-                                <span class="id-chip">Backend</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Stats Grid -->
-                    <div class="hero-stats" id="hero-stats">
-                        <!--RENDER:stats-->
-                    </div>
-                </div>
-
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-bg">
+                <img src="/public/images/foto-1.png" alt="Seorang wanita Asia muda dengan mantel gelap di jalan senja kota" class="hero-image">
+                <div class="hero-overlay"></div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">Stories in Light and Shadow</h1>
+                <p class="hero-desc">I capture emotions... moments where soft city lights meet gentle silhouettes, painting the night with warmth and poetry.</p>
+                <a href="#projects" class="btn-primary"><span>View My Work</span></a>
             </div>
         </section>
 
-        <!-- ═══════════════════════ TICKER ═══════════════════════ -->
-        <div class="ticker-section" aria-hidden="true">
-            <div class="ticker-track" id="ticker-track">
-                <!--RENDER:ticker-->
-            </div>
-        </div>
-
-        <!-- ═══════════════════════ SERVICES ═══════════════════════ -->
-        <section class="section" id="services">
+        <section class="section" id="projects">
             <div class="container">
-                <div class="section-header fade-up">
-                    <div class="section-eyebrow">// apa yang saya buat</div>
-                    <h2 class="section-title">Layanan & <em>Keahlian</em></h2>
-                </div>
-
-                <div class="services-grid" id="services-grid">
-                    <!--RENDER:services-->
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════════════════ PROJECTS ═══════════════════════ -->
-        <section class="section" id="projects" style="padding-top: 0;">
-            <div class="container">
-                <div class="section-header fade-up">
-                    <div class="section-eyebrow">// proyek pilihan</div>
+                <div class="section-header">
+                    <div class="section-eyebrow">// journal pilihan</div>
                     <h2 class="section-title">Hasil <em>Nyata</em></h2>
                 </div>
-
-                <div class="project-list" id="project-list">
-                    <!--RENDER:projects-->
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════════════════ TESTIMONIALS ═══════════════════════ -->
-        <section class="section" id="testimonials">
-            <div class="container">
-                <div class="section-header fade-up">
-                    <div class="section-eyebrow">// kata mereka</div>
-                    <h2 class="section-title">Klien yang <em>Percaya</em></h2>
-                </div>
-
-                <div class="testimonials-grid" id="testimonials-container">
-                    <!--RENDER:testimonials-->
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
-        <footer>
-            <div class="container">
-                <div class="footer-inner">
-                    <a href="/" class="footer-logo" id="footer-logo">
-                        <span class="logo-zero">zero</span><span class="logo-man">man</span>
-                    </a>
-                    <p class="footer-copy">© 2026 — Dibangun dengan tangan, bukan template.</p>
-                    <div class="footer-social">
-                        <!--RENDER:social-->
+                
+                <div class="projects-grid" id="projects-container">
+                    <!-- Projects will be injected here via server -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="/public/images/foto-2.png" alt="Project 1" class="project-img">
+                            <div class="project-overlay"></div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Midnight Passage</h3>
+                            <p class="project-excerpt">A solitary figure navigating the illuminated streets of a city lost in shadow.</p>
+                            <a href="#" class="project-link">View Project →</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </footer>
+        </section>
 
-    </div><!-- end .page-wrapper -->
-
-    <!-- Bottom Sheet Modal -->
-    <div id="project-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-label="Detail proyek">
-        <div class="modal-sheet">
-            <div class="modal-header">
-                <div class="modal-handle" aria-hidden="true"></div>
-                <button class="modal-close" aria-label="Tutup detail proyek" id="modal-close-btn">✕</button>
-            </div>
-            <div class="modal-content" id="modal-content-body">
-                <div class="modal-spinner-container">
-                    <div class="modal-spinner"></div>
-                    <p>Memuat proyek...</p>
+        <section class="section" id="about-preview">
+            <div class="container">
+                <div class="about-content">
+                    <h2 class="section-title">About the Vision</h2>
+                    <p class="about-text">Every photograph is a conversation between light and shadow, capturing moments that speak volumes without words. My journey through the city at dusk reveals stories waiting to be discovered.</p>
+                    <a href="/about" class="btn-primary"><span>Read More</span></a>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-tagline">Capturing fleeting moments where light meets emotion.</p>
+            <div class="footer-social">
+                <a href="#" class="social-link">Facebook</a>
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">Threads</a>
+            </div>
         </div>
-    </div>
+        <div class="footer-bottom">
+            <p>© 2024 Stories in Light and Shadow. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <script src="/public/js/main.js"></script>
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Navigation active state on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Initialize particles effect (minimal)
+        function initParticles() {
+            const canvas = document.createElement('canvas');
+            canvas.id = 'particles-canvas';
+            canvas.style.position = 'fixed';
+            canvas.style.top = '0';
+            canvas.style.left = '0';
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            canvas.style.pointerEvents = 'none';
+            canvas.style.zIndex = '0';
+            canvas.style.opacity = '0.3';
+            document.body.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.size = Math.random() * 2;
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                }
+                
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                }
+                
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(212, 165, 116, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+            
+            function init() {
+                particles = [];
+                for (let i = 0; i < 50; i++) {
+                    particles.push(new Particle());
+                }
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            
+            resize();
+            init();
+            animate();
+            
+            window.addEventListener('resize', () => {
+                resize();
+                init();
+            });
+        }
+        
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', initParticles);
+    </script>
 </body>
-
 </html>
