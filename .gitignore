@@ -7,3 +7,5 @@ data/
 # OS / editor junk
 .DS_Store
 *.log
+.nuxt/
+.output/
