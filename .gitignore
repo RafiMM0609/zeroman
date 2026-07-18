@@ -2,7 +2,7 @@
 node_modules/
 
 # Inbound contact messages (contains PII — never commit)
-data/
+/data/messages.json
 
 # OS / editor junk
 .DS_Store
