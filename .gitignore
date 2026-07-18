@@ -9,3 +9,6 @@ data/
 *.log
 .nuxt/
 .output/
+
+# Environtment
+.env
