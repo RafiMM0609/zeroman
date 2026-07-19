@@ -1,0 +1,294 @@
+<template>
+  <div>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content" style="z-index: 2;">
+        <div 
+          class="hero-chip" 
+          id="hero-chip" 
+          style="margin-bottom: 24px;"
+          ref="heroChip"
+          @mousemove="handleChipMouseMove"
+          @mouseleave="handleChipMouseLeave"
+        >
+          <span>{{ translate(portfolio.hero, 'chip') }}</span>
+        </div>
+        <h1 class="hero-title" id="hero-title" v-html="translate(portfolio.hero, 'title')"></h1>
+        <p class="hero-desc" id="hero-desc">
+          {{ translate(portfolio.hero, 'desc') }}
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <NuxtLink to="/contact" class="btn-primary" id="hero-cta-primary">
+            <span>{{ translate(portfolio.hero, 'cta_primary') }}</span>
+          </NuxtLink>
+          <a href="#projects" class="btn-ghost" id="hero-cta-secondary" @click.prevent="scrollTo('#projects')">
+            {{ translate(portfolio.hero, 'cta_secondary') }}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section" id="stats" style="padding-top: 0;">
+      <div class="container">
+        <div class="stats-grid">
+          <div 
+            v-for="(stat, i) in (portfolio.stats || [])" 
+            :key="i"
+            class="stat-card fade-up"
+            :class="`delay-${i + 1}`"
+          >
+            <span class="stat-number">
+              {{ stat.number }}{{ stat.suffix }}
+            </span>
+            <span class="stat-label">
+              {{ translate(stat, 'label') }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ticker Section -->
+    <div class="ticker-wrap">
+      <div class="ticker-content">
+        <!-- Duplicate items for seamless infinite scrolling loop -->
+        <span 
+          v-for="(item, i) in tickerItems" 
+          :key="i" 
+          class="ticker-item"
+        >
+          {{ item }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-eyebrow" id="eyebrow-services">
+            {{ translate(portfolio.sections, 'what_i_do') }}
+          </div>
+          <h2 class="section-title" id="title-services" v-html="translate(portfolio.sections, 'how_help')"></h2>
+        </div>
+        
+        <div class="services-grid" id="services-grid">
+          <div 
+            v-for="(s, i) in (portfolio.services || [])" 
+            :key="s.id" 
+            class="service-card fade-up"
+            :class="{ ['delay-' + i]: i > 0 }"
+            :id="`service-${s.id}`"
+          >
+            <div class="service-icon-wrap">
+              <i :class="`icon-${s.icon || 'zap'}`"></i>
+            </div>
+            <h3 class="service-title">{{ translate(s, 'title') }}</h3>
+            <p class="service-subtitle">{{ translate(s, 'subtitle') }}</p>
+            <p class="service-desc">{{ translate(s, 'desc') }}</p>
+            <ul class="service-features">
+              <li v-for="(f, idx) in translate(s, 'features')" :key="idx">
+                {{ f }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-eyebrow" id="eyebrow-projects">
+            {{ translate(portfolio.sections, 'selected_work') }}
+          </div>
+          <h2 class="section-title" id="title-projects" v-html="translate(portfolio.sections, 'things_built')"></h2>
+        </div>
+        
+        <div class="projects-list" id="projects-list">
+          <NuxtLink 
+            v-for="p in (portfolio.projects || [])" 
+            :key="p.id" 
+            :to="`/project?id=${p.id}`" 
+            class="project-item fade-up" 
+            role="link" 
+            tabindex="0"
+          >
+            <div class="project-num">{{ p.num }}</div>
+            <div class="project-info">
+              <h3 class="project-name">{{ translate(p, 'title') }}</h3>
+              <p class="project-desc">{{ translate(p, 'short_desc') }}</p>
+              <div class="project-meta">
+                <div class="project-tags">
+                  <span v-for="t in (p.tags || []).slice(0, 4)" :key="t" class="tag">{{ t }}</span>
+                </div>
+                <span :class="`project-status ${p.status}`">
+                  {{ getStatusLabel(p.status) }}
+                </span>
+              </div>
+            </div>
+            <div class="project-arrow">↗</div>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-eyebrow" id="eyebrow-testimonials">
+            {{ translate(portfolio.sections, 'client_stories') }}
+          </div>
+          <h2 class="section-title" id="title-testimonials" v-html="translate(portfolio.sections, 'what_clients_say')"></h2>
+        </div>
+        
+        <div class="testimonials-grid" id="testimonials-grid">
+          <div 
+            v-for="(t, i) in (portfolio.testimonials || [])" 
+            :key="t.id"
+            class="testimonial-card fade-up"
+            :class="`delay-${i + 1}`"
+          >
+            <div class="testimonial-stars">
+              <span v-for="n in (t.rating || 5)" :key="n">★</span>
+            </div>
+            <p class="testimonial-text">
+              {{ translate(t, 'text') }}
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">{{ t.avatar }}</div>
+              <div>
+                <div class="testimonial-name">{{ t.name }}</div>
+                <div class="testimonial-role">{{ t.role }} @ {{ t.company }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner Section -->
+    <section class="section" style="padding-bottom: 2rem;">
+      <div class="container">
+        <div class="cta-banner fade-up">
+          <div class="cta-overlay" aria-hidden="true"></div>
+          <div class="cta-content">
+            <div class="section-eyebrow" id="cta-eyebrow" style="justify-content: center; margin-bottom: 20px;">
+              {{ translate(portfolio.sections, 'ready_collab') }}
+            </div>
+            <h2 class="cta-title" id="cta-title" v-html="translate(portfolio.sections, 'cta_title')"></h2>
+            <p class="cta-desc" id="cta-desc">
+              {{ translate(portfolio.sections, 'cta_desc') }}
+            </p>
+            <NuxtLink to="/contact" class="btn-primary" id="cta-btn" style="display: inline-flex;">
+              {{ translate(portfolio.sections, 'cta_btn') }}
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script setup>
+import { computed, ref } from 'vue'
+import { useLanguage } from '~/composables/useLanguage'
+import { useScrollReveal } from '~/composables/useScrollReveal'
+import portfolioData from '~/public/data/portfolio.json'
+
+const { translate, lang } = useLanguage()
+
+const heroChip = ref(null)
+
+const handleChipMouseMove = (e) => {
+  if (!heroChip.value) return
+  const rect = heroChip.value.getBoundingClientRect()
+  const x = e.clientX - rect.left
+  const y = e.clientY - rect.top
+  heroChip.value.style.setProperty('--mouse-x', `${x}px`)
+  heroChip.value.style.setProperty('--mouse-y', `${y}px`)
+}
+
+const handleChipMouseLeave = () => {
+  if (!heroChip.value) return
+  heroChip.value.style.setProperty('--mouse-x', `-100px`)
+  heroChip.value.style.setProperty('--mouse-y', `-100px`)
+}
+
+// Dynamic SEO Head tags
+const title = computed(() => {
+  return lang.value === 'id'
+    ? 'Anton — Software Engineer & Arsitek AI | zeroman'
+    : 'Anton — Software Engineer & AI Architect | zeroman'
+})
+
+const description = computed(() => {
+  return lang.value === 'id'
+    ? 'Portofolio Anton — Software Engineer & Arsitek AI. Spesialisasi dalam pembuatan aplikasi web kustom, sistem AI multi-agent, dan arsitektur backend.'
+    : 'Anton\'s Portfolio — Software Engineer & AI Architect. Specialized in custom web applications, multi-agent AI systems, and scalable backend architecture.'
+})
+
+const keywords = computed(() => {
+  return lang.value === 'id'
+    ? 'software engineer, arsitek ai, web development, go, node.js, ai agents, fullstack, anton, zeroman'
+    : 'software engineer, ai architect, web development, go, node.js, ai agents, fullstack, anton, zeroman'
+})
+
+useHead({
+  title,
+  meta: [
+    { name: 'description', content: description },
+    { name: 'keywords', content: keywords },
+    { property: 'og:title', content: title },
+    { property: 'og:description', content: description }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        'name': 'Anton',
+        'jobTitle': 'Software Engineer & AI Architect',
+        'url': 'https://zeroman.my.id',
+        'sameAs': [
+          'https://github.com/zeroman',
+          'https://linkedin.com/in/zeroman'
+        ],
+        'description': 'Anton is a Software Engineer & AI Architect specializing in custom web applications and multi-agent AI systems.'
+      })
+    }
+  ]
+})
+
+// Setup scroll reveal animation hook
+useScrollReveal()
+
+const portfolio = portfolioData
+
+const tickerItems = computed(() => {
+  const items = portfolioData.ticker_items || []
+  // Duplicate for infinite CSS animation loop
+  return [...items, ...items]
+})
+
+const getStatusLabel = (status) => {
+  const statusLabelsEn = { live: 'Live', complete: 'Complete', client: 'Client Work' }
+  const statusLabelsId = { live: 'Live', complete: 'Selesai', client: 'Proyek Klien' }
+  
+  if (lang.value === 'id') {
+    return statusLabelsId[status] || status
+  }
+  return statusLabelsEn[status] || status
+}
+
+const scrollTo = (selector) => {
+  const el = document.querySelector(selector)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
+</script>

@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Alex Chen — Enterprise AI Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: #e2e8f0;
+      background: #020617;
+      line-height: 1.6;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    
+    :focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; }
+    
+    /* Mobile-first spacing system */
+    .container { width: 100%; max-width: 100%; padding-left: 16px; padding-right: 16px; margin: 0 auto; }
+    @media (min-width: 640px) { .container { max-width: 640px; padding-left: 24px; padding-right: 24px; } }
+    @media (min-width: 1024px) { .container { max-width: 1024px; padding-left: 32px; padding-right: 32px; } }
+    @media (min-width: 1280px) { .container { max-width: 1280px; } }
+    
+    .section { padding-top: 48px; padding-bottom: 48px; }
+    @media (min-width: 640px) { .section { padding-top: 64px; padding-bottom: 64px; } }
+    @media (min-width: 1024px) { .section { padding-top: 80px; padding-bottom: 80px; } }
+    
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: #22d3ee; color: #020617;
+      padding: 14px 24px; border-radius: 10px;
+      font-weight: 600; font-size: 15px; line-height: 1;
+      transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+      border: none; cursor: pointer; touch-action: manipulation;
+      min-height: 48px; /* Touch target */
+    }
+    .btn-primary:hover { background: #06b6d4; box-shadow: 0 0 20px rgba(34, 211, 238, 0.4); }
+    .btn-primary:active { transform: scale(0.97); }
+    .btn-primary:focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; }
+    
+    .btn-secondary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: transparent; color: #e2e8f0;
+      padding: 14px 24px; border-radius: 10px;
+      font-weight: 600; font-size: 15px; line-height: 1;
+      border: 1px solid #334155;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+      cursor: pointer; touch-action: manipulation;
+      min-height: 48px;
+    }
+    .btn-secondary:hover { background: #1e293b; border-color: #475569; }
+    .btn-secondary:active { transform: scale(0.97); }
+    
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    
+    .metric-value { font-size: 36px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: #22d3ee; }
+    @media (min-width: 640px) { .metric-value { font-size: 42px; } }
+    
+    .tag { 
+      display: inline-flex; align-items: center; 
+      padding: 4px 12px; border-radius: 6px; 
+      font-size: 11px; font-weight: 500; 
+      background: #1e293b; color: #94a3b8; 
+      border: 1px solid #334155;
+      font-family: 'JetBrains Mono', monospace;
+      white-space: nowrap;
+    }
+    .tag.primary { background: rgba(34, 211, 238, 0.15); color: #22d3ee; border-color: rgba(34, 211, 238, 0.3); }
+    
+    .card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    @media (hover: hover) {
+      .card:hover { border-color: #22d3ee; box-shadow: 0 0 0 1px #22d3ee, 0 20px 40px -12px rgba(34, 211, 238, 0.15); }
+    }
+    
+    .nav-link { color: #94a3b8; font-weight: 500; transition: color 0.15s ease; font-size: 14px; padding: 8px 0; }
+    .nav-link:hover { color: #22d3ee; }
+    .nav-link.active { color: #22d3ee; }
+    
+    .code-block {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 1.7;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      max-width: 100%;
+    }
+    .code-block .comment { color: #64748b; }
+    .code-block .keyword { color: #c084fc; }
+    .code-block .string { color: #4ade80; }
+    .code-block .function { color: #22d3ee; }
+    .code-block .type { color: #fbbf24; }
+    
+    .terminal-line {
+      display: flex; align-items: baseline; gap: 8px;
+      padding: 4px 0; font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+    }
+    .terminal-line .prompt { color: #22d3ee; }
+    .terminal-line .path { color: #fbbf24; }
+    .terminal-line .output { color: #94a3b8; }
+    
+    .grid-bg {
+      background-image: 
+        linear-gradient(rgba(34, 211, 238, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, 0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    
+    /* Mobile nav drawer */
+    .nav-drawer {
+      position: fixed; top: 0; right: -100%; width: 280px; max-width: 85vw;
+      height: 100vh; z-index: 100;
+      background: #020617; border-left: 1px solid #1e293b;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex; flex-direction: column;
+      padding: 64px 24px 24px;
+      overflow-y: auto;
+    }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-overlay {
+      position: fixed; inset: 0; z-index: 99;
+      background: rgba(2, 6, 23, 0.8);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .nav-overlay.open { opacity: 1; visibility: visible; }
+    
+    /* Hamburger */
+    .hamburger { display: flex; flex-direction: column; justify-content: space-between; width: 24px; height: 18px; cursor: pointer; padding: 8px; touch-action: manipulation; }
+    .hamburger span { display: block; height: 2px; background: #e2e8f0; border-radius: 2px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); transform-origin: center; }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    @media (min-width: 768px) { .hamburger { display: none; } }
+    
+    /* Desktop nav */
+    @media (min-width: 768px) {
+      .desktop-nav { display: flex !important; }
+      .nav-drawer { display: none; }
+      .nav-overlay { display: none; }
+    }
+    .desktop-nav { display: none; }
+    
+    /* Project cards - mobile stack, desktop grid */
+    .project-grid { display: flex; flex-direction: column; gap: 16px; }
+    @media (min-width: 768px) { .project-grid { flex-direction: row; flex-wrap: wrap; } }
+    .project-card { flex: 1; min-width: 0; }
+    @media (min-width: 768px) { .project-card { min-width: calc(50% - 8px); } }
+    @media (min-width: 1024px) { .project-card { min-width: calc(33.333% - 10.67px); } }
+    
+    /* Stack section - mobile stack, desktop grid */
+    .stack-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    @media (min-width: 480px) { .stack-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 768px) { .stack-grid { grid-template-columns: repeat(4, 1fr); } }
+    
+    /* Approach cards */
+    .approach-grid { display: flex; flex-direction: column; gap: 16px; }
+    @media (min-width: 768px) { .approach-grid { flex-direction: row; flex-wrap: wrap; } }
+    .approach-card { flex: 1; min-width: 0; }
+    @media (min-width: 768px) { .approach-card { min-width: calc(50% - 8px); } }
+    @media (min-width: 1024px) { .approach-card { min-width: calc(33.333% - 10.67px); } }
+    
+    /* Testimonials */
+    .testimonial-grid { display: flex; flex-direction: column; gap: 16px; }
+    @media (min-width: 768px) { .testimonial-grid { flex-direction: row; flex-wrap: wrap; } }
+    .testimonial-card { flex: 1; min-width: 0; }
+    @media (min-width: 768px) { .testimonial-card { min-width: calc(50% - 8px); } }
+    @media (min-width: 1024px) { .testimonial-card { min-width: calc(33.333% - 10.67px); } }
+    
+    /* Hero metrics - mobile 2x2, desktop 4x1 */
+    .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    @media (min-width: 640px) { .metrics-grid { grid-template-columns: repeat(4, 1fr); } }
+    
+    /* CTA buttons stack on mobile */
+    .cta-group { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+    @media (min-width: 480px) { .cta-group { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; width: auto; } }
+    .cta-group .btn-primary, .cta-group .btn-secondary { width: 100%; }
+    @media (min-width: 480px) { .cta-group .btn-primary, .cta-group .btn-secondary { width: auto; } }
+    
+    /* Section headers */
+    .section-header { margin-bottom: 32px; }
+    @media (min-width: 640px) { .section-header { margin-bottom: 48px; } }
+    
+    ::selection { background: #22d3ee; color: #020617; }
+    
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+    
+    /* Safe area insets for notched devices */
+    .safe-top { padding-top: env(safe-area-inset-top); }
+    .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+    .safe-left { padding-left: env(safe-area-inset-left); }
+    .safe-right { padding-right: env(safe-area-inset-right); }
+  </style>
+</head>
+<body class="grid-bg safe-top safe-bottom">
+  <!-- Nav Overlay -->
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+  
+  <!-- Nav Drawer -->
+  <nav class="nav-drawer" id="navDrawer" aria-label="Main navigation">
+    <a href="#" class="font-mono font-medium text-lg text-cyan-400 mb-8 block" aria-label="Home">alexchen.ai</a>
+    <div class="flex flex-col gap-2">
+      <a href="#projects" class="nav-link nav-drawer-link">Projects</a>
+      <a href="#stack" class="nav-link nav-drawer-link">Stack</a>
+      <a href="#approach" class="nav-link nav-drawer-link">Approach</a>
+      <a href="#contact" class="btn-primary text-center mt-4">Engage</a>
+    </div>
+  </nav>
+
+  <!-- Header / Nav -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 safe-top">
+    <div class="container py-4 flex items-center justify-between">
+      <a href="#" class="font-mono font-medium text-lg text-cyan-400" aria-label="Home">alexchen.ai</a>
+      
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav hidden lg:flex items-center gap-8">
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#stack" class="nav-link">Stack</a>
+        <a href="#approach" class="nav-link">Approach</a>
+        <a href="#contact" class="btn-primary text-sm px-5 py-2">Engage</a>
+      </nav>
+      
+      <!-- Mobile Hamburger -->
+      <button class="hamburger lg:hidden" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="section pt-28 pb-16 relative">
+      <div class="container">
+        <div class="reveal mb-8">
+          <div class="terminal-line mb-4">
+            <span class="prompt">$</span>
+            <span class="path">whoami</span>
+          </div>
+          <div class="terminal-line text-cyan-400 font-mono text-sm">
+            <span class="output">alexchen@enterprise-ai ~</span>
+          </div>
+        </div>
+        
+        <div class="reveal" style="transition-delay: 0.1s;">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            <span class="font-mono text-cyan-400">// </span>Building production AI systems<br />that don't break at scale
+          </h1>
+          <p class="text-slate-400 text-base sm:text-lg mb-8 max-w-2xl leading-relaxed">
+            8 years shipping ML at Stripe, Anthropic, and enterprise consulting. 
+            Specialized in LLM governance, RAG at scale, real-time fraud detection, and MLOps platforms.
+          </p>
+          
+          <div class="cta-group">
+            <a href="#contact" class="btn-primary">Start Engagement</a>
+            <a href="#projects" class="btn-secondary">View Projects</a>
+          </div>
+        </div>
+        
+        <!-- Live metrics -->
+        <div class="reveal mt-12 metrics-grid" style="transition-delay: 0.2s;">
+          <div class="card p-4 sm:p-6 text-center">
+            <p class="metric-value font-mono">47</p>
+            <p class="text-slate-500 mt-1 text-xs sm:text-sm uppercase tracking-wide">models in prod</p>
+          </div>
+          <div class="card p-4 sm:p-6 text-center">
+            <p class="metric-value font-mono">50K</p>
+            <p class="text-slate-500 mt-1 text-xs sm:text-sm uppercase tracking-wide">events/sec</p>
+          </div>
+          <div class="card p-4 sm:p-6 text-center">
+            <p class="metric-value font-mono">99.97%</p>
+            <p class="text-slate-500 mt-1 text-xs sm:text-sm uppercase tracking-wide">uptime sla</p>
+          </div>
+          <div class="card p-4 sm:p-6 text-center">
+            <p class="metric-value font-mono">14</p>
+            <p class="text-slate-500 mt-1 text-xs sm:text-sm uppercase tracking-wide">week avg delivery</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects / Case Studies -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="reveal section-header">
+          <p class="text-cyan-400 font-mono text-sm mb-2">selected_work.py</p>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+            <span class="font-mono text-cyan-400">class </span>Projects<span class="font-mono text-slate-500">:</span>
+          </h2>
+        </div>
+        
+        <div class="project-grid" id="projectList">
+          <!-- Project 1 -->
+          <article class="card p-5 sm:p-6 reveal" style="transition-delay: 0.1s;">
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag primary">FINTECH</span>
+              <span class="tag primary">LLM GOVERNANCE</span>
+              <span class="tag">KUBERNETES</span>
+              <span class="tag">OPA</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 leading-tight">Global Bank LLM Guardrails Platform</h3>
+            <p class="text-slate-400 mb-5 leading-relaxed">
+              Centralized governance for 200+ models. Policy-as-code enforcement, audit trails, SOC2. 
+              Reduced model approval from weeks to hours.
+            </p>
+            <div class="code-block">
+              <span class="comment"># Architecture: Policy-as-Code for LLM Governance</span>
+              <span class="keyword">class</span> <span class="function">LLMGuardrails</span>:
+                  <span class="keyword">def</span> <span class="function">__init__</span>(self, policies: <span class="type">PolicyStore</span>, registry: <span class="type">ModelRegistry</span>):
+                      self.enforcer = <span class="function">OPAEnforcer</span>(policies)
+                      self.audit = <span class="function">AuditLogger</span>(<span class="string">"s3://bank-llm-audit"</span>)
+                  
+                  <span class="keyword">def</span> <span class="function">validate_request</span>(self, ctx: <span class="type">RequestContext</span>) -> <span class="type">Decision</span>:
+                      decision = self.enforcer.evaluate(ctx)
+                      self.audit.log(ctx, decision)
+                      <span class="keyword">return</span> decision
+            </div>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="tag">LangChain</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Terraform</span>
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mt-4">
+              <div class="stat-badge bg-slate-800 border-slate-700 p-3 text-center">
+                <p class="metric-value font-mono text-2xl">40%</p>
+                <p class="text-slate-500 text-xs">faster approval</p>
+              </div>
+              <div class="stat-badge bg-slate-800 border-slate-700 p-3 text-center">
+                <p class="metric-value font-mono text-2xl">60%</p>
+                <p class="text-slate-500 text-xs">fewer incidents</p>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Project 2 -->
+          <article class="card p-5 sm:p-6 reveal" style="transition-delay: 0.15s;">
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag primary">HEALTHCARE</span>
+              <span class="tag primary">RAG</span>
+              <span class="tag">HIPAA</span>
+              <span class="tag">FHIR</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 leading-tight">Clinical Decision Support RAG</h3>
+            <p class="text-slate-400 mb-5 leading-relaxed">
+              PHI-safe retrieval across 12 hospital networks. Explainable citations, sub-200ms p99. 
+              94% clinician adoption in 6 months. Zero PHI breaches.
+            </p>
+            <div class="code-block">
+              <span class="comment"># RAG Pipeline with PHI Redaction & Citation Tracking</span>
+              <span class="keyword">class</span> <span class="function">ClinicalRAG</span>:
+                  <span class="keyword">def</span> <span class="function">query</span>(self, question: <span class="type">str</span>, user: <span class="type">Clinician</span>) -> <span class="type">RAGResponse</span>:
+                      sanitized = self.phi_redactor.clean(question)
+                      contexts = self.retriever.search(sanitized, k=10, filter={<span class="string">"network"</span>: user.network})
+                      answer = self.llm.generate(contexts, citations=<span class="keyword">True</span>)
+                      <span class="keyword">return</span> <span class="type">RAGResponse</span>(answer, citations=contexts, audit_id=self.audit.log())
+            </div>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="tag">Weaviate</span>
+              <span class="tag">LlamaIndex</span>
+              <span class="tag">Terraform</span>
+              <span class="tag">OpenTelemetry</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mt-4">
+              <div class="stat-badge bg-slate-800 border-slate-700 p-3 text-center">
+                <p class="metric-value font-mono text-2xl">94%</p>
+                <p class="text-slate-500 text-xs">adoption rate</p>
+              </div>
+              <div class="stat-badge bg-slate-800 border-slate-700 p-3 text-center">
+                <p class="metric-value font-mono text-2xl"><200ms</p>
+                <p class="text-slate-500 text-xs">p99 latency</p>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Project 3 -->
+          <article class="card p-5 sm:p-6 reveal" style="transition-delay: 0.2s;">
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag primary">E-COMMERCE</span>
+              <span class="tag primary">STREAMING ML</span>
+              <span class="tag">FLINK</span>
+              <span class="tag">FEAST</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 leading-tight">Real-time Fraud Detection Pipeline</h3>
+            <p class="text-slate-400 mb-5 leading-relaxed">
+              50K events/sec, online feature store, champion/challenger A/B, automated retraining. 
+              23% more fraud caught, 31% fewer false positives.
+            </p>
+            <div class="code-block">
+              <span class="comment"># Flink Job: Real-time Feature Engineering + Inference</span>
+              <span class="keyword">class</span> <span class="function">FraudDetectionJob</span>(<span class="type">StreamJob</span>):
+                  <span class="keyword">def</span> <span class="function">process</span>(self, event: <span class="type">Transaction</span>) -> <span class="type">Score</span>:
+                      features = self.feature_store.get_online_features(entity=event.user_id)
+                      enriched = self.enrich(features, event)
+                      score = self.model.predict(enriched)  <span class="comment"># XGBoost champion</span>
+                      self.experiment.track(event, score, variant=<span class="string">"champion"</span>)
+                      <span class="keyword">return</span> <span class="type">Score</span>(score, explanation=self.explainer.shap(enriched))
+            </div>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="tag">XGBoost</span>
+              <span class="tag">Kafka</span>
+              <span class="tag">Prometheus</span>
+              <span class="tag">Argo</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mt-4">
+              <div class="stat-badge bg-slate-800 border-slate-700 p-3 text-center">
+                <p class="metric-value font-mono text-2xl">23%</p>
+                <p class="text-slate-500 text-xs">fraud capture</p>
+              </div>
+              <div class="stat-badge bg-slate-800 border-slate-700 p-3 text-center">
+                <p class="metric-value font-mono text-2xl">31%</p>
+                <p class="text-slate-500 text-xs">false positive</p>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Project 4 -->
+          <article class="card p-5 sm:p-6 reveal" style="transition-delay: 0.25s;">
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tag primary">SAAS</span>
+              <span class="tag primary">MLOPS</span>
+              <span class="tag">MLFLOW</span>
+              <span class="tag">RAY</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 leading-tight">Internal ML Platform (0→1)</h3>
+            <p class="text-slate-400 mb-5 leading-relaxed">
+              End-to-end platform: experiment tracking, feature store, model registry, auto-deploy. 
+              15 data scientists productive in 8 weeks.
+            </p>
+            <div class="code-block">
+              <span class="comment"># Argo Workflow: Automated Training → Validation → Deploy</span>
+              <span class="keyword">apiVersion</span>: <span class="string">argoproj.io/v1alpha1</span>
+              <span class="keyword">kind</span>: <span class="string">Workflow</span>
+              <span class="keyword">metadata</span>:
+                <span class="keyword">name</span>: <span class="string">ml-train-deploy</span>
+              <span class="keyword">spec</span>:
+                <span class="keyword">templates</span>:
+                - <span class="keyword">name</span>: <span class="string">train</span>
+                  <span class="keyword">script</span>:
+                    <span class="keyword">image</span>: <span class="string">ml-trainer:latest</span>
+                    <span class="keyword">command</span>: [<span class="string">"python"</span>, <span class="string">"train.py"</span>]
+                - <span class="keyword">name</span>: <span class="string">validate</span>
+                  <span class="keyword">script</span>: ...
+                - <span class="keyword">name</span>: <span class="string">deploy</span>
+                  <span class="keyword">when</span>: <span class="string">"{{tasks.validate.outputs.result == 'pass'}}"</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="tag">Delta Lake</span>
+              <span class="tag">Kubernetes</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">OpenPolicyAgent</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mt-4">
+              <div class="stat-badge bg-slate-800 border-slate-700 p-3 text-center">
+                <p class="metric-value font-mono text-2xl">8</p>
+                <p class="text-slate-500 text-xs">weeks to GA</p>
+              </div>
+              <div class="stat-badge bg-slate-800 border-slate-700 p-3 text-center">
+                <p class="metric-value font-mono text-2xl">15</p>
+                <p class="text-slate-500 text-xs">engineers</p>
+              </div>
+            </div>
+          </article>
+        </div>
+        
+        <div class="text-center mt-10 reveal" style="transition-delay: 0.3s;">
+          <a href="#contact" class="btn-primary inline-flex items-center gap-2">
+            Add to Pipeline
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="stack" class="section bg-slate-950/50">
+      <div class="container">
+        <div class="reveal section-header">
+          <p class="text-cyan-400 font-mono text-sm mb-2">environment.yml</p>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+            <span class="font-mono text-cyan-400">stack = [</span>
+          </h2>
+        </div>
+        
+        <div class="stack-grid">
+          <div class="card p-4 sm:p-5 reveal" style="transition-delay: 0.1s;">
+            <p class="text-cyan-400 font-mono text-xs mb-3">LLM / GenAI</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag primary">LangChain</span>
+              <span class="tag primary">LlamaIndex</span>
+              <span class="tag">RAG</span>
+              <span class="tag">Fine-tuning</span>
+              <span class="tag">Guardrails</span>
+              <span class="tag">Evals</span>
+            </div>
+          </div>
+          <div class="card p-4 sm:p-5 reveal" style="transition-delay: 0.15s;">
+            <p class="text-cyan-400 font-mono text-xs mb-3">MLOps</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag primary">MLflow</span>
+              <span class="tag primary">Kubeflow</span>
+              <span class="tag">Feast</span>
+              <span class="tag">Ray</span>
+              <span class="tag">Argo</span>
+              <span class="tag">MLRun</span>
+            </div>
+          </div>
+          <div class="card p-4 sm:p-5 reveal" style="transition-delay: 0.2s;">
+            <p class="text-cyan-400 font-mono text-xs mb-3">Data / Streaming</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag primary">Flink</span>
+              <span class="tag primary">Kafka</span>
+              <span class="tag">Spark</span>
+              <span class="tag">Delta Lake</span>
+              <span class="tag">dbt</span>
+              <span class="tag">Trino</span>
+            </div>
+          </div>
+          <div class="card p-4 sm:p-5 reveal" style="transition-delay: 0.25s;">
+            <p class="text-cyan-400 font-mono text-xs mb-3">Infra / Cloud</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag primary">Kubernetes</span>
+              <span class="tag primary">Terraform</span>
+              <span class="tag">AWS/GCP</span>
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">OTel</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="reveal mt-8 text-center" style="transition-delay: 0.3s;">
+          <p class="text-slate-500 font-mono text-sm">...and whatever the problem demands.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section id="approach" class="section">
+      <div class="container">
+        <div class="reveal section-header">
+          <p class="text-cyan-400 font-mono text-sm mb-2">principles.md</p>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+            <span class="font-mono text-cyan-400">def </span>approach<span class="font-mono text-slate-500">():</span>
+          </h2>
+        </div>
+        
+        <div class="approach-grid">
+          <article class="card p-5 sm:p-6 reveal" style="transition-delay: 0.1s;">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="tag primary">01</span>
+              <h3 class="text-lg sm:text-xl font-bold text-white">Governance First</h3>
+            </div>
+            <p class="text-slate-400 leading-relaxed">
+              Policies, audit trails, approval gates designed before model v1 ships. 
+              Compliance is architecture, not retrospective.
+            </p>
+            <div class="mt-5 pt-5 border-t border-slate-800">
+              <p class="font-mono text-cyan-400 text-sm">if not governance_first: raise ArchitectureError()</p>
+            </div>
+          </article>
+          
+          <article class="card p-5 sm:p-6 reveal" style="transition-delay: 0.15s;">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="tag primary">02</span>
+              <h3 class="text-lg sm:text-xl font-bold text-white">Observability Native</h3>
+            </div>
+            <p class="text-slate-400 leading-relaxed">
+              Drift detection, latency SLOs, cost attribution, auto-rollback on every model. 
+              You know it's broken before customers do.
+            </p>
+            <div class="mt-5 pt-5 border-t border-slate-800">
+              <p class="font-mono text-cyan-400 text-sm">assert model.drift < threshold, "auto_rollback()"</p>
+            </div>
+          </article>
+          
+          <article class="card p-5 sm:p-6 reveal" style="transition-delay: 0.2s;">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="tag primary">03</span>
+              <h3 class="text-lg sm:text-xl font-bold text-white">Team Enablement</h3>
+            </div>
+            <p class="text-slate-400 leading-relaxed">
+              I transfer capability, not just code. Docs, runbooks, training, ADRs — 
+              your team owns the system when I leave.
+            </p>
+            <div class="mt-5 pt-5 border-t border-slate-800">
+              <p class="font-mono text-cyan-400 text-sm">team.capability += transfer(knowledge, context)</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section bg-slate-950/50">
+      <div class="container">
+        <div class="reveal section-header">
+          <p class="text-cyan-400 font-mono text-sm mb-2">references.json</p>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+            <span class="font-mono text-cyan-400">testimonials = [</span>
+          </h2>
+        </div>
+        
+        <div class="testimonial-grid">
+          <blockquote class="card p-5 sm:p-6 reveal" style="transition-delay: 0.1s;">
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-5">"Alex didn't just ship models — he built the platform that let our team ship safely. The governance layer is now standard across three business units."</p>
+            <footer class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center font-mono font-semibold text-cyan-400 text-xs">SC</div>
+              <div>
+                <p class="font-semibold text-white text-sm">Sarah Chen</p>
+                <p class="text-slate-500 text-xs">VP Engineering, FinTech Unicorn</p>
+              </div>
+            </footer>
+          </blockquote>
+          
+          <blockquote class="card p-5 sm:p-6 reveal" style="transition-delay: 0.15s;">
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-5">"Clinical RAG went from prototype to HIPAA-compliant production in 14 weeks. His observability obsession saved us during the joint commission audit."</p>
+            <footer class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center font-mono font-semibold text-cyan-400 text-xs">MR</div>
+              <div>
+                <p class="font-semibold text-white text-sm">Dr. Marcus Ruiz</p>
+                <p class="text-slate-500 text-xs">CMIO, HealthNet</p>
+              </div>
+            </footer>
+          </blockquote>
+          
+          <blockquote class="card p-5 sm:p-6 reveal" style="transition-delay: 0.2s;">
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed mb-5">"Rare engineer who speaks both 'board room' and 'model weights.' Translated compliance into architecture decisions that actually work."</p>
+            <footer class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center font-mono font-semibold text-cyan-400 text-xs">JP</div>
+              <div>
+                <p class="font-semibold text-white text-sm">James Park</p>
+                <p class="text-slate-500 text-xs">CTO, Series C AI Startup</p>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / CTA -->
+    <section id="contact" class="section border-t border-slate-800">
+      <div class="container">
+        <div class="text-center">
+          <div class="reveal">
+            <div class="terminal-line mb-5 justify-center">
+              <span class="prompt">$</span>
+              <span class="path">engage --new-project</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-5">
+              Ready to ship reliable AI?
+            </h2>
+            <p class="text-slate-400 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+              I take 2-3 engagements per quarter. Let's discuss constraints, timeline, 
+              and what "done" looks like for your team.
+            </p>
+            <div class="cta-group">
+              <a href="mailto:alex@chen.ai" class="btn-primary">
+                Initialize Engagement
+              </a>
+              <a href="https://github.com/alexchen" target="_blank" rel="noopener" class="btn-secondary hover:border-cyan-400 hover:text-cyan-400">
+                View Source
+              </a>
+            </div>
+          </div>
+          
+          <div class="reveal mt-12 pt-8 border-t border-slate-800" style="transition-delay: 0.2s;">
+            <p class="text-slate-500 font-mono text-xs sm:text-sm">
+              <span class="text-slate-700">$</span> links:
+              <a href="https://github.com/alexchen" target="_blank" rel="noopener" class="text-cyan-400 hover:text-cyan-300 font-medium ml-2">github.com/alexchen</a>
+              <span class="text-slate-700 mx-2">|</span>
+              <a href="https://linkedin.com/in/alexchen" target="_blank" rel="noopener" class="text-cyan-400 hover:text-cyan-300 font-medium">linkedin.com/in/alexchen</a>
+              <span class="text-slate-700 mx-2">|</span>
+              <a href="https://alexchen.ai/writing" target="_blank" rel="noopener" class="text-cyan-400 hover:text-cyan-300 font-medium">technical writing</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section py-8 bg-slate-950 border-t border-slate-800">
+      <div class="container flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-sm font-mono">
+        <p>>> alexchen.ai — built with intention, not templates</p>
+        <div class="flex items-center gap-5">
+          <a href="https://github.com/alexchen" target="_blank" rel="noopener" class="hover:text-cyan-400 transition-colors" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/alexchen" target="_blank" rel="noopener" class="hover:text-cyan-400 transition-colors" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="mailto:alex@chen.ai" class="hover:text-cyan-400 transition-colors" aria-label="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navDrawer = document.getElementById('navDrawer');
+    const navOverlay = document.getElementById('navOverlay');
+    const navDrawerLinks = document.querySelectorAll('.nav-drawer-link');
+    
+    function toggleMenu() {
+      const isOpen = hamburger.classList.toggle('open');
+      navDrawer.classList.toggle('open');
+      navOverlay.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      navOverlay.setAttribute('aria-hidden', !isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+    
+    hamburger?.addEventListener('click', toggleMenu);
+    navOverlay?.addEventListener('click', toggleMenu);
+    navDrawerLinks.forEach(link => link.addEventListener('click', toggleMenu));
+    
+    // Intersection Observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerHeight = document.querySelector('header').offsetHeight;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
+      });
+    });
+    
+    // Terminal cursor blink
+    const prompts = document.querySelectorAll('.prompt');
+    setInterval(() => {
+      prompts.forEach(p => p.style.opacity = p.style.opacity === '0' ? '1' : '0');
+    }, 530);
+    
+    // Close menu on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navDrawer.classList.contains('open')) {
+        toggleMenu();
+      }
+    });
+    
+    // Handle resize - close drawer if resized to desktop
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (window.innerWidth >= 768 && navDrawer.classList.contains('open')) {
+          toggleMenu();
+        }
+      }, 250);
+    });
+  </script>
+</body>
+</html>
