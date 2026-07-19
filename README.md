@@ -1,176 +1,65 @@
-# Portfolio Website - Rafi Mahrus
+# zeroman — Anton's Portfolio
 
-A modern, SEO-optimized portfolio website built with Next.js 16, showcasing backend systems expertise.
+Website portofolio modern yang responsif dan dioptimalkan untuk SEO, dibangun menggunakan **Nuxt 3** dan **Tailwind CSS**. Menampilkan keahlian dalam Software Engineering & AI Architecture.
 
-## 🚀 Features
+## 🚀 Fitur Utama
+*   ⚡ **Nuxt 3 & Vue 3** - Framework modern dengan performa tinggi dan rendering SSR/Static.
+*   🎨 **Desain Premium** - Layout bento modern, tipografi elegan (Playfair Display & Outfit), dan ikon berbasis Lucide.
+*   🔍 **SEO Optimized** - Konfigurasi meta tags, Open Graph, preconnect font, dan data terstruktur bawaan.
+*   📱 **Responsive & Fast** - Desain mobile-first dengan Tailwind CSS dan pemuatan font yang dioptimalkan.
 
-- **Next.js 16.1.6** with App Router and React 19.2.4
-- **Full SEO Optimization**: Meta tags, Open Graph, Twitter Cards, JSON-LD structured data
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **Custom Animations**: Kinetic typography, scroll animations, hover effects
-- **Static Generation**: Optimized for performance with static page generation
-- **Type-Safe**: Built with TypeScript
-- **Clean Code**: Following best practices and clean code principles
+## 🛠️ Cara Penggunaan
 
-## 📦 Tech Stack
+### Prasyarat
+*   Node.js versi terbaru (LTS direkomendasikan)
+*   npm / yarn / pnpm
 
-### Core
-- Next.js 16.1.6
-- React 19.2.4
-- TypeScript 5.9.3
+### Langkah Instalasi
 
-### Styling
-- Tailwind CSS 3.4.17
-- PostCSS 8.4.49
-- Autoprefixer 10.4.20
-- Font Awesome 6.5.1
+1.  **Clone repositori & Masuk ke direktori:**
+    ```bash
+    git clone https://github.com/RafiMM0609/zeroman.git
+    cd zeroman
+    ```
 
-### Fonts
-- Plus Jakarta Sans
-- JetBrains Mono
+2.  **Instal dependensi:**
+    ```bash
+    npm install
+    ```
 
-## 🛠️ Installation & Development
+3.  **Jalankan server pengembangan (Local Dev):**
+    ```bash
+    npm run dev
+    ```
+    Akses website melalui browser di `http://localhost:3000`.
 
-### Prerequisites
-- Node.js 18+ or higher
-- npm or yarn
+### Perintah Lainnya
 
-### Setup
+*   **Build untuk Produksi:**
+    ```bash
+    npm run build
+    ```
+*   **Preview Build Produksi:**
+    ```bash
+    npm run preview
+    ```
+*   **Generate Static Site (SSG):**
+    ```bash
+    npm run generate
+    ```
 
-```bash
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Run linter
-npm run lint
-```
-
-The application will be available at `http://localhost:3000`
-
-## 📁 Project Structure
-
-```
+## 📁 Struktur Folder Utama
+```text
 zeroman/
-├── src/
-│   ├── app/
-│   │   ├── globals.css       # Global styles
-│   │   ├── layout.tsx        # Root layout with SEO
-│   │   ├── page.tsx          # Home page
-│   │   ├── manifest.ts       # PWA manifest
-│   │   ├── robots.ts         # Robots.txt
-│   │   └── sitemap.ts        # Sitemap.xml
-│   └── components/
-│       ├── Navigation.tsx    # Header navigation
-│       ├── Hero.tsx          # Hero section
-│       ├── Outcomes.tsx      # Results/outcomes section
-│       ├── Projects.tsx      # Project showcase
-│       ├── Testimonials.tsx  # Client testimonials
-│       ├── CTA.tsx           # Call-to-action
-│       ├── Footer.tsx        # Footer
-│       └── ScrollAnimations.tsx
-├── public/                   # Static assets
-├── tailwind.config.ts        # Tailwind configuration
-├── next.config.ts            # Next.js configuration
-├── tsconfig.json             # TypeScript configuration
-└── package.json              # Dependencies
+├── assets/css/style.css  # Gaya CSS global kustom
+├── components/           # Komponen Vue yang reusable
+├── pages/                # Halaman utama aplikasi (berbasis file routing)
+├── public/               # File statis (favicon, gambar, robot.txt)
+├── server/               # Server routes / API endpoints Nuxt
+├── nuxt.config.ts        # Konfigurasi utama Nuxt 3 (SEO, Head, CSS, dll)
+├── tailwind.config.ts    # Konfigurasi Tailwind CSS
+└── package.json          # Dependensi dan script proyek
 ```
-
-## 🎨 Design Features
-
-### Hero Section
-- Large, bold typography
-- Kinetic text animation with rotating words
-- Clear value proposition
-
-### Outcomes Section (Bento Grid)
-- Showcases key metrics and achievements
-- Interactive hover effects
-- Visual architecture diagrams
-- Tech stack badges
-
-### Projects Vault
-- Featured project showcases
-- Outcome-focused descriptions
-- System architecture visualizations
-- Category tags
-
-### Testimonials
-- Professional endorsements
-- Client information
-- Gradient avatars
-- Quote highlights
-
-### SEO & Performance
-- Comprehensive metadata
-- Open Graph & Twitter Cards
-- JSON-LD structured data
-- Sitemap & robots.txt
-- Static page generation
-- Optimized fonts
-
-## 📊 SEO Features
-
-- ✅ Meta tags (title, description, keywords)
-- ✅ Open Graph tags for social sharing
-- ✅ Twitter Card support
-- ✅ JSON-LD structured data (Schema.org Person)
-- ✅ Sitemap.xml
-- ✅ Robots.txt
-- ✅ Web manifest (PWA)
-- ✅ Semantic HTML
-- ✅ ARIA labels for accessibility
-
-## 🔒 Security
-
-- No security vulnerabilities detected (CodeQL analysis)
-- Type-safe with TypeScript
-- No exposed secrets or credentials
-- Secure dependencies
-
-## 📝 Code Quality
-
-- TypeScript for type safety
-- ESLint for code quality
-- Clean code principles
-- Component-based architecture
-- Modular and reusable code
-- Proper error handling
-
-## 🌐 Deployment
-
-The website is optimized for deployment on Vercel, Netlify, or any platform that supports Next.js.
-
-### Vercel (Recommended)
-```bash
-npm install -g vercel
-vercel
-```
-
-### Build for Production
-```bash
-npm run build
-npm start
-```
-
-## 📄 License
-
-All rights reserved © 2026 Rafi Mahrus
-
-## 👨‍💻 Developer
-
-Built by [Your Name] as a portfolio website for Rafi Mahrus - Backend Systems Expert.
 
 ---
-
-**Contact**: 
-- WhatsApp: [+62 812-3456-7890](https://wa.me/6281234567890)
-- Website: https://rafimahrus.com
+Dibuat dengan ❤️ oleh **Anton**
