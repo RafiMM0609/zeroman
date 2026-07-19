@@ -7,8 +7,11 @@
           class="hero-chip" 
           id="hero-chip" 
           style="margin-bottom: 24px;"
+          ref="heroChip"
+          @mousemove="handleChipMouseMove"
+          @mouseleave="handleChipMouseLeave"
         >
-          {{ translate(portfolio.hero, 'chip') }}
+          <span>{{ translate(portfolio.hero, 'chip') }}</span>
         </div>
         <h1 class="hero-title" id="hero-title" v-html="translate(portfolio.hero, 'title')"></h1>
         <p class="hero-desc" id="hero-desc">
@@ -115,7 +118,7 @@
           >
             <div class="project-num">{{ p.num }}</div>
             <div class="project-info">
-              <h3 class="project-name">{{ p.title }}</h3>
+              <h3 class="project-name">{{ translate(p, 'title') }}</h3>
               <p class="project-desc">{{ translate(p, 'short_desc') }}</p>
               <div class="project-meta">
                 <div class="project-tags">
@@ -191,12 +194,29 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useLanguage } from '~/composables/useLanguage'
 import { useScrollReveal } from '~/composables/useScrollReveal'
 import portfolioData from '~/public/data/portfolio.json'
 
 const { translate, lang } = useLanguage()
+
+const heroChip = ref(null)
+
+const handleChipMouseMove = (e) => {
+  if (!heroChip.value) return
+  const rect = heroChip.value.getBoundingClientRect()
+  const x = e.clientX - rect.left
+  const y = e.clientY - rect.top
+  heroChip.value.style.setProperty('--mouse-x', `${x}px`)
+  heroChip.value.style.setProperty('--mouse-y', `${y}px`)
+}
+
+const handleChipMouseLeave = () => {
+  if (!heroChip.value) return
+  heroChip.value.style.setProperty('--mouse-x', `-100px`)
+  heroChip.value.style.setProperty('--mouse-y', `-100px`)
+}
 
 // Dynamic SEO Head tags
 const title = computed(() => {

@@ -8,7 +8,7 @@
     "tagline_alt_id": "Saya membantu membuat website usaha dan asisten digital otomatis.",
     "bio": "Hey, I'm Anton. I'm a developer who builds websites and digital tools to help businesses, shops, schools, or offices work faster and easier. Whether you need an online store, a booking system, or a smart automated assistant to handle customer chats and routine paperwork, my focus is on making things simple and reliable.",
     "bio_id": "Halo, saya Anton. Seorang developer yang membuat website dan sistem digital praktis untuk membantu usaha, toko, sekolah, atau kantor instansi bekerja lebih cepat. Baik Anda membutuhkan website penjualan untuk toko, portal online untuk sekolah, maupun asisten pintar untuk membalas pesan pelanggan secara otomatis, fokus saya adalah membuat sistem yang mudah digunakan dan langsung bermanfaat.",
-    "bio_2": "You don't need to worry about coding, servers, or database setup. I handle the entire process from start to finish, ensuring that you and your staff can easily use the system in your daily routine without any technical hassle.",
+    "bio_2": "You don't needWujudkan efisiensi lewat solusi aplikasi dan otomatisasi operasional bisnis Anda. to worry about coding, servers, or database setup. I handle the entire process from start to finish, ensuring that you and your staff can easily use the system in your daily routine without any technical hassle.",
     "bio_2_id": "Anda tidak perlu pusing memikirkan urusan teknis seperti coding, server, atau database. Saya menangani semuanya mulai dari pembuatan hingga siap pakai, memastikan Anda dan staf Anda dapat mengoperasikannya dengan mudah untuk kebutuhan sehari-hari tanpa kendala teknis.",
     "status": "Open to Work",
     "status_id": "Siap Menerima Proyek",
@@ -85,22 +85,102 @@
     }
   ],
   "skills": [
-    { "name": "Go (Golang)", "level": 88, "category": "backend", "glow": "#00d9ff" },
-    { "name": "Node.js", "level": 92, "category": "backend", "glow": "#68ff6a" },
-    { "name": "TypeScript", "level": 85, "category": "frontend", "glow": "#4fc3f7" },
-    { "name": "React", "level": 80, "category": "frontend", "glow": "#61dafb" },
-    { "name": "PostgreSQL", "level": 87, "category": "database", "glow": "#336791" },
-    { "name": "Redis", "level": 78, "category": "database", "glow": "#ff4444" },
-    { "name": "Docker", "level": 82, "category": "devops", "glow": "#2496ed" },
-    { "name": "REST API", "level": 95, "category": "backend", "glow": "#a78bfa" },
-    { "name": "LLM / OpenAI", "level": 90, "category": "ai", "glow": "#10a37f" },
-    { "name": "AI Agents", "level": 88, "category": "ai", "glow": "#00ffcc" },
-    { "name": "Prompt Engineering", "level": 93, "category": "ai", "glow": "#ffd700" },
-    { "name": "Web Scraping", "level": 85, "category": "backend", "glow": "#ff6b9d" },
-    { "name": "Microservices", "level": 79, "category": "backend", "glow": "#c084fc" },
-    { "name": "System Design", "level": 83, "category": "architecture", "glow": "#34d399" },
-    { "name": "Linux", "level": 88, "category": "devops", "glow": "#f59e0b" },
-    { "name": "Git", "level": 94, "category": "devops", "glow": "#ff7043" }
+    {
+      "name": "Go (Golang)",
+      "level": 88,
+      "category": "backend",
+      "glow": "#00d9ff"
+    },
+    {
+      "name": "Node.js",
+      "level": 92,
+      "category": "backend",
+      "glow": "#68ff6a"
+    },
+    {
+      "name": "TypeScript",
+      "level": 85,
+      "category": "frontend",
+      "glow": "#4fc3f7"
+    },
+    {
+      "name": "React",
+      "level": 80,
+      "category": "frontend",
+      "glow": "#61dafb"
+    },
+    {
+      "name": "PostgreSQL",
+      "level": 87,
+      "category": "database",
+      "glow": "#336791"
+    },
+    {
+      "name": "Redis",
+      "level": 78,
+      "category": "database",
+      "glow": "#ff4444"
+    },
+    {
+      "name": "Docker",
+      "level": 82,
+      "category": "devops",
+      "glow": "#2496ed"
+    },
+    {
+      "name": "REST API",
+      "level": 95,
+      "category": "backend",
+      "glow": "#a78bfa"
+    },
+    {
+      "name": "LLM / OpenAI",
+      "level": 90,
+      "category": "ai",
+      "glow": "#10a37f"
+    },
+    {
+      "name": "AI Agents",
+      "level": 88,
+      "category": "ai",
+      "glow": "#00ffcc"
+    },
+    {
+      "name": "Prompt Engineering",
+      "level": 93,
+      "category": "ai",
+      "glow": "#ffd700"
+    },
+    {
+      "name": "Web Scraping",
+      "level": 85,
+      "category": "backend",
+      "glow": "#ff6b9d"
+    },
+    {
+      "name": "Microservices",
+      "level": 79,
+      "category": "backend",
+      "glow": "#c084fc"
+    },
+    {
+      "name": "System Design",
+      "level": 83,
+      "category": "architecture",
+      "glow": "#34d399"
+    },
+    {
+      "name": "Linux",
+      "level": 88,
+      "category": "devops",
+      "glow": "#f59e0b"
+    },
+    {
+      "name": "Git",
+      "level": 94,
+      "category": "devops",
+      "glow": "#ff7043"
+    }
   ],
   "services": [
     {
@@ -112,8 +192,18 @@
       "subtitle_id": "Sistem Web Siap Pakai",
       "desc": "Custom websites and online applications tailored to your needs. From digital storefronts and registration portals to simple admin areas, built to be clean, fast, and easy to use.",
       "desc_id": "Pembuatan website kustom dan sistem digital sesuai kebutuhan Anda. Mulai dari toko online, portal pendaftaran sekolah, hingga halaman admin internal yang dibuat praktis, cepat, dan mudah dipahami.",
-      "features": ["Online Stores", "Customer/Student Portals", "Simple Admin Dashboards", "Fast & Secure"],
-      "features_id": ["Toko Online", "Portal Pelanggan / Siswa", "Halaman Admin Sederhana", "Cepat & Aman"]
+      "features": [
+        "Online Stores",
+        "Customer/Student Portals",
+        "Simple Admin Dashboards",
+        "Fast & Secure"
+      ],
+      "features_id": [
+        "Toko Online",
+        "Portal Pelanggan / Siswa",
+        "Halaman Admin Sederhana",
+        "Cepat & Aman"
+      ]
     },
     {
       "id": "ai",
@@ -124,8 +214,18 @@
       "subtitle_id": "Pekerjaan Otomatis Cerdas",
       "desc": "Smart digital assistants that can automatically answer customer inquiries, organize paperwork, or draft routine reports, saving hours of manual labor for you and your staff.",
       "desc_id": "Pembuatan asisten digital pintar yang bisa otomatis menjawab pertanyaan pelanggan, merapikan data, atau mengurus laporan administrasi rutin untuk menghemat waktu kerja Anda.",
-      "features": ["Automated Chat Replies", "Quick Data Organizing", "FAQ Assistants", "Routine Task Automation"],
-      "features_id": ["Balasan Chat Otomatis", "Penyusunan Data Cepat", "Asisten Tanya Jawab", "Otomatisasi Tugas Rutin"]
+      "features": [
+        "Automated Chat Replies",
+        "Quick Data Organizing",
+        "FAQ Assistants",
+        "Routine Task Automation"
+      ],
+      "features_id": [
+        "Balasan Chat Otomatis",
+        "Penyusunan Data Cepat",
+        "Asisten Tanya Jawab",
+        "Otomatisasi Tugas Rutin"
+      ]
     },
     {
       "id": "backend",
@@ -136,8 +236,18 @@
       "subtitle_id": "Penyimpanan Aman",
       "desc": "Reliable storage systems to keep track of your inventory, customer records, student files, or sales reports securely and keep them accessible whenever you need them.",
       "desc_id": "Sistem penyimpanan data yang aman untuk mencatat inventaris barang, data pelanggan, informasi siswa, atau laporan transaksi secara rapi agar selalu siap saat Anda butuhkan.",
-      "features": ["Secure Data Storage", "Fast Data Search", "Automated Backups", "Worry-Free Security"],
-      "features_id": ["Penyimpanan Data Aman", "Pencarian Data Cepat", "Pencadangan Otomatis", "Bebas Khawatir Bocor"]
+      "features": [
+        "Secure Data Storage",
+        "Fast Data Search",
+        "Automated Backups",
+        "Worry-Free Security"
+      ],
+      "features_id": [
+        "Penyimpanan Data Aman",
+        "Pencarian Data Cepat",
+        "Pencadangan Otomatis",
+        "Bebas Khawatir Bocor"
+      ]
     },
     {
       "id": "consulting",
@@ -148,8 +258,18 @@
       "subtitle_id": "Perencanaan & Diskusi",
       "desc": "If you want to move your operations online but don't know where to start, I will guide you step-by-step using plain language to find the most cost-effective solution.",
       "desc_id": "Jika Anda ingin mendigitalisasi operasional toko, sekolah, atau kantor Anda namun bingung harus mulai dari mana, saya siap memandu langkah-demi-langkah dengan bahasa yang mudah dipahami.",
-      "features": ["Plain Language Explanations", "Budget Planning", "Best Tool Recommendations", "Friendly Support"],
-      "features_id": ["Penjelasan Bahasa Awam", "Perencanaan Anggaran", "Rekomendasi Alat Terbaik", "Dukungan Ramah"]
+      "features": [
+        "Plain Language Explanations",
+        "Budget Planning",
+        "Best Tool Recommendations",
+        "Friendly Support"
+      ],
+      "features_id": [
+        "Penjelasan Bahasa Awam",
+        "Perencanaan Anggaran",
+        "Rekomendasi Alat Terbaik",
+        "Dukungan Ramah"
+      ]
     }
   ],
   "projects": [
@@ -161,37 +281,47 @@
       "short_desc_id": "Website portofolio pribadi ini—dirancang untuk menampilkan karya dan layanan saya secara langsung dan jelas kepada klien tanpa ada elemen yang membingungkan.",
       "full_desc": "Built to be clean, fast-loading, and simple to navigate on both phones and computers. It helps clients find info about my services quickly without getting lost in complicated menus.",
       "full_desc_id": "Dibuat agar bersih, cepat dimuat, dan mudah dibuka baik di handphone maupun komputer. Membantu calon klien menemukan informasi layanan yang mereka butuhkan secara cepat tanpa tersesat di menu yang rumit.",
-      "tags": ["Node.js", "Vanilla JS", "Custom Router", "CSS Animations"],
+      "tags": [
+        "Nuxt 3",
+        "Typescript",
+        "Custom Router",
+        "CSS Animations"
+      ],
       "status": "live",
       "year": "2026",
       "highlight": true,
       "github": "#",
       "live": "/",
       "images": [
-        "/images/projects/portfolio-1.png",
-        "/images/projects/portfolio-2.png",
-        "/images/projects/portfolio-3.png"
+        "/images/projects/zeroman-porto/pic-1.png",
+        "/images/projects/zeroman-porto/pic-2.png",
+        "/images/projects/zeroman-porto/pic-3.png"
       ]
     },
     {
-      "id": "data-management",
+      "id": "employee-management",
       "num": "02",
-      "title": "Simple Data & Inquiry Manager",
-      "title_id": "Sistem Pengelola Data & Formulir",
-      "short_desc": "A secure digital system to collect and organize form submissions, customer inquiries, or contact lists in one clean workspace.",
-      "short_desc_id": "Sistem digital aman untuk mengumpulkan dan merapikan kiriman formulir, pertanyaan pelanggan, atau data kontak langsung ke dalam penyimpanan yang rapi.",
+      "title": "Employee Management System",
+      "title_id": "Sistem Pengelola Karyawan",
+      "short_desc": "A secure digital system to collect and organize employee data, from personal information and attendance to payroll slips, all in one centralized location.",
+      "short_desc_id": "Sistem digital untuk mengelola data karyawan. Mulai dari informasi karyawan, absensi, hingga slip gaji, dalam satu tempat terpusat.",
       "full_desc": "Helps organize messages and questions from visitors. Instead of letting them get lost in a cluttered inbox, all data is stored neatly in a dedicated admin panel, making it easy to find, filter, and reply.",
-      "full_desc_id": "Membantu merapikan pesan dan pertanyaan dari pengunjung website. Alih-alih pesan menumpuk tidak beraturan di email, semua data tersusun rapi di satu halaman admin khusus, memudahkan Anda mencari, menyortir, dan merespons pesan.",
-      "tags": ["File System", "HTTP POST", "Async I/O", "Stream Processing"],
+      "full_desc_id": "Membantu mengelola data karyawan secara teratur, mulai dari informasi karyawan, absensi, data kontrak, hingga rincian gaji. Sistem ini menyediakan antarmuka yang rapi dan mudah digunakan agar pengelolaan data karyawan menjadi lebih efisien.",
+      "tags": [
+        "High Daily Traffic",
+        "Fast Loading Speed",
+        "Async I/O",
+        "Automasi"
+      ],
       "status": "complete",
-      "year": "2025",
+      "year": "2024",
       "highlight": false,
       "github": "#",
       "live": null,
       "images": [
-        "/images/projects/portfolio-2.png",
-        "/images/projects/portfolio-3.png",
-        "/images/projects/portfolio-1.png"
+        "/images/projects/hris/pic-2.png",
+        "/images/projects/hris/pic-3.png",
+        "/images/projects/hris/pic-1.png"
       ]
     },
     {
@@ -203,7 +333,13 @@
       "short_desc_id": "Asisten otomatis bertenaga AI untuk membantu mengumpulkan informasi dari berbagai sumber dan menyusun draf laporan secara cepat.",
       "full_desc": "An automated tool designed to handle repetitive research tasks. The system looks up the latest information, organizes key points, and drafts clean summaries. Highly useful for offices that spend a lot of time preparing documents.",
       "full_desc_id": "Sistem pembantu otomatis untuk meriset informasi terbaru, mengelompokkan poin-poin penting, dan merangkumnya menjadi dokumen yang rapi. Sangat membantu organisasi atau kantor yang banyak berurusan dengan pembuatan dokumen dan laporan harian.",
-      "tags": ["AI Agents", "LLM", "Prompt Engineering", "Node.js", "OpenAI"],
+      "tags": [
+        "AI Agents",
+        "LLM",
+        "Prompt Engineering",
+        "Node.js",
+        "OpenAI"
+      ],
       "status": "client",
       "year": "2025",
       "highlight": true,
@@ -224,7 +360,13 @@
       "short_desc_id": "Sistem otomatis pemantau harga produk di berbagai toko online yang langsung mengirimkan notifikasi saat harga berubah.",
       "full_desc": "Tracks price changes automatically. As soon as a price drops or hits a target, it sends an alert immediately. Great for business owners wanting to monitor competitor prices effortlessly.",
       "full_desc_id": "Mematau perubahan harga barang secara otomatis setiap saat. Begitu harga turun atau mencapai target, sistem langsung mengirimkan notifikasi instan. Sangat berguna bagi pemilik usaha untuk memantau harga kompetitor secara mudah.",
-      "tags": ["Go", "Web Scraping", "PostgreSQL", "Redis", "Queue System"],
+      "tags": [
+        "Go",
+        "Web Scraping",
+        "PostgreSQL",
+        "Redis",
+        "Queue System"
+      ],
       "status": "complete",
       "year": "2024",
       "highlight": false,
@@ -245,7 +387,14 @@
       "short_desc_id": "Sistem keamanan terpusat untuk mengelola akun login pengguna, melindungi data pribadi pelanggan, dan mengunci halaman admin agar aman.",
       "full_desc": "Keeps your online system secure from unauthorized access. It manages login credentials safely, protects sensitive info, and ensures that only authorized staff can access private office portals.",
       "full_desc_id": "Menjaga sistem online Anda tetap aman dari akses tidak sah. Sistem ini bertugas mengenali pengguna yang sah, melindungi kata sandi, serta memastikan data internal toko, sekolah, atau instansi Anda tidak bisa diakses sembarangan orang.",
-      "tags": ["Go", "JWT", "Redis", "PostgreSQL", "Microservices", "Docker"],
+      "tags": [
+        "Go",
+        "JWT",
+        "Redis",
+        "PostgreSQL",
+        "Microservices",
+        "Docker"
+      ],
       "status": "complete",
       "year": "2024",
       "highlight": true,
@@ -341,16 +490,16 @@
     "hire_id": "Hubungi Saya →"
   },
   "hero": {
-    "chip": "Available for Websites & Business Automation",
-    "chip_id": "Tersedia untuk Pembuatan Website & Otomatisasi Usaha",
-    "title": "Engineering Reliable Web Portals and <span class=\"text-gradient\">Practical Automation.</span>",
-    "title_id": "Membangun Website Andal dan <span class=\"text-gradient\">Otomatisasi Kerja Praktis.</span>",
-    "desc": "Hey, I'm Anton. I build custom websites, online systems, and smart digital assistants designed to make your day-to-day operations simple and efficient.",
-    "desc_id": "Halo, saya Anton. Saya membantu membuat website usaha, portal online, dan asisten digital pintar yang dirancang khusus untuk memudahkan operasional harian Anda.",
+    "chip": "EMPOWERING HUMANITY THROUGH TECHNOLOGY",
+    "chip_id": "EMPOWERING HUMANITY THROUGH TECHNOLOGY",
+    "title": "Realize Your Business Efficiency <span class=\"text-gradient\">With Technology, Application, and Automation.</span>",
+    "title_id": "Wujudkan Efisiensi Bisnis Anda <span class=\"text-gradient\">Dengan Teknologi Aplikasi dan Otomatisasi.</span>",
+    "desc": "Hey, I'm Mahrus. I build custom websites, online systems, and smart digital assistants designed to make your day-to-day operations simple and efficient.",
+    "desc_id": "Halo, saya Mahrus. Saya membuat website usaha, portal online, dan asisten digital pintar yang dirancang khusus untuk memudahkan operasional bisnis Anda.",
     "cta_primary": "Let's Talk",
     "cta_primary_id": "Hubungi Saya",
-    "cta_secondary": "See My Work",
-    "cta_secondary_id": "Lihat Karya Saya"
+    "cta_secondary": "My Work",
+    "cta_secondary_id": "Karya Saya"
   },
   "sections": {
     "what_i_do": "// what I do",
@@ -386,8 +535,19 @@
     "Let's discuss"
   ],
   "ticker_items": [
-    "Website Usaha", "Aplikasi Kasir", "Portal Sekolah", "Formulir Online", "Balasan Otomatis", "Sistem Inventaris",
-    "Penyimpanan Data", "Laporan Otomatis", "Toko Online", "Desain Sistem Praktis",
-    "Integrasi Chat", "Keamanan Login", "Dukungan Ramah", "Efisiensi Kerja"
+    "Website Usaha",
+    "Aplikasi Kasir",
+    "Portal Sekolah",
+    "Formulir Online",
+    "Balasan Otomatis",
+    "Sistem Inventaris",
+    "Penyimpanan Data",
+    "Laporan Otomatis",
+    "Toko Online",
+    "Desain Sistem Praktis",
+    "Integrasi Chat",
+    "Keamanan Login",
+    "Dukungan Ramah",
+    "Efisiensi Kerja"
   ]
 }

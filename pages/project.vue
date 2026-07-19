@@ -32,7 +32,7 @@
               {{ lang === 'id' ? '// detail proyek' : '// project detail' }}
             </div>
             <h1 class="section-title" style="font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 16px;">
-              {{ project.title }}
+              {{ translate(project, 'title') }}
             </h1>
             <p style="font-size: 1.05rem; color: var(--fg-dim); line-height: 1.75; max-width: 680px; font-weight: 300;">
               {{ translate(project, 'short_desc') }}
@@ -81,7 +81,7 @@
                 @click="openLightbox(img)"
               >
                 <div class="gallery-image-wrapper">
-                  <img :src="img" :alt="`${project.title} - screenshot ${idx + 1}`" loading="lazy" />
+                  <img :src="img" :alt="`${translate(project, 'title')} - screenshot ${idx + 1}`" loading="lazy" />
                   <div class="gallery-overlay">
                     <span class="zoom-icon">🔍</span>
                   </div>
@@ -133,7 +133,7 @@
 
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useLanguage } from '~/composables/useLanguage'
 import { useScrollReveal } from '~/composables/useScrollReveal'
 import portfolioData from '~/public/data/portfolio.json'
@@ -143,7 +143,7 @@ const { translate, lang } = useLanguage()
 // Dynamic SEO Head tags
 const seoTitle = computed(() => {
   if (project.value) {
-    return `${project.value.title} — ${lang.value === 'id' ? 'Karya Anton' : "Anton's Work"}`
+    return `${translate(project.value, 'title')} — ${lang.value === 'id' ? 'Karya Anton' : "Anton's Work"}`
   }
   return lang.value === 'id' ? 'Proyek — Portofolio Anton' : 'Project — Anton\'s Portfolio'
 })
@@ -210,13 +210,17 @@ if (import.meta.server) {
   }
 }
 
-onMounted(() => {
+const router = useRouter()
+
+onMounted(async () => {
+  await router.isReady()
   if (!projectId.value) {
     navigateTo('/')
   } else if (!project.value) {
     showError({ statusCode: 404, statusMessage: 'Project not found' })
   }
 })
+
 
 watch(project, (newProject) => {
   if (import.meta.client && !newProject && projectId.value) {
