@@ -65,7 +65,7 @@ export const useLanguage = () => {
         city: data.city,
         region: data.regionName,
         ip: data.query,
-        lang: data.countryCode === 'ID' ? 'id' : 'en'
+        lang: (data.countryCode?.toUpperCase() === 'ID' || data.country?.toLowerCase() === 'indonesia') ? 'id' : 'en'
       }
       
       try {

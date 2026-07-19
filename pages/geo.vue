@@ -191,6 +191,14 @@ const toggleLabel = computed(() => {
 // Toggle Language
 const toggleLanguage = () => {
   currentLang.value = currentLang.value === 'en' ? 'id' : 'en'
+  try {
+    const cached = sessionStorage.getItem('geolang_v2')
+    if (cached) {
+      const d = JSON.parse(cached)
+      d.lang = currentLang.value
+      sessionStorage.setItem('geolang_v2', JSON.stringify(d))
+    }
+  } catch (_) {}
 }
 
 const fetchFromIpApi = async () => {
@@ -265,7 +273,7 @@ onMounted(async () => {
       city:        raw.city,
       region:      raw.region,
       ip:          raw.ip,
-      lang:        raw.countryCode === 'ID' ? 'id' : 'en'
+      lang:        (raw.countryCode?.toUpperCase() === 'ID' || raw.country?.toLowerCase() === 'indonesia') ? 'id' : 'en'
     }
     try {
       sessionStorage.setItem('geolang_v2', JSON.stringify(geoData))
