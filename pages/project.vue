@@ -55,9 +55,9 @@
             <div v-if="project.live || (project.github && project.github !== '#')" style="display: flex; align-items: center; gap: 12px; margin-top: 24px; flex-wrap: wrap;">
               <a 
                 v-if="project.live" 
-                :href="project.live" 
-                :target="project.live.startsWith('http') ? '_blank' : '_self'"
-                :rel="project.live.startsWith('http') ? 'noopener noreferrer' : ''"
+                :href="formatUrl(project.live)" 
+                target="_blank"
+                rel="noopener noreferrer"
                 class="btn-primary" 
                 id="project-live-link"
                 style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; font-size: 0.85rem;"
@@ -253,6 +253,11 @@ const closeLightbox = () => {
 
 // Setup scroll reveal animation hook
 useScrollReveal()
+
+const formatUrl = (url) => {
+  if (!url) return ''
+  return url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`
+}
 
 const getStatusLabel = (status) => {
   const statusLabelsEn = { live: 'Live', complete: 'Complete', client: 'Client Work' }
