@@ -62,7 +62,6 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
 import { useLanguage } from '~/composables/useLanguage'
 
 const { lang, setLang } = useLanguage()

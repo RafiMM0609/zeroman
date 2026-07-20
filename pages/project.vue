@@ -133,7 +133,6 @@
 
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 import { useLanguage } from '~/composables/useLanguage'
 import { useScrollReveal } from '~/composables/useScrollReveal'
 import portfolioData from '~/public/data/portfolio.json'
