@@ -270,7 +270,7 @@ useScrollReveal()
 const portfolio = portfolioData
 
 const tickerItems = computed(() => {
-  const items = portfolioData.ticker_items || []
+  const items = translate(portfolioData, 'ticker_items') || []
   // Duplicate for infinite CSS animation loop
   return [...items, ...items]
 })

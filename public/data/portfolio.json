@@ -434,6 +434,35 @@
         "/images/projects/restriceted-pic.png",
         "/images/projects/restriceted-pic.png"
       ]
+    },
+    {
+      "id": "pov-ai-indonesia",
+      "num": "07",
+      "title": "POV AI Indonesia (Economic & Sensitivity Intelligence)",
+      "title_id": "POV AI Indonesia (Analisis Sentimen & Otomatisasi Isu Sensitif)",
+      "short_desc": "An automated AI monitoring & sentiment analysis platform focusing on sensitive Indonesian economic indicators like fuel (BBM) prices and Rupiah exchange rates using scheduled crawling and automated AI evaluation.",
+      "short_desc_id": "Platform analisis & crawling otomatis bertenaga AI yang memantau isu ekonomi sensitif di Indonesia seperti harga BBM dan nilai tukar Rupiah secara terjadwal, serta menyajikan ulasan dan kesimpulan otomatis.",
+      "full_desc": "An automated web crawling and AI analysis system built to track sensitive national economic dynamics in Indonesia, with primary emphasis on fuel (BBM) price shifts and USD/IDR exchange rates. The system executes scheduled web scraping across financial outlets and public channels, then uses LLMs to automatically evaluate trends, summarize public sentiment, and deliver concise executive conclusions.",
+      "full_desc_id": "Sistem crawling web dan analisis AI otomatis yang dirancang untuk memantau dinamika isu sensitif ekonomi nasional Indonesia, terutama fluktuasi harga BBM dan nilai tukar Rupiah. Sistem ini menjalankan scraping data secara terjadwal (scheduled crawling) dari berbagai media keuangan dan publik, lalu memanfaatkan LLM untuk secara otomatis meninjau tren, menganalisis sentimen, dan memberikan ringkasan kesimpulan cerdas secara real-time.",
+      "tags": [
+        "Python",
+        "LLM / OpenAI",
+        "Web Scraping",
+        "Cron Scheduler",
+        "FastAPI",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "status": "complete",
+      "year": "2026",
+      "highlight": true,
+      "github": "#",
+      "live": null,
+      "images": [
+        "/images/projects/restriceted-pic.png",
+        "/images/projects/restriceted-pic.png",
+        "/images/projects/restriceted-pic.png"
+      ]
     }
   ],
   "timeline": [
@@ -557,26 +586,50 @@
     "copy_id": "© 2026 — Dibuat manual untuk solusi yang tepat sasaran."
   },
   "budget_options": [
-    "< Rp 5 Million",
-    "Rp 5 – 20 Million",
-    "Rp 20 – 50 Million",
-    "> Rp 50 Million",
+    "< Rp 5 Juta",
+    "Rp 5 – 20 Juta",
+    "Rp 20 – 50 Juta",
+    "> Rp 50 Juta",
     "Let's discuss"
   ],
   "ticker_items": [
-    "Website Usaha",
-    "Aplikasi Kasir",
-    "Portal Sekolah",
-    "Formulir Online",
-    "Balasan Otomatis",
-    "Sistem Inventaris",
-    "Penyimpanan Data",
-    "Laporan Otomatis",
-    "Toko Online",
+    "High-Throughput Systems",
+    "Retrieval-Augmented Generation (RAG)",
+    "AI Agents & Automation",
+    "Asset Management",
+    "Resource Management",
+    "Multi-Tenant Architecture",
+    "Vector Search & Knowledge Graphs",
+    "Real-Time Analytics",
+    "High-Availability Backend",
+    "Business Websites",
+    "POS & Retail Systems",
+    "Custom API Integration",
+    "Secure Cloud Infrastructure",
+    "Automated Workflows",
+    "School & Student Portals",
+    "Inventory & Storage Systems",
+    "Practical System Design",
+    "Workplace Efficiency"
+  ],
+  "ticker_items_id": [
+    "Sistem High-Throughput",
+    "RAG & AI",
+    "Asisten & Agent AI",
+    "Manajemen Aset Digital",
+    "Manajemen Sumber Daya",
+    "Arsitektur Multi-Tenant",
+    "Vektor & Knowledge Graph",
+    "Analitik Real-Time",
+    "Backend High-Availability",
+    "Website UMKM",
+    "Aplikasi Kasir & Retail",
+    "Integrasi API Kustom",
+    "Infrastruktur Cloud Andal",
+    "Otomatisasi Alur Kerja",
+    "Portal Sekolah & Siswa",
+    "Sistem Inventaris & Data",
     "Desain Sistem Praktis",
-    "Integrasi Chat",
-    "Keamanan Login",
-    "Dukungan Ramah",
     "Efisiensi Kerja"
   ]
 }

@@ -50,6 +50,34 @@
                 {{ project.year }}
               </span>
             </div>
+
+            <!-- Action Links -->
+            <div v-if="project.live || (project.github && project.github !== '#')" style="display: flex; align-items: center; gap: 12px; margin-top: 24px; flex-wrap: wrap;">
+              <a 
+                v-if="project.live" 
+                :href="project.live" 
+                :target="project.live.startsWith('http') ? '_blank' : '_self'"
+                :rel="project.live.startsWith('http') ? 'noopener noreferrer' : ''"
+                class="btn-primary" 
+                id="project-live-link"
+                style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; font-size: 0.85rem;"
+              >
+                <span>🚀 {{ lang === 'id' ? 'Buka Aplikasi' : 'Live Application' }}</span>
+                <span>↗</span>
+              </a>
+              <a 
+                v-if="project.github && project.github !== '#'" 
+                :href="project.github" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-ghost" 
+                id="project-github-link"
+                style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; font-size: 0.85rem;"
+              >
+                <span>💻 {{ lang === 'id' ? 'Repository' : 'Source Code' }}</span>
+                <span>↗</span>
+              </a>
+            </div>
           </div>
 
           <!-- Detail Content -->
@@ -139,6 +167,48 @@ import portfolioData from '~/public/data/portfolio.json'
 
 const { translate, lang } = useLanguage()
 
+const route = useRoute()
+const router = useRouter()
+
+const projectId = computed(() => route.query.id)
+
+const project = computed(() => {
+  const list = portfolioData.projects || []
+  
+  // Legacy aliases support (from server.js)
+  const legacyAlias = {
+    'portofolio': 'zeroman-portfolio',
+    'manajemen-data': 'data-management'
+  }
+  const id = legacyAlias[projectId.value] || projectId.value
+  
+  return list.find(p => p.id === id)
+})
+
+// Safely handle missing project ID or nonexistent project without breaking reactivity/transitions
+if (import.meta.server) {
+  if (!projectId.value) {
+    navigateTo('/')
+  } else if (!project.value) {
+    showError({ statusCode: 404, statusMessage: 'Project not found' })
+  }
+}
+
+onMounted(async () => {
+  await router.isReady()
+  if (!projectId.value) {
+    navigateTo('/')
+  } else if (!project.value) {
+    showError({ statusCode: 404, statusMessage: 'Project not found' })
+  }
+})
+
+watch(project, (newProject) => {
+  if (import.meta.client && !newProject && projectId.value) {
+    showError({ statusCode: 404, statusMessage: 'Project not found' })
+  }
+})
+
 // Dynamic SEO Head tags
 const seoTitle = computed(() => {
   if (project.value) {
@@ -183,49 +253,6 @@ const closeLightbox = () => {
 
 // Setup scroll reveal animation hook
 useScrollReveal()
-
-const route = useRoute()
-const projectId = computed(() => route.query.id)
-
-const project = computed(() => {
-  const list = portfolioData.projects || []
-  
-  // Legacy aliases support (from server.js)
-  const legacyAlias = {
-    'portofolio': 'zeroman-portfolio',
-    'manajemen-data': 'data-management'
-  }
-  const id = legacyAlias[projectId.value] || projectId.value
-  
-  return list.find(p => p.id === id)
-})
-
-// Safely handle missing project ID or nonexistent project without breaking reactivity/transitions
-if (import.meta.server) {
-  if (!projectId.value) {
-    navigateTo('/')
-  } else if (!project.value) {
-    showError({ statusCode: 404, statusMessage: 'Project not found' })
-  }
-}
-
-const router = useRouter()
-
-onMounted(async () => {
-  await router.isReady()
-  if (!projectId.value) {
-    navigateTo('/')
-  } else if (!project.value) {
-    showError({ statusCode: 404, statusMessage: 'Project not found' })
-  }
-})
-
-
-watch(project, (newProject) => {
-  if (import.meta.client && !newProject && projectId.value) {
-    showError({ statusCode: 404, statusMessage: 'Project not found' })
-  }
-})
 
 const getStatusLabel = (status) => {
   const statusLabelsEn = { live: 'Live', complete: 'Complete', client: 'Client Work' }
