@@ -325,20 +325,20 @@
       ]
     },
     {
-      "id": "ai-task-orchestrator",
+      "id": "secure-chatbot",
       "num": "03",
-      "title": "AI Research & Writing Assistant",
-      "title_id": "Asisten AI Riset & Penulisan",
-      "short_desc": "An automated AI assistant that gathers information from online sources and compiles drafts of reports or articles quickly.",
-      "short_desc_id": "Asisten otomatis bertenaga AI untuk membantu mengumpulkan informasi dari berbagai sumber dan menyusun draf laporan secara cepat.",
-      "full_desc": "An automated tool designed to handle repetitive research tasks. The system looks up the latest information, organizes key points, and drafts clean summaries. Highly useful for offices that spend a lot of time preparing documents.",
-      "full_desc_id": "Sistem pembantu otomatis untuk meriset informasi terbaru, mengelompokkan poin-poin penting, dan merangkumnya menjadi dokumen yang rapi. Sangat membantu organisasi atau kantor yang banyak berurusan dengan pembuatan dokumen dan laporan harian.",
+      "title": "Secure Custom Knowledge Chatbot",
+      "title_id": "Chatbot Aman dengan Knowledge Kustom",
+      "short_desc": "An AI chatbot with a custom knowledge base via file uploads, accessible via UI or custom API keys, secured by adaptive prompt injection detection and Graph Knowledge.",
+      "short_desc_id": "Chatbot AI dengan basis data (knowledge) kustom melalui upload file, diakses via UI atau API key, aman dengan deteksi prompt injection adaptif dan Graph Knowledge.",
+      "full_desc": "A smart chatbot system where you can customize its knowledge by uploading documents. It offers easy integration with your applications through a generated API key or direct UI access. It features advanced security with a prompt injection detection system that learns from user behavior, built on top of structured Graph Knowledge.",
+      "full_desc_id": "Sistem chatbot pintar yang basis datanya dapat dikustomisasi dengan mengunggah file. Dapat diakses langsung melalui UI atau diintegrasikan ke aplikasi Anda via API key. Chatbot ini sangat aman berkat deteksi prompt injection adaptif yang terus belajar dari kebiasaan pengguna dan diperkuat oleh struktur Graph Knowledge.",
       "tags": [
+        "Knowledge Graph",
+        "Prompt Injection Detection",
+        "API Integration",
         "AI Agents",
-        "LLM",
-        "Prompt Engineering",
-        "Node.js",
-        "OpenAI"
+        "Graph RAG"
       ],
       "status": "client",
       "year": "2025",
@@ -346,54 +346,53 @@
       "github": null,
       "live": null,
       "images": [
-        "/images/projects/portfolio-3.png",
-        "/images/projects/portfolio-1.png",
-        "/images/projects/portfolio-2.png"
+        "/images/projects/zerochat/pic-1.png",
+        "/images/projects/zerochat/pic-3.png",
+        "/images/projects/zerochat/pic-2.png"
       ]
     },
     {
-      "id": "realtime-scraper",
+      "id": "flower-shop",
       "num": "04",
-      "title": "Automated Price Tracker",
-      "title_id": "Pemantau Harga Toko Otomatis",
-      "short_desc": "An automated system that monitors product prices on e-commerce platforms and sends instant alerts when prices change.",
-      "short_desc_id": "Sistem otomatis pemantau harga produk di berbagai toko online yang langsung mengirimkan notifikasi saat harga berubah.",
-      "full_desc": "Tracks price changes automatically. As soon as a price drops or hits a target, it sends an alert immediately. Great for business owners wanting to monitor competitor prices effortlessly.",
-      "full_desc_id": "Mematau perubahan harga barang secara otomatis setiap saat. Begitu harga turun atau mencapai target, sistem langsung mengirimkan notifikasi instan. Sangat berguna bagi pemilik usaha untuk memantau harga kompetitor secara mudah.",
+      "title": "Premium Florist E-Commerce",
+      "title_id": "Toko Bunga Online Premium",
+      "short_desc": "A modern florist e-commerce platform featuring advanced image optimization and enhanced security using Cloudflare.",
+      "short_desc_id": "Platform e-commerce toko bunga modern dengan optimasi gambar tingkat lanjut dan keamanan tambahan menggunakan Cloudflare.",
+      "full_desc": "A high-performance e-commerce platform built for a premium florist. Designed with focus on visual aesthetics and performance, it implements custom image optimization pipelines for lightning-fast catalog loading, and is secured behind Cloudflare for DDoS protection, SSL encryption, and caching.",
+      "full_desc_id": "Platform e-commerce berkinerja tinggi yang dirancang untuk toko bunga premium. Dibuat dengan fokus pada estetika visual dan performa cepat menggunakan optimasi gambar, serta dilindungi di balik Cloudflare untuk pertahanan DDoS, enkripsi SSL, dan caching.",
       "tags": [
-        "Go",
-        "Web Scraping",
-        "PostgreSQL",
-        "Redis",
-        "Queue System"
+        "E-Commerce",
+        "Cloudflare Security",
+        "Image Optimization",
+        "Responsive Design"
       ],
       "status": "complete",
-      "year": "2024",
+      "year": "2025",
       "highlight": false,
       "github": "#",
       "live": null,
       "images": [
-        "/images/projects/portfolio-1.png",
-        "/images/projects/portfolio-3.png",
-        "/images/projects/portfolio-2.png"
+        "/images/projects/kagitacraft/pic-1.png",
+        "/images/projects/kagitacraft/pic-2.png",
+        "/images/projects/kagitacraft/pic-3.png"
       ]
     },
     {
-      "id": "microservice-auth",
+      "id": "patuh-pdp",
       "num": "05",
-      "title": "Secure Access & Login Manager",
-      "title_id": "Sistem Keamanan Login & Hak Akses",
-      "short_desc": "A central security system to manage user accounts, protect customer details, and keep admin portals locked and safe.",
-      "short_desc_id": "Sistem keamanan terpusat untuk mengelola akun login pengguna, melindungi data pribadi pelanggan, dan mengunci halaman admin agar aman.",
-      "full_desc": "Keeps your online system secure from unauthorized access. It manages login credentials safely, protects sensitive info, and ensures that only authorized staff can access private office portals.",
-      "full_desc_id": "Menjaga sistem online Anda tetap aman dari akses tidak sah. Sistem ini bertugas mengenali pengguna yang sah, melindungi kata sandi, serta memastikan data internal toko, sekolah, atau instansi Anda tidak bisa diakses sembarangan orang.",
+      "title": "Patuh PDP Multi-Tenant Platform",
+      "title_id": "Platform Multi-Tenant Patuh PDP",
+      "short_desc": "A multi-tenant compliance platform with isolation from domain/subdomain down to databases and active server pods, helping organizations adhere to PDP laws.",
+      "short_desc_id": "Platform kepatuhan multi-tenant dengan isolasi dari level domain/subdomain hingga database dan pod server aktif untuk membantu organisasi mematuhi UU PDP.",
+      "full_desc": "A highly secure and isolated multi-tenant system designed for PDP compliance. It features strict tenant isolation at every layer: routing (custom domains and subdomains), databases (dedicated tenant database connections), and compute (isolated running server pods). The platform is powered by a robust microservices architecture, PostgreSQL, Redis, and container orchestration using Docker and Rancher.",
+      "full_desc_id": "Sistem multi-tenant dengan isolasi ketat yang dirancang untuk kepatuhan regulasi PDP (Perlindungan Data Pribadi). Sistem ini mengimplementasikan isolasi tenant di setiap lapisan: mulai dari perutean (domain kustom dan subdomain), database (database terpisah per tenant), hingga komputasi (pod server berjalan yang terisolasi). Infrastruktur ini ditenagai oleh Microservices, PostgreSQL, Redis, serta orkestrasi kontainer menggunakan Docker dan Rancher.",
       "tags": [
-        "Go",
-        "JWT",
-        "Redis",
         "PostgreSQL",
+        "Redis",
         "Microservices",
-        "Docker"
+        "Rancher",
+        "Docker",
+        "Multi-Tenant"
       ],
       "status": "complete",
       "year": "2024",
@@ -401,9 +400,39 @@
       "github": "#",
       "live": null,
       "images": [
-        "/images/projects/portfolio-2.png",
-        "/images/projects/portfolio-1.png",
-        "/images/projects/portfolio-3.png"
+        "/images/projects/restriceted-pic.png.png",
+        "/images/projects/restriceted-pic.png.png",
+        "/images/projects/restriceted-pic.png.png"
+      ]
+    },
+    {
+      "id": "dms-ai",
+      "num": "06",
+      "title": "DMS AI (Document Management System)",
+      "title_id": "DMS AI (Sistem Manajemen Dokumen)",
+      "short_desc": "An AI-powered Document Management System designed to simplify document organization and search, utilizing vector search for highly relevant document retrieval.",
+      "short_desc_id": "Sistem Manajemen Dokumen bertenaga AI untuk mempermudah pengelolaan dan pencarian dokumen yang relevan menggunakan pencarian vektor.",
+      "full_desc": "A smart Document Management System (DMS) integrated with advanced AI capabilities. It streamlines document classification, management, and semantic retrieval, enabling users to find highly relevant documents instantly. Built with high-performance services and modern technology stack to handle secure, concurrent document processing and real-time updates.",
+      "full_desc_id": "Sistem Manajemen Dokumen (DMS) pintar dengan integrasi kemampuan AI. Sistem ini mempermudah klasifikasi, manajemen, dan pencarian dokumen secara semantik (semantic search) untuk menemukan dokumen yang relevan secara instan. Dibuat dengan arsitektur berkinerja tinggi untuk memproses dokumen secara aman, konkuren, dan real-time.",
+      "tags": [
+        "Go (Golang)",
+        "Python",
+        "gRPC",
+        "Qdrant",
+        "Open Router",
+        "Kubernetes",
+        "Redis",
+        "WebSocket"
+      ],
+      "status": "complete",
+      "year": "2025",
+      "highlight": true,
+      "github": "#",
+      "live": null,
+      "images": [
+        "/images/projects/restriceted-pic.png",
+        "/images/projects/restriceted-pic.png",
+        "/images/projects/restriceted-pic.png"
       ]
     }
   ],
