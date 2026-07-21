@@ -20,8 +20,8 @@
     "linkedin": "https://linkedin.com/in/zeroman",
     "location": "Indonesia 🇮🇩",
     "photos": {
-      "hero": "/images/foto-1.png",
-      "about": "/images/foto-2.png"
+      "hero": "/images/foto-1.webp",
+      "about": "/images/foto-2.webp"
     }
   },
   "about_headline": {
@@ -293,9 +293,9 @@
       "github": "#",
       "live": "https://zeroman.my.id",
       "images": [
-        "/images/projects/zeroman-porto/pic-1.png",
-        "/images/projects/zeroman-porto/pic-2.png",
-        "/images/projects/zeroman-porto/pic-3.png"
+        "/images/projects/zeroman-porto/pic-1.webp",
+        "/images/projects/zeroman-porto/pic-2.webp",
+        "/images/projects/zeroman-porto/pic-3.webp"
       ]
     },
     {
@@ -319,9 +319,9 @@
       "github": "#",
       "live": null,
       "images": [
-        "/images/projects/hris/pic-2.png",
-        "/images/projects/hris/pic-3.png",
-        "/images/projects/hris/pic-1.png"
+        "/images/projects/hris/pic-2.webp",
+        "/images/projects/hris/pic-3.webp",
+        "/images/projects/hris/pic-1.webp"
       ]
     },
     {
@@ -346,9 +346,9 @@
       "github": null,
       "live": "https://chat.zeroman.my.id",
       "images": [
-        "/images/projects/zerochat/pic-1.png",
-        "/images/projects/zerochat/pic-3.png",
-        "/images/projects/zerochat/pic-2.png"
+        "/images/projects/zerochat/pic-1.webp",
+        "/images/projects/zerochat/pic-3.webp",
+        "/images/projects/zerochat/pic-2.webp"
       ]
     },
     {
@@ -372,9 +372,9 @@
       "github": "#",
       "live": "https://kagita.my.id",
       "images": [
-        "/images/projects/kagitacraft/pic-1.png",
-        "/images/projects/kagitacraft/pic-2.png",
-        "/images/projects/kagitacraft/pic-3.png"
+        "/images/projects/kagitacraft/pic-1.webp",
+        "/images/projects/kagitacraft/pic-2.webp",
+        "/images/projects/kagitacraft/pic-3.webp"
       ]
     },
     {
@@ -400,9 +400,9 @@
       "github": "#",
       "live": null,
       "images": [
-        "/images/projects/restriceted-pic.png.png",
-        "/images/projects/restriceted-pic.png.png",
-        "/images/projects/restriceted-pic.png.png"
+        "/images/projects/restriceted-pic.webp",
+        "/images/projects/restriceted-pic.webp",
+        "/images/projects/restriceted-pic.webp"
       ]
     },
     {
@@ -430,9 +430,9 @@
       "github": "#",
       "live": null,
       "images": [
-        "/images/projects/restriceted-pic.png",
-        "/images/projects/restriceted-pic.png",
-        "/images/projects/restriceted-pic.png"
+        "/images/projects/restriceted-pic.webp",
+        "/images/projects/restriceted-pic.webp",
+        "/images/projects/restriceted-pic.webp"
       ]
     },
     {
@@ -459,9 +459,9 @@
       "github": "#",
       "live": "https://idn.povai.my.id",
       "images": [
-        "/images/projects/restriceted-pic.png",
-        "/images/projects/restriceted-pic.png",
-        "/images/projects/restriceted-pic.png"
+        "/images/projects/restriceted-pic.webp",
+        "/images/projects/restriceted-pic.webp",
+        "/images/projects/restriceted-pic.webp"
       ]
     }
   ],
