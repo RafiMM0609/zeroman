@@ -238,7 +238,8 @@ main {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding-bottom: 10vh; /* Optically raise the component */
+  padding-bottom: 10vh;
+  /* Optically raise the component */
 }
 
 .hero-bg {
@@ -1413,6 +1414,7 @@ footer {
 .hero-chip {
   display: inline-flex;
   align-items: center;
+  margin-top: 4px;
   padding: 6px 14px;
   border-radius: 50px;
   background: rgba(255, 255, 255, 0.05);
@@ -1571,7 +1573,9 @@ footer {
     border-top: 1px solid var(--border-light);
   }
 
-  .nav-link, .nav-cta, .nav-link-geo {
+  .nav-link,
+  .nav-cta,
+  .nav-link-geo {
     font-size: 1.25rem;
     padding: 10px 0;
     width: 100%;

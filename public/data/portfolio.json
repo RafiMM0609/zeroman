@@ -24,6 +24,12 @@
       "about": "/images/foto-2.webp"
     }
   },
+  "slogan": {
+    "title": "Need Reach Out Before Rich",
+    "title_id": "Buka Jaringan Sebelum Buka Rekening",
+    "desc": "Empowering humanity through technology.",
+    "desc_id": "Saling membantu dengan teknologi."
+  },
   "about_headline": {
     "eyebrow": "// about me",
     "eyebrow_id": "// tentang saya",

@@ -60,46 +60,29 @@
               </a>
             </div>
 
-            <!-- Availability indicator -->
-            <div class="avail-card">
-              <div class="avail-dot"></div>
-              <div>
-                <div class="avail-label">
-                  {{ lang === 'id' ? 'Tersedia Sekarang' : 'Available Now' }}
-                </div>
-                <div class="avail-sub">
-                  {{ lang === 'id' ? 'Siap memulai proyek baru' : 'Ready to start a new project' }}
-                </div>
-              </div>
-            </div>
-
-            <!-- Trust indicators -->
+            <!-- Slogan / Mission Indicator -->
             <div style="
               margin-top: 40px;
               padding-top: 32px;
               border-top: 1px solid var(--border);
-              display: flex;
-              gap: 32px;
-              flex-wrap: wrap;
             ">
-              <div>
-                <div style="font-family:var(--font-mono); font-size:1.5rem; font-weight:700; color:var(--bio-cyan); text-shadow: 0 0 12px rgba(0,229,255,0.4);">10+</div>
-                <div style="font-size:0.78rem; color:var(--fg-muted); font-family:var(--font-mono); letter-spacing:0.06em;">
-                  {{ lang === 'id' ? 'Klien Puas' : 'Happy Clients' }}
-                </div>
-              </div>
-              <div>
-                <div style="font-family:var(--font-mono); font-size:1.5rem; font-weight:700; color:var(--bio-aurora); text-shadow: 0 0 12px rgba(0,255,157,0.4);">&lt;24h</div>
-                <div style="font-size:0.78rem; color:var(--fg-muted); font-family:var(--font-mono); letter-spacing:0.06em;">
-                  {{ lang === 'id' ? 'Waktu Respons' : 'Response Time' }}
-                </div>
-              </div>
-              <div>
-                <div style="font-family:var(--font-mono); font-size:1.5rem; font-weight:700; color:var(--bio-cobalt); text-shadow: 0 0 12px rgba(68,136,255,0.4);">100%</div>
-                <div style="font-size:0.78rem; color:var(--fg-muted); font-family:var(--font-mono); letter-spacing:0.06em;">
-                  {{ lang === 'id' ? 'Proyek Selesai' : 'Project Done' }}
-                </div>
-              </div>
+              <h3 style="
+                font-size: 1.25rem;
+                font-weight: 500;
+                line-height: 1.4;
+                color: var(--fg);
+                margin: 0 0 8px 0;
+              ">
+                {{ lang === 'id' ? portfolio.slogan.title_id : portfolio.slogan.title }}
+              </h3>
+              <p style="
+                font-size: 0.9rem;
+                color: var(--fg-muted);
+                line-height: 1.5;
+                margin: 0;
+              ">
+                {{ lang === 'id' ? portfolio.slogan.desc_id : portfolio.slogan.desc }}
+              </p>
             </div>
           </div>
 
@@ -160,17 +143,6 @@
               <button type="submit" class="btn-submit" id="form-submit" :disabled="isSubmitting">
                 <span>{{ isSubmitting ? (lang === 'id' ? 'Mengirim...' : 'Sending...') : (lang === 'id' ? 'Kirim Pesan →' : 'Send Message →') }}</span>
               </button>
-
-              <p style="
-                text-align: center;
-                font-family: var(--font-mono);
-                font-size: 0.68rem;
-                color: var(--fg-muted);
-                margin-top: 16px;
-                letter-spacing: 0.06em;
-              ">
-                {{ lang === 'id' ? '🔒 Data Anda aman. Tanpa spam, tanpa FOMO.' : '🔒 Your data is safe. No spam, no FOMO.' }}
-              </p>
             </form>
           </div>
         </div>
