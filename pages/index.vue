@@ -63,40 +63,6 @@
       </div>
     </div>
 
-    <!-- Services Section -->
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-header fade-up">
-          <div class="section-eyebrow" id="eyebrow-services">
-            {{ translate(portfolio.sections, 'what_i_do') }}
-          </div>
-          <h2 class="section-title" id="title-services" v-html="translate(portfolio.sections, 'how_help')"></h2>
-        </div>
-        
-        <div class="services-grid" id="services-grid">
-          <div 
-            v-for="(s, i) in (portfolio.services || [])" 
-            :key="s.id" 
-            class="service-card fade-up"
-            :class="{ ['delay-' + i]: i > 0 }"
-            :id="`service-${s.id}`"
-          >
-            <div class="service-icon-wrap">
-              <i :class="`icon-${s.icon || 'zap'}`"></i>
-            </div>
-            <h3 class="service-title">{{ translate(s, 'title') }}</h3>
-            <p class="service-subtitle">{{ translate(s, 'subtitle') }}</p>
-            <p class="service-desc">{{ translate(s, 'desc') }}</p>
-            <ul class="service-features">
-              <li v-for="(f, idx) in translate(s, 'features')" :key="idx">
-                {{ f }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Projects Section -->
     <section class="section" id="projects">
       <div class="container">
@@ -134,6 +100,40 @@
             </div>
             <div class="project-arrow">↗</div>
           </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-eyebrow" id="eyebrow-services">
+            {{ translate(portfolio.sections, 'what_i_do') }}
+          </div>
+          <h2 class="section-title" id="title-services" v-html="translate(portfolio.sections, 'how_help')"></h2>
+        </div>
+        
+        <div class="services-grid" id="services-grid">
+          <div 
+            v-for="(s, i) in (portfolio.services || [])" 
+            :key="s.id" 
+            class="service-card fade-up"
+            :class="{ ['delay-' + i]: i > 0 }"
+            :id="`service-${s.id}`"
+          >
+            <div class="service-icon-wrap">
+              <i :class="`icon-${s.icon || 'zap'}`"></i>
+            </div>
+            <h3 class="service-title">{{ translate(s, 'title') }}</h3>
+            <p class="service-subtitle">{{ translate(s, 'subtitle') }}</p>
+            <p class="service-desc">{{ translate(s, 'desc') }}</p>
+            <ul class="service-features">
+              <li v-for="(f, idx) in translate(s, 'features')" :key="idx">
+                {{ f }}
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
