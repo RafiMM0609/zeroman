@@ -138,7 +138,7 @@
               {{ lang === 'id' ? 'Saya membalas dalam waktu 24 jam.' : 'I reply within 24 hours.' }}
             </p>
             <NuxtLink to="/contact" class="btn-primary" id="about-cta-bottom" style="display: inline-flex;">
-              {{ lang === 'id' ? 'Ayo Bicara →' : 'Let\'s Talk →' }}
+              <span>{{ lang === 'id' ? 'Ayo Bicara' : 'Let\'s Talk' }}</span>
             </NuxtLink>
           </div>
         </div>

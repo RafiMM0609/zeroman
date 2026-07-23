@@ -22,7 +22,7 @@
           </p>
           <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
             <button @click="handleClearError" class="btn-primary" id="notfound-home">
-              Balik ke Home →
+              <span>Balik ke Home</span>
             </button>
             <NuxtLink to="/contact" class="btn-ghost" id="notfound-contact">
               Hubungi Saya

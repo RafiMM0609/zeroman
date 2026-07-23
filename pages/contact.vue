@@ -46,7 +46,7 @@
                 </span>
                 <div>
                   <div class="contact-link-title">GitHub</div>
-                  <div class="contact-link-sub">github.com/zeroman</div>
+                  <div class="contact-link-sub">{{ formatUrlDisplay(portfolio.profile.github) }}</div>
                 </div>
               </a>
               <a v-if="portfolio.profile.linkedin" :href="portfolio.profile.linkedin" class="contact-link-item" id="contact-linkedin-link" target="_blank" rel="noopener">
@@ -55,7 +55,7 @@
                 </span>
                 <div>
                   <div class="contact-link-title">LinkedIn</div>
-                  <div class="contact-link-sub">linkedin.com/in/zeroman</div>
+                  <div class="contact-link-sub">{{ formatUrlDisplay(portfolio.profile.linkedin) }}</div>
                 </div>
               </a>
             </div>
@@ -249,6 +249,11 @@ useHead({
 useScrollReveal()
 
 const portfolio = portfolioData
+
+const formatUrlDisplay = (url) => {
+  if (!url) return ''
+  return url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')
+}
 
 const name = ref('')
 const email = ref('')

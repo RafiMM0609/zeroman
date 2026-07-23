@@ -141,7 +141,7 @@
               </div>
             </div>
             <NuxtLink to="/contact" class="btn-primary" id="project-cta">
-              {{ lang === 'id' ? 'Hubungi Saya →' : 'Contact Me →' }}
+              <span>{{ lang === 'id' ? 'Hubungi Saya' : 'Contact Me' }}</span>
             </NuxtLink>
           </div>
         </div>

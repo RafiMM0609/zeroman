@@ -578,8 +578,8 @@
     "cta_title_id": "Punya ide proyek digital yang ingin<br>Anda <span class=\"text-gradient\">wujudkan segera?</span>",
     "cta_desc": "I reply to messages within 24 hours. Let's discuss how technology can make your work easier.",
     "cta_desc_id": "Saya membalas pesan dalam waktu 24 jam. Mari bicarakan bagaimana teknologi bisa mempermudah pekerjaan Anda.",
-    "cta_btn": "Let's Talk →",
-    "cta_btn_id": "Hubungi Saya →"
+    "cta_btn": "Let's Talk",
+    "cta_btn_id": "Hubungi Saya"
   },
   "footer": {
     "copy": "© 2026 — Built by hand for custom, practical solutions.",

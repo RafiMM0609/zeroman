@@ -117,6 +117,9 @@
             tabindex="0"
           >
             <div class="project-num">{{ p.num }}</div>
+            <div v-if="p.images && p.images.length" class="project-img-preview">
+              <img :src="p.images[0]" :alt="translate(p, 'title')" loading="lazy" />
+            </div>
             <div class="project-info">
               <h3 class="project-name">{{ translate(p, 'title') }}</h3>
               <p class="project-desc">{{ translate(p, 'short_desc') }}</p>
@@ -184,7 +187,7 @@
               {{ translate(portfolio.sections, 'cta_desc') }}
             </p>
             <NuxtLink to="/contact" class="btn-primary" id="cta-btn" style="display: inline-flex;">
-              {{ translate(portfolio.sections, 'cta_btn') }}
+              <span>{{ translate(portfolio.sections, 'cta_btn') }}</span>
             </NuxtLink>
           </div>
         </div>
@@ -255,9 +258,9 @@ useHead({
         'jobTitle': 'Software Engineer & AI Architect',
         'url': 'https://zeroman.my.id',
         'sameAs': [
-          'https://github.com/zeroman',
-          'https://linkedin.com/in/zeroman'
-        ],
+          portfolioData.profile?.github,
+          portfolioData.profile?.linkedin
+        ].filter(Boolean),
         'description': 'Anton is a Software Engineer & AI Architect specializing in custom web applications and multi-agent AI systems.'
       })
     }
