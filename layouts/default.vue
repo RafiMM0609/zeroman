@@ -33,7 +33,21 @@ onMounted(async () => {
   // Initialize language preference / geolocation detection
   await initLanguage()
   
-  // Initialize Background cosmic particles canvas
-  initCanvas('bio-canvas')
+  // Delay canvas initialization to keep the main thread free during initial page load
+  if (typeof window !== 'undefined') {
+    const startCanvas = () => {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(() => initCanvas('bio-canvas'), { timeout: 2000 })
+      } else {
+        setTimeout(() => initCanvas('bio-canvas'), 1000)
+      }
+    }
+
+    if (document.readyState === 'complete') {
+      startCanvas()
+    } else {
+      window.addEventListener('load', startCanvas, { once: true })
+    }
+  }
 })
 </script>

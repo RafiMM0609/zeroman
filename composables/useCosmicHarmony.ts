@@ -602,22 +602,40 @@ export const useCosmicHarmony = () => {
 
     // Run setup
     resize()
-    initParticles()
-    const cleanupElements = initElements()
-    animationId = requestAnimationFrame(animate)
+    if (isMobile) {
+      // Draw static background once to avoid battery drain and main thread blockage on mobile
+      if (ctx) {
+        ctx.fillStyle = bgGradient || '#0D0A07'
+        ctx.fillRect(0, 0, W, H)
+        for (let i = 0; i < stars.length; i++) {
+          stars[i].draw(1.0)
+        }
+      }
+      window.addEventListener('resize', handleResize)
 
-    document.addEventListener('mousemove', mousemoveHandler, { passive: true })
-    document.addEventListener('visibilitychange', visibilitychangeHandler)
-    window.addEventListener('resize', handleResize)
+      // Save cleanup
+      cleanup = () => {
+        if (routeWatch) routeWatch()
+        window.removeEventListener('resize', handleResize)
+      }
+    } else {
+      initParticles()
+      const cleanupElements = initElements()
+      animationId = requestAnimationFrame(animate)
 
-    // Save cleanup
-    cleanup = () => {
-      cleanupElements()
-      if (animationId) cancelAnimationFrame(animationId)
-      if (routeWatch) routeWatch()
-      document.removeEventListener('mousemove', mousemoveHandler)
-      document.removeEventListener('visibilitychange', visibilitychangeHandler)
-      window.removeEventListener('resize', handleResize)
+      document.addEventListener('mousemove', mousemoveHandler, { passive: true })
+      document.addEventListener('visibilitychange', visibilitychangeHandler)
+      window.addEventListener('resize', handleResize)
+
+      // Save cleanup
+      cleanup = () => {
+        cleanupElements()
+        if (animationId) cancelAnimationFrame(animationId)
+        if (routeWatch) routeWatch()
+        document.removeEventListener('mousemove', mousemoveHandler)
+        document.removeEventListener('visibilitychange', visibilitychangeHandler)
+        window.removeEventListener('resize', handleResize)
+      }
     }
   }
 

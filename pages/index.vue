@@ -84,7 +84,7 @@
           >
             <div class="project-num">{{ p.num }}</div>
             <div v-if="p.images && p.images.length" class="project-img-preview">
-              <img :src="p.images[0]" :alt="translate(p, 'title')" loading="lazy" />
+              <img :src="p.images[0]" :alt="translate(p, 'title')" width="180" height="110" loading="lazy" />
             </div>
             <div class="project-info">
               <h3 class="project-name">{{ translate(p, 'title') }}</h3>
