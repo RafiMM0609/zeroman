@@ -41,20 +41,13 @@ export const useScrollReveal = () => {
     selectors.forEach(sel => {
       document.querySelectorAll(sel).forEach((el, i) => {
         const htmlEl = el as HTMLElement
-        const rect = htmlEl.getBoundingClientRect()
-        const isInitiallyVisible = rect.top < window.innerHeight && rect.bottom > 0
-
-        if (isInitiallyVisible) {
-          if (!htmlEl.dataset.delaySet) {
-            htmlEl.style.transitionDelay = `${i * 30}ms`
-            htmlEl.dataset.delaySet = '1'
-          }
-          htmlEl.classList.add('is-visible')
-        } else {
-          // Reset or clear transition delay for off-screen elements so they animate instantly when scrolled into
-          htmlEl.style.transitionDelay = '0ms'
-          observer.observe(htmlEl)
+        // Write transition delay dynamically without layout reading (no forced reflow)
+        if (!htmlEl.dataset.delaySet) {
+          // Stagger animation for natural loading appearance
+          htmlEl.style.transitionDelay = `${(i % 6) * 50}ms`
+          htmlEl.dataset.delaySet = '1'
         }
+        observer.observe(htmlEl)
       })
     })
   }

@@ -29,8 +29,8 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap' },
-        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/lucide-static@1.24.0/font/lucide.min.css' }
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap', media: 'print', onload: "this.media='all'" },
+        { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/lucide-static@1.24.0/font/lucide.min.css', media: 'print', onload: "this.media='all'" }
       ]
     }
   },
