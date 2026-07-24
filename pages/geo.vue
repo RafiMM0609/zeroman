@@ -125,7 +125,20 @@ useHead({
   meta: [
     { name: 'description', content: description },
     { property: 'og:title', content: title },
-    { property: 'og:description', content: description }
+    { property: 'og:description', content: description },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://zeroman.my.id/geo' },
+    { property: 'og:image', content: 'https://zeroman.my.id/images/og-image.png' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:description', content: description },
+    { name: 'twitter:image', content: 'https://zeroman.my.id/images/og-image.png' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://zeroman.my.id/geo' },
+    { rel: 'alternate', hreflang: 'en', href: 'https://zeroman.my.id/geo?lang=en' },
+    { rel: 'alternate', hreflang: 'id', href: 'https://zeroman.my.id/geo?lang=id' },
+    { rel: 'alternate', hreflang: 'x-default', href: 'https://zeroman.my.id/geo' }
   ]
 })
 

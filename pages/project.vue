@@ -226,13 +226,59 @@ const seoDescription = computed(() => {
     : 'Detailed project page of software development and AI architecture works by Anton.'
 })
 
+const seoImage = computed(() => {
+  if (project.value && project.value.images && project.value.images.length) {
+    return `https://zeroman.my.id${project.value.images[0]}`
+  }
+  return 'https://zeroman.my.id/images/og-image.png'
+})
+
+const jsonLd = computed(() => {
+  if (!project.value) return null
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    'name': translate(project.value, 'title'),
+    'description': translate(project.value, 'short_desc'),
+    'url': `https://zeroman.my.id/project?id=${project.value.id}`,
+    'image': seoImage.value,
+    'creator': {
+      '@type': 'Person',
+      'name': 'Anton'
+    }
+  }
+})
+
 useHead({
   title: seoTitle,
   meta: [
     { name: 'description', content: seoDescription },
     { property: 'og:title', content: seoTitle },
-    { property: 'og:description', content: seoDescription }
-  ]
+    { property: 'og:description', content: seoDescription },
+    { property: 'og:type', content: 'article' },
+    { property: 'og:url', content: computed(() => `https://zeroman.my.id/project?id=${project.value?.id || ''}`) },
+    { property: 'og:image', content: seoImage },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: seoTitle },
+    { name: 'twitter:description', content: seoDescription },
+    { name: 'twitter:image', content: seoImage }
+  ],
+  link: [
+    { rel: 'canonical', href: computed(() => `https://zeroman.my.id/project${project.value?.id ? `?id=${project.value.id}` : ''}`) },
+    { rel: 'alternate', hreflang: 'en', href: computed(() => `https://zeroman.my.id/project?lang=en${project.value?.id ? `&id=${project.value.id}` : ''}`) },
+    { rel: 'alternate', hreflang: 'id', href: computed(() => `https://zeroman.my.id/project?lang=id${project.value?.id ? `&id=${project.value.id}` : ''}`) },
+    { rel: 'alternate', hreflang: 'x-default', href: computed(() => `https://zeroman.my.id/project${project.value?.id ? `?id=${project.value.id}` : ''}`) }
+  ],
+  script: computed(() => {
+    const data = jsonLd.value
+    if (!data) return []
+    return [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify(data)
+      }
+    ]
+  })
 })
 
 const lightboxImage = ref(null)

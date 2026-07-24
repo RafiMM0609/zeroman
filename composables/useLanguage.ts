@@ -19,6 +19,15 @@ export const useLanguage = () => {
   const geoData = useState<GeoData | null>('zeroman-geodata', () => null)
   const isLoaded = useState<boolean>('zeroman-language-loaded', () => false)
 
+  // Initialize lang from URL query param if present (runs on both SSR and Client)
+  try {
+    const route = useRoute()
+    const queryLang = route.query?.lang as 'en' | 'id' | null
+    if (queryLang === 'en' || queryLang === 'id') {
+      lang.value = queryLang
+    }
+  } catch (e) {}
+
   const setLang = (newLang: 'en' | 'id') => {
     lang.value = newLang
     if (import.meta.client) {
@@ -80,6 +89,27 @@ export const useLanguage = () => {
   }
 
   const initLanguage = async () => {
+    // If URL query language was already parsed, save it to local storage and stop
+    try {
+      const route = useRoute()
+      const queryLang = route.query?.lang as 'en' | 'id' | null
+      if (queryLang === 'en' || queryLang === 'id') {
+        lang.value = queryLang
+        if (import.meta.client) {
+          localStorage.setItem(PREF_KEY, queryLang)
+          document.documentElement.lang = queryLang === 'id' ? 'id' : 'en'
+        }
+        isLoaded.value = true
+        // Fetch geolocation data silently in the background
+        if (import.meta.client) {
+          fetchGeoLocation().then(geo => {
+            geoData.value = geo
+          })
+        }
+        return
+      }
+    } catch (e) {}
+
     if (!import.meta.client) return
 
     const savedPref = localStorage.getItem(PREF_KEY) as 'en' | 'id' | null

@@ -16,7 +16,13 @@ export default defineNuxtConfig({
         { name: 'keywords', content: 'software engineer, ai architect, web development, go, node.js, ai agents, fullstack, anton, zeroman' },
         { property: 'og:title', content: 'Anton — Software Engineer & AI Architect Portfolio' },
         { property: 'og:description', content: 'I build systems that actually work — from custom web architecture to intelligent AI agent workflows.' },
-        { property: 'og:type', content: 'website' }
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'https://zeroman.my.id' },
+        { property: 'og:image', content: 'https://zeroman.my.id/images/og-image.png' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: 'Anton — Software Engineer & AI Architect | zeroman' },
+        { name: 'twitter:description', content: "Anton's Portfolio — Software Engineer & AI Architect. Specialized in custom web applications, multi-agent AI systems, and scalable backend architecture." },
+        { name: 'twitter:image', content: 'https://zeroman.my.id/images/og-image.png' }
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },

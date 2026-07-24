@@ -174,7 +174,32 @@ useHead({
   meta: [
     { name: 'description', content: description },
     { property: 'og:title', content: title },
-    { property: 'og:description', content: description }
+    { property: 'og:description', content: description },
+    { property: 'og:type', content: 'profile' },
+    { property: 'og:url', content: 'https://zeroman.my.id/about' },
+    { property: 'og:image', content: 'https://zeroman.my.id/images/og-image.png' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:description', content: description },
+    { name: 'twitter:image', content: 'https://zeroman.my.id/images/og-image.png' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://zeroman.my.id/about' },
+    { rel: 'alternate', hreflang: 'en', href: 'https://zeroman.my.id/about?lang=en' },
+    { rel: 'alternate', hreflang: 'id', href: 'https://zeroman.my.id/about?lang=id' },
+    { rel: 'alternate', hreflang: 'x-default', href: 'https://zeroman.my.id/about' }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        'name': 'About Anton',
+        'description': 'Learn about Anton, a Software Engineer & AI Architect specializing in custom web apps and multi-agent systems.',
+        'url': 'https://zeroman.my.id/about'
+      })
+    }
   ]
 })
 
