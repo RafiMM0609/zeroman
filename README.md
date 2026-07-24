@@ -1,4 +1,4 @@
-# zeroman — Anton's Portfolio
+# zeroman — Mahrus's Portfolio
 
 Website portofolio modern yang responsif dan dioptimalkan untuk SEO, dibangun menggunakan **Nuxt 3** dan **Tailwind CSS**. Menampilkan keahlian dalam Software Engineering & AI Architecture.
 
@@ -62,4 +62,4 @@ zeroman/
 ```
 
 ---
-Dibuat dengan ❤️ oleh **Anton**
+Dibuat dengan ❤️ oleh **Mahrus**

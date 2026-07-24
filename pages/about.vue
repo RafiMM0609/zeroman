@@ -159,14 +159,14 @@ const { translate, lang } = useLanguage()
 // Dynamic SEO Head tags
 const title = computed(() => {
   return lang.value === 'id'
-    ? 'Tentang Anton — Software Engineer & Arsitek AI | zeroman'
-    : 'About Anton — Software Engineer & AI Architect | zeroman'
+    ? 'Tentang Mahrus — Software Engineer & Arsitek AI | zeroman'
+    : 'About Mahrus — Software Engineer & AI Architect | zeroman'
 })
 
 const description = computed(() => {
   return lang.value === 'id'
-    ? 'Pelajari perjalanan Anton, seorang Software Engineer & Arsitek AI yang berfokus pada kecepatan, keterbacaan, dan sistem yang terukur.'
-    : 'Learn about Anton\'s journey as a Software Engineer & AI Architect focusing on speed, readability, and scalable systems.'
+    ? 'Pelajari perjalanan Mahrus, seorang Software Engineer & Arsitek AI yang berfokus pada kecepatan, keterbacaan, dan sistem yang terukur.'
+    : 'Learn about Mahrus\'s journey as a Software Engineer & AI Architect focusing on speed, readability, and scalable systems.'
 })
 
 useHead({
@@ -195,8 +195,8 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'AboutPage',
-        'name': 'About Anton',
-        'description': 'Learn about Anton, a Software Engineer & AI Architect specializing in custom web apps and multi-agent systems.',
+        'name': 'About Mahrus',
+        'description': 'Learn about Mahrus, a Software Engineer & AI Architect specializing in custom web apps and multi-agent systems.',
         'url': 'https://zeroman.my.id/about'
       })
     }

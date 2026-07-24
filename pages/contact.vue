@@ -198,14 +198,14 @@ const { lang } = useLanguage()
 // Dynamic SEO Head tags
 const title = computed(() => {
   return lang.value === 'id'
-    ? 'Hubungi Anton — Mari Bangun Bersama | zeroman'
-    : 'Contact Anton — Let\'s Build Together | zeroman'
+    ? 'Hubungi Mahrus — Mari Bangun Bersama | zeroman'
+    : 'Contact Mahrus — Let\'s Build Together | zeroman'
 })
 
 const description = computed(() => {
   return lang.value === 'id'
-    ? 'Hubungi Anton untuk proyek freelance, konsultasi teknis, atau peluang kerja sama full-time. Respon dalam waktu 24 jam.'
-    : 'Get in touch with Anton for freelance projects, technical consulting, or full-time roles. I respond within 24 hours.'
+    ? 'Hubungi Mahrus untuk proyek freelance, konsultasi teknis, atau peluang kerja sama full-time. Respon dalam waktu 24 jam.'
+    : 'Get in touch with Mahrus for freelance projects, technical consulting, or full-time roles. I respond within 24 hours.'
 })
 
 useHead({
@@ -234,8 +234,8 @@ useHead({
       innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'ContactPage',
-        'name': 'Contact Anton',
-        'description': 'Get in touch with Anton for software engineering projects, consulting, or job offers.',
+        'name': 'Contact Mahrus',
+        'description': 'Get in touch with Mahrus for software engineering projects, consulting, or job offers.',
         'url': 'https://zeroman.my.id/contact'
       })
     }

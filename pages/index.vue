@@ -224,20 +224,20 @@ const handleChipMouseLeave = () => {
 // Dynamic SEO Head tags
 const title = computed(() => {
   return lang.value === 'id'
-    ? 'Anton — Software Engineer & Arsitek AI | zeroman'
-    : 'Anton — Software Engineer & AI Architect | zeroman'
+    ? 'Mahrus — Software Engineer & Arsitek AI | zeroman'
+    : 'Mahrus — Software Engineer & AI Architect | zeroman'
 })
 
 const description = computed(() => {
   return lang.value === 'id'
-    ? 'Portofolio Anton — Software Engineer & Arsitek AI. Spesialisasi dalam pembuatan aplikasi web kustom, sistem AI multi-agent, dan arsitektur backend.'
-    : 'Anton\'s Portfolio — Software Engineer & AI Architect. Specialized in custom web applications, multi-agent AI systems, and scalable backend architecture.'
+    ? 'Portofolio Mahrus — Software Engineer & Arsitek AI. Spesialisasi dalam pembuatan aplikasi web kustom, sistem AI multi-agent, dan arsitektur backend.'
+    : 'Mahrus\'s Portfolio — Software Engineer & AI Architect. Specialized in custom web applications, multi-agent AI systems, and scalable backend architecture.'
 })
 
 const keywords = computed(() => {
   return lang.value === 'id'
-    ? 'software engineer, arsitek ai, web development, go, node.js, ai agents, fullstack, anton, zeroman'
-    : 'software engineer, ai architect, web development, go, node.js, ai agents, fullstack, anton, zeroman'
+    ? 'software engineer, arsitek ai, web development, go, node.js, ai agents, fullstack, Mahrus, zeroman'
+    : 'software engineer, ai architect, web development, go, node.js, ai agents, fullstack, Mahrus, zeroman'
 })
 
 useHead({
@@ -268,14 +268,14 @@ useHead({
         {
           '@context': 'https://schema.org',
           '@type': 'Person',
-          'name': 'Anton',
+          'name': 'Mahrus',
           'jobTitle': 'Software Engineer & AI Architect',
           'url': 'https://zeroman.my.id',
           'sameAs': [
             portfolioData.profile?.github,
             portfolioData.profile?.linkedin
           ].filter(Boolean),
-          'description': 'Anton is a Software Engineer & AI Architect specializing in custom web applications and multi-agent AI systems.'
+          'description': 'Mahrus is a Software Engineer & AI Architect specializing in custom web applications and multi-agent AI systems.'
         },
         {
           '@context': 'https://schema.org',

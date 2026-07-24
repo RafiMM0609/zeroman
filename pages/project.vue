@@ -212,9 +212,9 @@ watch(project, (newProject) => {
 // Dynamic SEO Head tags
 const seoTitle = computed(() => {
   if (project.value) {
-    return `${translate(project.value, 'title')} — ${lang.value === 'id' ? 'Karya Anton' : "Anton's Work"}`
+    return `${translate(project.value, 'title')} — ${lang.value === 'id' ? 'Karya Mahrus' : "Mahrus's Work"}`
   }
-  return lang.value === 'id' ? 'Proyek — Portofolio Anton' : 'Project — Anton\'s Portfolio'
+  return lang.value === 'id' ? 'Proyek — Portofolio Mahrus' : 'Project — Mahrus\'s Portfolio'
 })
 
 const seoDescription = computed(() => {
@@ -222,8 +222,8 @@ const seoDescription = computed(() => {
     return translate(project.value, 'short_desc')
   }
   return lang.value === 'id'
-    ? 'Detail proyek pengembangan perangkat lunak dan arsitektur AI oleh Anton.'
-    : 'Detailed project page of software development and AI architecture works by Anton.'
+    ? 'Detail proyek pengembangan perangkat lunak dan arsitektur AI oleh Mahrus.'
+    : 'Detailed project page of software development and AI architecture works by Mahrus.'
 })
 
 const seoImage = computed(() => {
@@ -244,7 +244,7 @@ const jsonLd = computed(() => {
     'image': seoImage.value,
     'creator': {
       '@type': 'Person',
-      'name': 'Anton'
+      'name': 'Mahrus'
     }
   }
 })
