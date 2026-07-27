@@ -3,6 +3,17 @@
 /* "In the deepest dark, the most brilliant light lives." */
 /* ============================================================ */
 
+/* Icon Font Definition with font-display: swap */
+@font-face {
+  font-family: 'lucide';
+  src: url('https://cdn.jsdelivr.net/npm/lucide-static@1.24.0/font/lucide.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/npm/lucide-static@1.24.0/font/lucide.woff') format('woff'),
+       url('https://cdn.jsdelivr.net/npm/lucide-static@1.24.0/font/lucide.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Design Tokens — Warm & Dark Cinematic */
 :root {
   /* Base colors */
@@ -1587,9 +1598,7 @@ footer {
     justify-content: flex-start;
   }
 
-  .page-wrapper {
-    margin-top: 0;
-  }
+
 
   .section {
     padding: 3.5rem 0;
