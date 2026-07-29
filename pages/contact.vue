@@ -112,19 +112,6 @@
                 >
               </div>
 
-              <div class="form-group">
-                <label for="budget">{{ lang === 'id' ? 'Estimasi Anggaran' : 'Estimated Budget' }}</label>
-                <select id="budget" v-model="budget">
-                  <option value="" disabled selected>{{ lang === 'id' ? 'Pilih kisaran anggaran...' : 'Select a budget range...' }}</option>
-                  <option 
-                    v-for="opt in portfolio.budget_options" 
-                    :key="opt" 
-                    :value="opt"
-                  >
-                    {{ opt }}
-                  </option>
-                </select>
-              </div>
 
               <div class="form-group">
                 <label for="message">{{ lang === 'id' ? 'Ceritakan Tentang Proyek Anda' : 'Tell Me About Your Project' }}</label>
@@ -254,7 +241,6 @@ const formatUrlDisplay = (url) => {
 
 const name = ref('')
 const email = ref('')
-const budget = ref('')
 const message = ref('')
 const isSubmitting = ref(false)
 const showSuccessPopup = ref(false)
@@ -278,7 +264,6 @@ const handleSubmit = async () => {
       body: {
         name: name.value,
         email: email.value,
-        budget: budget.value || 'Tidak disebutkan',
         message: message.value
       }
     })
