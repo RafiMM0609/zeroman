@@ -473,35 +473,24 @@
   ],
   "timeline": [
     {
-      "period": "2026 — Present",
-      "period_id": "2026 — Sekarang",
-      "title": "Independent Website & Automation Developer",
-      "title_id": "Pembuat Website & Otomatisasi Mandiri",
-      "sub": "Developing Websites & Custom Systems",
-      "sub_id": "Menerima Proyek Pembuatan Sistem & Website",
-      "desc": "Helping business owners, schools, and offices set up online portals, automated admin tasks, and simple databases to run their operations more efficiently.",
-      "desc_id": "Membantu pemilik usaha, sekolah, dan instansi membangun website, sistem administrasi, dan asisten pesan otomatis agar pekerjaan sehari-hari menjadi lebih cepat dan efisien.",
-      "icon": "🚀"
+      "period": "2023 — 2026",
+      "title": "Software Engineer at Telkom Sigma",
+      "title_id": "Software Engineer di Telkom Sigma",
+      "sub": "Enterprise Solution & System Architecture",
+      "sub_id": "Pengembangan Solusi Enterprise & Arsitektur Sistem",
+      "desc": "Engineered scalable enterprise applications, secure microservices, and robust cloud-ready backend systems to support large-scale digital transformation.",
+      "desc_id": "Merancang dan membangun aplikasi enterprise berskala besar, mikroservis aman, serta sistem backend cloud yang tangguh untuk mendukung transformasi digital skala nasional.",
+      "icon": "🏢"
     },
     {
-      "period": "2024 — 2026",
-      "title": "Developer of Smart & Automated Systems",
-      "title_id": "Pengembang Sistem Pintar & Otomatis",
-      "sub": "Workflow automation development",
-      "sub_id": "Pembuatan sistem otomatisasi alur kerja",
-      "desc": "Focused on creating smart chat assistants for automated customer service, digital document workflows, and easy-to-use responsive websites.",
-      "desc_id": "Berfokus mengembangkan asisten chat pintar untuk layanan pelanggan otomatis, sistem pengelolaan dokumen digital, serta website responsif yang mudah dioperasikan.",
-      "icon": "🧠"
-    },
-    {
-      "period": "2022 — 2024",
-      "title": "Building Custom Software Solutions",
-      "title_id": "Mulai Membangun Aplikasi Praktis",
-      "sub": "Self-directed learning & project design",
-      "sub_id": "Belajar & merancang aplikasi mandiri",
-      "desc": "Learned the core technologies of the web, databases, and system design from the ground up to ensure the programs I build are fast, secure, and error-free.",
-      "desc_id": "Mempelajari dasar-dasar teknologi website, database, serta cara merancang sistem digital dari nol agar aplikasi yang dihasilkan selalu cepat, aman, dan tidak mudah error.",
-      "icon": "🌱"
+      "period": "2021 — 2023",
+      "title": "IoT & Software Freelancer",
+      "title_id": "Freelancer IoT & Pembuat Aplikasi",
+      "sub": "Hardware Integration & Smart Applications",
+      "sub_id": "Integrasi Perangkat Cerdas & Pembuatan Aplikasi",
+      "desc": "Crafted end-to-end IoT monitoring platforms and custom mobile/web apps for various clients, bridging physical devices with smart digital solutions.",
+      "desc_id": "Mengembangkan sistem pemantauan IoT end-to-end serta aplikasi mobile dan web kustom untuk berbagai klien, menghubungkan perangkat keras dengan solusi digital cerdas.",
+      "icon": "⚡"
     }
   ],
   "testimonials": [
