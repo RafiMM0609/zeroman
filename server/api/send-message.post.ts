@@ -1,10 +1,47 @@
-export default defineEventHandler(async (event) => {
-  const body = await readBody(event)
-  const { name, email, budget, message } = body
+import { getRatelimit } from '../utils/ratelimit'
 
-  // Read credentials from environment variables
-  const botToken = process.env.TELEGRAM_BOT_TOKEN
-  const chatId = process.env.TELEGRAM_CHAT_ID
+export default defineEventHandler(async (event) => {
+  // 1. IP & Rate Limiting Check
+  const clientIp = getHeader(event, 'x-forwarded-for')?.split(',')[0].trim() 
+    || getHeader(event, 'x-real-ip') 
+    || event.node.req.socket.remoteAddress 
+    || 'anonymous'
+
+  const ratelimit = getRatelimit()
+  if (ratelimit) {
+    const { success, limit, remaining, reset } = await ratelimit.limit(`ip:${clientIp}`)
+
+    // Set rate limit headers to response
+    setHeader(event, 'X-RateLimit-Limit', limit.toString())
+    setHeader(event, 'X-RateLimit-Remaining', remaining.toString())
+    setHeader(event, 'X-RateLimit-Reset', reset.toString())
+
+    if (!success) {
+      const retryAfter = Math.ceil((reset - Date.now()) / 1000)
+      setHeader(event, 'Retry-After', retryAfter.toString())
+      
+      throw createError({
+        statusCode: 429,
+        statusMessage: 'Too Many Requests. Please slow down and try again later.'
+      })
+    }
+  }
+
+  // 2. Read and validate payload
+  const body = await readBody(event).catch(() => ({}))
+  const { name, email, budget, message } = body || {}
+
+  if (!name || !message) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Name and Message are required fields.'
+    })
+  }
+
+  // 3. Telegram credentials check
+  const config = useRuntimeConfig()
+  const botToken = config.telegramBotToken || process.env.TELEGRAM_BOT_TOKEN
+  const chatId = config.telegramChatId || process.env.TELEGRAM_CHAT_ID
 
   if (!botToken || !chatId) {
     console.error('[send-message] TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID is missing from environment variables.')

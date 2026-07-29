@@ -40,5 +40,15 @@ export default defineNuxtConfig({
 
   css: [
     '~/assets/css/style.css'
-  ]
+  ],
+
+  runtimeConfig: {
+    telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || '',
+    telegramChatId: process.env.TELEGRAM_CHAT_ID || '',
+    upstashRedisRestUrl: process.env.UPSTASH_REDIS_REST_URL || '',
+    upstashRedisRestToken: process.env.UPSTASH_REDIS_REST_TOKEN || '',
+    upstashLimitRequests: Number(process.env.UPSTASH_LIMIT_REQUESTS) || 5,
+    upstashLimitWindow: process.env.UPSTASH_LIMIT_WINDOW || '60s'
+  }
 })
+
