@@ -305,8 +305,37 @@
       ]
     },
     {
-      "id": "employee-management",
+      "id": "corporate-risk-management",
       "num": "02",
+      "title": "Corporate Risk Management Platform",
+      "title_id": "Platform Manajemen Risiko Korporat",
+      "short_desc": "An enterprise risk management solution featuring automated risk scoring algorithms, multi-stage risk approval workflows, and loss event tracking.",
+      "short_desc_id": "Solusi enterprise manajemen risiko korporat dengan kalkulasi risiko otomatis, alur persetujuan (approval workflow) bertingkat, dan pelacakan loss event.",
+      "full_desc": "An enterprise-grade system engineered for corporate risk mitigation and operational oversight. Powered by Django, Celery, and Redis with background task schedulers, it provides automated risk evaluation scoring, structured multi-tier approval workflows, and real-time loss event tracking.",
+      "full_desc_id": "Sistem kelas enterprise yang dirancang untuk mitigasi risiko korporasi dan pengawasan operasional. Ditenagai oleh Django, Celery, dan Redis dengan task scheduler otomatis, platform ini menyediakan kalkulasi evaluasi risiko otomatis, alur persetujuan bertingkat (risk approval workflow), serta pemantauan dan pencatatan insiden kerugian (loss event tracking).",
+      "tags": [
+        "Enterprise Solution",
+        "Django",
+        "Celery",
+        "Redis",
+        "Task Scheduler",
+        "Risk Calculation Engine",
+        "Approval Workflow"
+      ],
+      "status": "complete",
+      "year": "2025",
+      "highlight": true,
+      "github": "#",
+      "live": null,
+      "images": [
+        "/images/projects/restriceted-pic.webp",
+        "/images/projects/restriceted-pic.webp",
+        "/images/projects/restriceted-pic.webp"
+      ]
+    },
+    {
+      "id": "employee-management",
+      "num": "03",
       "title": "Employee Management System",
       "title_id": "Sistem Pengelola Karyawan",
       "short_desc": "A secure digital system to collect and organize employee data, from personal information and attendance to payroll slips, all in one centralized location.",
@@ -332,7 +361,7 @@
     },
     {
       "id": "secure-chatbot",
-      "num": "03",
+      "num": "04",
       "title": "Secure Custom Knowledge Chatbot",
       "title_id": "Chatbot Aman dengan Knowledge Kustom",
       "short_desc": "An AI chatbot with a custom knowledge base via file uploads, accessible via UI or custom API keys, secured by adaptive prompt injection detection and Graph Knowledge.",
@@ -359,7 +388,7 @@
     },
     {
       "id": "flower-shop",
-      "num": "04",
+      "num": "05",
       "title": "Premium Florist E-Commerce",
       "title_id": "Toko Bunga Online Premium",
       "short_desc": "A modern florist e-commerce platform featuring advanced image optimization and enhanced security using Cloudflare.",
@@ -385,7 +414,7 @@
     },
     {
       "id": "patuh-pdp",
-      "num": "05",
+      "num": "06",
       "title": "Patuh PDP Multi-Tenant Platform",
       "title_id": "Platform Multi-Tenant Patuh PDP",
       "short_desc": "A multi-tenant compliance platform with isolation from domain/subdomain down to databases and active server pods, helping organizations adhere to PDP laws.",
@@ -413,7 +442,7 @@
     },
     {
       "id": "dms-ai",
-      "num": "06",
+      "num": "07",
       "title": "DMS AI (Document Management System)",
       "title_id": "DMS AI (Sistem Manajemen Dokumen)",
       "short_desc": "An AI-powered Document Management System designed to simplify document organization and search, utilizing vector search for highly relevant document retrieval.",
@@ -443,7 +472,7 @@
     },
     {
       "id": "pov-ai-indonesia",
-      "num": "07",
+      "num": "08",
       "title": "POV AI Indonesia (Economic & Sensitivity Intelligence)",
       "title_id": "POV AI Indonesia (Analisis Sentimen & Otomatisasi Isu Sensitif)",
       "short_desc": "An automated AI monitoring & sentiment analysis platform focusing on sensitive Indonesian economic indicators like fuel (BBM) prices and Rupiah exchange rates using scheduled crawling and automated AI evaluation.",
@@ -472,7 +501,7 @@
     },
     {
       "id": "bike-shop",
-      "num": "08",
+      "num": "09",
       "title": "Premium Bicycle E-Commerce",
       "title_id": "Toko Sepeda Premium Online",
       "short_desc": "A modern e-commerce platform for a premium bicycle shop, featuring high-end bicycle showcase, custom specs, and seamless online ordering.",
