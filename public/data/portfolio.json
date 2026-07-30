@@ -140,7 +140,19 @@
       "glow": "#a78bfa"
     },
     {
-      "name": "LLM / OpenAI",
+      "name": "Java",
+      "level": 86,
+      "category": "backend",
+      "glow": "#e76f51"
+    },
+    {
+      "name": "Spring Boot",
+      "level": 84,
+      "category": "backend",
+      "glow": "#6db33f"
+    },
+    {
+      "name": "LLM / OpenAI / Open Router",
       "level": 90,
       "category": "ai",
       "glow": "#10a37f"
