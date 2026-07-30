@@ -413,8 +413,34 @@
       ]
     },
     {
-      "id": "patuh-pdp",
+      "id": "bike-shop",
       "num": "06",
+      "title": "Premium Bicycle E-Commerce",
+      "title_id": "Toko Sepeda Premium Online",
+      "short_desc": "A modern e-commerce platform for a premium bicycle shop, featuring high-end bicycle showcase, custom specs, and seamless online ordering.",
+      "short_desc_id": "Platform e-commerce modern untuk toko sepeda premium, menampilkan katalog sepeda eksklusif, spesifikasi kustom, dan pemesanan online yang lancar.",
+      "full_desc": "A high-end online storefront built specifically for a premium bicycle shop. Designed with sleek visuals, rich product customizer previews, and an optimized checkout experience tailored for bicycle enthusiasts.",
+      "full_desc_id": "Platform toko online kelas atas yang dirancang khusus untuk toko sepeda premium. Dibuat dengan tampilan visual yang elegan, ulasan spesifikasi produk yang detail, serta alur pemesanan yang cepat dan nyaman bagi para pecinta sepeda.",
+      "tags": [
+        "E-Commerce",
+        "Premium Bike Showcase",
+        "Custom Product Catalog",
+        "Responsive Design"
+      ],
+      "status": "live",
+      "year": "2026",
+      "highlight": true,
+      "github": "#",
+      "live": "http://bike.zeroman.my.id/",
+      "images": [
+        "/images/projects/bike-shop/pic-1.webp",
+        "/images/projects/bike-shop/pic-2.webp",
+        "/images/projects/bike-shop/pic-3.webp"
+      ]
+    },
+    {
+      "id": "patuh-pdp",
+      "num": "07",
       "title": "Patuh PDP Multi-Tenant Platform",
       "title_id": "Platform Multi-Tenant Patuh PDP",
       "short_desc": "A multi-tenant compliance platform with isolation from domain/subdomain down to databases and active server pods, helping organizations adhere to PDP laws.",
@@ -442,7 +468,7 @@
     },
     {
       "id": "dms-ai",
-      "num": "07",
+      "num": "08",
       "title": "DMS AI (Document Management System)",
       "title_id": "DMS AI (Sistem Manajemen Dokumen)",
       "short_desc": "An AI-powered Document Management System designed to simplify document organization and search, utilizing vector search for highly relevant document retrieval.",
@@ -472,7 +498,7 @@
     },
     {
       "id": "pov-ai-indonesia",
-      "num": "08",
+      "num": "09",
       "title": "POV AI Indonesia (Economic & Sensitivity Intelligence)",
       "title_id": "POV AI Indonesia (Analisis Sentimen & Otomatisasi Isu Sensitif)",
       "short_desc": "An automated AI monitoring & sentiment analysis platform focusing on sensitive Indonesian economic indicators like fuel (BBM) prices and Rupiah exchange rates using scheduled crawling and automated AI evaluation.",
@@ -493,32 +519,6 @@
       "highlight": true,
       "github": "#",
       "live": "https://idn.povai.my.id",
-      "images": [
-        "/images/projects/restriceted-pic.webp",
-        "/images/projects/restriceted-pic.webp",
-        "/images/projects/restriceted-pic.webp"
-      ]
-    },
-    {
-      "id": "bike-shop",
-      "num": "09",
-      "title": "Premium Bicycle E-Commerce",
-      "title_id": "Toko Sepeda Premium Online",
-      "short_desc": "A modern e-commerce platform for a premium bicycle shop, featuring high-end bicycle showcase, custom specs, and seamless online ordering.",
-      "short_desc_id": "Platform e-commerce modern untuk toko sepeda premium, menampilkan katalog sepeda eksklusif, spesifikasi kustom, dan pemesanan online yang lancar.",
-      "full_desc": "A high-end online storefront built specifically for a premium bicycle shop. Designed with sleek visuals, rich product customizer previews, and an optimized checkout experience tailored for bicycle enthusiasts.",
-      "full_desc_id": "Platform toko online kelas atas yang dirancang khusus untuk toko sepeda premium. Dibuat dengan tampilan visual yang elegan, ulasan spesifikasi produk yang detail, serta alur pemesanan yang cepat dan nyaman bagi para pecinta sepeda.",
-      "tags": [
-        "E-Commerce",
-        "Premium Bike Showcase",
-        "Custom Product Catalog",
-        "Responsive Design"
-      ],
-      "status": "live",
-      "year": "2026",
-      "highlight": true,
-      "github": "#",
-      "live": "http://bike.zeroman.my.id/",
       "images": [
         "/images/projects/restriceted-pic.webp",
         "/images/projects/restriceted-pic.webp",
