@@ -38,6 +38,9 @@
             class="stat-card fade-up"
             :class="`delay-${i + 1}`"
           >
+            <div v-if="stat.icon" class="stat-icon-wrap">
+              <i :class="`icon-${stat.icon}`"></i>
+            </div>
             <span class="stat-number">
               {{ stat.number }}{{ stat.suffix }}
             </span>

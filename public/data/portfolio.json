@@ -41,7 +41,7 @@
     "sub_id": "Baik Anda mengelola toko retail, sekolah, maupun kantor pelayanan publik, saya berdiskusi langsung dengan Anda untuk memahami cara kerja Anda. Saya merancang alat digital yang sesuai dengan rutinitas harian Anda agar Anda bisa menghemat waktu, mengurangi kertas, dan menghemat tenaga.",
     "stats": [
       {
-        "number": 5,
+        "number": 3,
         "unit": "yrs+",
         "label": "Years of experience",
         "label_id": "Pengalaman praktis"
@@ -66,28 +66,28 @@
       "suffix": "+",
       "label": "Years",
       "label_id": "Tahun",
-      "icon": "⏱"
+      "icon": "clock"
     },
     {
       "number": 20,
       "suffix": "+",
       "label": "Projects",
       "label_id": "Proyek",
-      "icon": "🚀"
+      "icon": "rocket"
     },
     {
       "number": 10,
       "suffix": "+",
       "label": "Clients",
       "label_id": "Klien",
-      "icon": "🤝"
+      "icon": "users"
     },
     {
       "number": 99,
       "suffix": "%",
       "label": "Uptime",
       "label_id": "Uptime",
-      "icon": "⚡"
+      "icon": "zap"
     }
   ],
   "skills": [
