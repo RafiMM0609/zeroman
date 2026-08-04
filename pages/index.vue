@@ -227,24 +227,27 @@ const handleChipMouseLeave = () => {
 // Dynamic SEO Head tags
 const title = computed(() => {
   return lang.value === 'id'
-    ? 'Mahrus — Software Engineer & Arsitek AI | zeroman'
-    : 'Mahrus — Software Engineer & AI Architect | zeroman'
+    ? 'Zeroman (Mahrus) — Software Engineer & AI Architect'
+    : 'Zeroman (Mahrus) — Software Engineer & AI Architect'
 })
 
 const description = computed(() => {
   return lang.value === 'id'
-    ? 'Portofolio Mahrus — Software Engineer & Arsitek AI. Spesialisasi dalam pembuatan aplikasi web kustom, sistem AI multi-agent, dan arsitektur backend.'
-    : 'Mahrus\'s Portfolio — Software Engineer & AI Architect. Specialized in custom web applications, multi-agent AI systems, and scalable backend architecture.'
+    ? 'Website resmi Zeroman (Mahrus) - Software Engineer & AI Architect. Layanan pengembangan aplikasi web kustom, sistem CRM, CMS, HRM, dan asisten AI pintar.'
+    : 'Official website of Zeroman (Mahrus) - Software Engineer & AI Architect. Custom web applications, CRM, CMS, HRM systems, and intelligent AI agents.'
 })
 
 const keywords = computed(() => {
   return lang.value === 'id'
-    ? 'software engineer, arsitek ai, web development, go, node.js, ai agents, fullstack, Mahrus, zeroman'
-    : 'software engineer, ai architect, web development, go, node.js, ai agents, fullstack, Mahrus, zeroman'
+    ? 'Zeroman, Mahrus, Software Engineer, AI Architect, Jasa CRM, Pembuatan CMS, Sistem HRM, Web Developer, Asisten AI, Nuxt, Vue, Node.js, AI Agent'
+    : 'Zeroman, Mahrus, Software Engineer, AI Architect, Custom CRM, CMS Development, HRM Systems, Web Developer, AI Assistant, Nuxt, Vue, Node.js, AI Agent'
 })
 
 useHead({
   title,
+  htmlAttrs: {
+    lang: computed(() => lang.value)
+  },
   meta: [
     { name: 'description', content: description },
     { name: 'keywords', content: keywords },

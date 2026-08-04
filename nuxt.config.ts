@@ -5,23 +5,23 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Mahrus — Software Engineer & AI Architect | zeroman',
+      title: 'Zeroman (Mahrus) — Software Engineer & AI Architect',
       htmlAttrs: {
         lang: 'en'
       },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: "Mahrus's Portfolio — Software Engineer & AI Architect. Specialized in custom web applications, multi-agent AI systems, and scalable backend architecture." },
-        { name: 'keywords', content: 'software engineer, ai architect, web development, go, node.js, ai agents, fullstack, Mahrus, zeroman' },
-        { property: 'og:title', content: 'Mahrus — Software Engineer & AI Architect Portfolio' },
-        { property: 'og:description', content: 'I build systems that actually work — from custom web architecture to intelligent AI agent workflows.' },
+        { name: 'description', content: 'Website resmi Zeroman (Mahrus) - Software Engineer & AI Architect. Layanan pengembangan aplikasi web kustom, sistem CRM, CMS, HRM, dan asisten AI pintar.' },
+        { name: 'keywords', content: 'Zeroman, Mahrus, Software Engineer, AI Architect, Jasa CRM, Pembuatan CMS, Sistem HRM, Web Developer, Asisten AI, Nuxt, Vue, Node.js, AI Agent' },
+        { property: 'og:title', content: 'Zeroman (Mahrus) — Software Engineer & AI Architect' },
+        { property: 'og:description', content: 'Website resmi Zeroman (Mahrus) - Software Engineer & AI Architect. Layanan pengembangan aplikasi web kustom, sistem CRM, CMS, HRM, dan asisten AI pintar.' },
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: 'https://zeroman.my.id' },
         { property: 'og:image', content: 'https://zeroman.my.id/images/og-image.png' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'Mahrus — Software Engineer & AI Architect | zeroman' },
-        { name: 'twitter:description', content: "Mahrus's Portfolio — Software Engineer & AI Architect. Specialized in custom web applications, multi-agent AI systems, and scalable backend architecture." },
+        { name: 'twitter:title', content: 'Zeroman (Mahrus) — Software Engineer & AI Architect' },
+        { name: 'twitter:description', content: 'Website resmi Zeroman (Mahrus) - Software Engineer & AI Architect. Layanan pengembangan aplikasi web kustom, sistem CRM, CMS, HRM, dan asisten AI pintar.' },
         { name: 'twitter:image', content: 'https://zeroman.my.id/images/og-image.png' }
       ],
       link: [
