@@ -780,6 +780,35 @@ footer {
   font-weight: 700;
 }
 
+/* Gradient Accent + Highlight Underline for emphasized text */
+.section-title em,
+.hero-title em,
+.highlight-underline {
+  font-style: normal;
+  font-weight: 700;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+
+.section-title em::after,
+.hero-title em::after,
+.highlight-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), transparent);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(212, 165, 116, 0.5);
+}
+
+
 /* About page — Hook / Manifesto */
 .about-hook-wrap {
   margin-bottom: 32px;
