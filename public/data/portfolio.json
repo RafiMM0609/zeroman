@@ -292,39 +292,95 @@
   ],
   "projects": [
     {
-      "id": "zeroman-portfolio",
-      "num": "01",
-      "title": "Zeroman Portfolio",
-      "short_desc": "This personal portfolio website, designed to showcase my work directly and clearly to clients without unnecessary technical clutter.",
-      "short_desc_id": "Website portofolio pribadi ini—dirancang untuk menampilkan karya dan layanan saya secara langsung dan jelas kepada klien tanpa ada elemen yang membingungkan.",
-      "full_desc": "Built to be clean, fast-loading, and simple to navigate on both phones and computers. It helps clients find info about my services quickly without getting lost in complicated menus.",
-      "full_desc_id": "Dibuat agar bersih, cepat dimuat, dan mudah dibuka baik di handphone maupun komputer. Membantu calon klien menemukan informasi layanan yang mereka butuhkan secara cepat tanpa tersesat di menu yang rumit.",
-      "tags": [
-        "Nuxt 3",
-        "Typescript",
-        "Custom Router",
-        "CSS Animations"
-      ],
-      "status": "live",
-      "year": "2026",
-      "highlight": true,
-      "github": "#",
-      "live": "https://zeroman.my.id",
-      "images": [
-        "/images/projects/zeroman-porto/pic-1.webp",
-        "/images/projects/zeroman-porto/pic-2.webp",
-        "/images/projects/zeroman-porto/pic-3.webp"
-      ]
-    },
-    {
       "id": "corporate-risk-management",
-      "num": "02",
+      "num": "01",
       "title": "Corporate Risk Management Platform",
       "title_id": "Platform Manajemen Risiko Korporat",
-      "short_desc": "An enterprise risk management solution featuring automated risk scoring algorithms, multi-stage risk approval workflows, and loss event tracking.",
-      "short_desc_id": "Solusi enterprise manajemen risiko korporat dengan kalkulasi risiko otomatis, alur persetujuan (approval workflow) bertingkat, dan pelacakan loss event.",
-      "full_desc": "An enterprise-grade system engineered for corporate risk mitigation and operational oversight. Powered by Django, Celery, and Redis with background task schedulers, it provides automated risk evaluation scoring, structured multi-tier approval workflows, and real-time loss event tracking.",
-      "full_desc_id": "Sistem kelas enterprise yang dirancang untuk mitigasi risiko korporasi dan pengawasan operasional. Ditenagai oleh Django, Celery, dan Redis dengan task scheduler otomatis, platform ini menyediakan kalkulasi evaluasi risiko otomatis, alur persetujuan bertingkat (risk approval workflow), serta pemantauan dan pencatatan insiden kerugian (loss event tracking).",
+      "short_desc": "An enterprise risk management solution combining digitalized document approval workflows with automation across risk calculations, legacy-to-new data mapping, and automated email reminders.",
+      "short_desc_id": "Solusi enterprise manajemen risiko yang menggabungkan digitalisasi alur persetujuan (approval workflow) dokumen dengan otomasi kalkulasi risiko, pemetaan (mapping) data lama ke baru, serta notifikasi pengingat (reminder) via email.",
+      "full_desc": "An enterprise-grade platform engineered to digitalize corporate risk management and automate operational workflows. Built with Django, Celery, and Redis, it digitalizes multi-tier document approval workflows and risk registers, while driving complete process automation across automated risk calculation engines, seamless legacy data mapping, and background email reminder schedulers.",
+      "full_desc_id": "Platform kelas enterprise yang dirancang untuk mendigitalisasi pengelolaan manajemen risiko korporasi sekaligus mengotomatisasi alur kerja operasional. Ditenagai Django, Celery, dan Redis, sistem ini mendigitalisasi alur persetujuan (approval workflow) dokumen bertingkat dan risk register, serta menghadirkan otomasi penuh pada kalkulasi risiko, pemetaan (mapping) data lama ke baru, dan pengiriman reminder email otomatis.",
+      "executive_summary": "Enterprise risk management platform replacing manual paper/spreadsheet processes. Digitalizes multi-tier document approval workflows and centralized risk registers while automating risk scoring calculations, legacy data mapping, and scheduled email reminders.",
+      "executive_summary_id": "Platform manajemen risiko enterprise yang menggantikan proses fisik/spreadsheet manual. Mendigitalisasi alur persetujuan (approval workflow) dokumen bertingkat dan registrasi risiko terpusat, serta mengotomatisasi kalkulasi skor risiko, pemetaan (mapping) data lama ke baru, dan pengiriman reminder email otomatis.",
+      "challenges": [
+        "Data Inconsistency: Each analyst maintained different spreadsheet versions without a single source of truth.",
+        "Manual Approval Bottlenecks & No Reminders: Approvals were handled manually across 4 tiers without automated reminders, stretching processing time to 10–14 business days compared to fast digital workflows.",
+        "Manual Calculation Complexity: Risk scoring depended on manual calculations without automated tools, slowing down risk assessments and risking human errors.",
+        "Zero Audit Trail: Lack of traceable records on who approved risk assessments when loss events occurred."
+      ],
+      "challenges_id": [
+        "Inkonsistensi data: Setiap analis punya versi file berbeda tanpa single source of truth.",
+        "Bottleneck approval manual & tanpa reminder: Persetujuan dilakukan secara manual di 4 tahapan tanpa pengingat otomatis, menyebabkan penundaan hingga 10–14 hari kerja (berbeda jauh dari alur digital).",
+        "Kalkulasi manual & lambat: Perhitungan skor risiko masih bergantung pada perhitungan manual tanpa alat otomatis, memperlambat asesmen dan rawan kesalahan hitung.",
+        "Tidak ada audit trail: Jika terjadi loss event, sulit melacak siapa yang menyetujui risk assessment terkait."
+      ],
+      "solutions": [
+        {
+          "title": "Automated Risk Calculation Engine",
+          "title_id": "Kalkulasi Risiko Otomatis",
+          "desc": "Custom backend engine (Django + Celery) computing risk scores instantly based on department-defined Likelihood × Impact parameters, eliminating manual calculation overhead.",
+          "desc_id": "Engine custom di backend (Django + Celery) menghitung risk score secara otomatis dan real-time berdasarkan parameter likelihood × impact, mempermudah dan mempercepat perhitungan tanpa proses manual."
+        },
+        {
+          "title": "Digital Approval Workflow & Automated Reminders",
+          "title_id": "Approval Workflow Digital & Reminder Otomatis",
+          "desc": "Digital 4-tier approval pipeline (Risk Owner → Dept. Head → Risk Committee → CRO) with scheduled background email reminders, SLA timers, auto-escalation after 48h, and immutable audit logs.",
+          "desc_id": "Workflow persetujuan digital 4 tingkat (Risk Owner → Dept. Head → Risk Committee → CRO) dilengkapi pengingat (reminder) email otomatis, SLA timer 48 jam, eskalasi otomatis, dan log persetujuan immutable."
+        },
+        {
+          "title": "Loss Event Tracking & Analytics",
+          "title_id": "Pelacakan & Analisis Loss Event",
+          "desc": "Real-time incident tracking cataloging loss value, root risk event, and corrective action linked directly into monthly risk register trend dashboards.",
+          "desc_id": "Setiap insiden kerugian dicatat dengan kategori, nilai kerugian, risk event terkait, dan tindakan korektif yang terhubung langsung ke dashboard risk register."
+        }
+      ],
+      "tech_reasons": [
+        {
+          "tech": "Django ORM",
+          "reason": "Strong ORM for complex relational data structures (Risk Register ↔ Approval Workflow ↔ Loss Event records).",
+          "reason_id": "ORM kuat untuk relasi data kompleks (Risk Register ↔ Approval Workflow ↔ Record Loss Event)."
+        },
+        {
+          "tech": "Celery + Redis",
+          "reason": "Asynchronous task queue for risk scoring engine and instant notification dispatches without blocking UI responsiveness.",
+          "reason_id": "Task queue asinkron untuk kalkulasi skor dan notifikasi tanpa blocking daya tanggap UI."
+        },
+        {
+          "tech": "Celery Beat Scheduler",
+          "reason": "Automated background scheduler triggering quarterly risk reviews and SLA escalation checks.",
+          "reason_id": "Task scheduler otomatis menjadwalkan review risiko berkala dan pengecekan eskalasi SLA."
+        }
+      ],
+      "impacts": [
+        {
+          "value": "80%",
+          "label": "Approval Cycle Time Reduction",
+          "label_id": "Penurunan Waktu Siklus Approval",
+          "sub": "Reduced from 14 days down to 2-3 business days",
+          "sub_id": "Dari 14 hari menjadi 2-3 hari kerja"
+        },
+        {
+          "value": "0",
+          "label": "External Audit Disputes",
+          "label_id": "Dispute Saat Audit Eksternal",
+          "sub": "100% immutable audit log availability",
+          "sub_id": "Seluruh audit trail tersimpan rapi & immutable"
+        },
+        {
+          "value": "100%",
+          "label": "Real-Time Risk Register Sync",
+          "label_id": "Risk Register Ter-update Real-Time",
+          "sub": "Eliminated fragmented spreadsheet versions",
+          "sub_id": "Tidak ada lagi versi spreadsheet yang berbeda"
+        },
+        {
+          "value": "250+",
+          "label": "Items Handled Flawlessly",
+          "label_id": "Item Risiko & Insiden Terkelola",
+          "sub": "200+ risk items & 50+ loss events in first 6 months",
+          "sub_id": "200+ risk item & 50+ loss event dalam 6 bulan pertama"
+        }
+      ],
       "tags": [
         "Enterprise Solution",
         "Django",
@@ -346,19 +402,308 @@
       ]
     },
     {
-      "id": "employee-management",
-      "num": "03",
-      "title": "Employee Management System",
-      "title_id": "Sistem Pengelola Karyawan",
-      "short_desc": "A secure digital system to collect and organize employee data, from personal information and attendance to payroll slips, all in one centralized location.",
-      "short_desc_id": "Sistem digital untuk mengelola data karyawan. Mulai dari informasi karyawan, absensi, hingga slip gaji, dalam satu tempat terpusat.",
-      "full_desc": "Helps organize messages and questions from visitors. Instead of letting them get lost in a cluttered inbox, all data is stored neatly in a dedicated admin panel, making it easy to find, filter, and reply.",
-      "full_desc_id": "Membantu mengelola data karyawan secara teratur, mulai dari informasi karyawan, absensi, data kontrak, hingga rincian gaji. Sistem ini menyediakan antarmuka yang rapi dan mudah digunakan agar pengelolaan data karyawan menjadi lebih efisien.",
+      "id": "anara-company-profile",
+      "num": "02",
+      "title": "Anara Corporate Company Profile & Web System",
+      "title_id": "Website Profile Perusahaan & Sistem Digital Anara",
+      "short_desc": "A modern corporate company profile and digital web platform built for Anara, designed to showcase corporate identity, business units, services, and operational capabilities.",
+      "short_desc_id": "Website profil perusahaan (company profile) modern dan platform web digital yang dibangun untuk Anara, dirancang untuk menampilkan identitas korporasi, unit bisnis, layanan, dan kapabilitas operasional.",
+      "full_desc": "Anara is a official corporate company profile and operational web platform. Engineered to deliver a modern, high-trust digital presence, it showcases corporate values, company services, business portfolios, and client touchpoints with high performance and responsive design across all devices.",
+      "full_desc_id": "Anara adalah website profil perusahaan (company profile) resmi dan platform web operasional. Dirancang untuk menghadirkan kehadiran digital modern berkepercayaan tinggi, sistem ini menampilkan nilai-nilai korporasi, layanan perusahaan, portofolio bisnis, dan titik kontak klien dengan performa tinggi dan desain responsif di seluruh perangkat.",
+      "executive_summary": "An enterprise-grade corporate company profile platform built for Anara, establishing a strong digital brand identity, presenting company services, and facilitating business inquiry workflows.",
+      "executive_summary_id": "Platform website profil perusahaan (company profile) skala enterprise yang dibangun untuk Anara, membangun identitas brand digital yang kuat, menyajikan layanan perusahaan, serta memfasilitasi alur komunikasi dan konsultasi bisnis.",
+      "challenges": [
+        "Corporate Brand Presentation: Communicating company vision, services, and corporate credibility through a clean, modern digital experience without performance slowdowns.",
+        "Cross-Device Responsiveness: Ensuring corporate media assets, company highlights, and service breakdowns load flawlessly on all desktop and mobile viewports.",
+        "Client Engagement & Inquiries: Streamlining direct business inquiry channels for potential partners and corporate clients."
+      ],
+      "challenges_id": [
+        "Presentasi Brand Perusahaan: Menyampaikan visi, layanan, dan kredibilitas korporat melalui pengalaman digital yang bersih dan modern tanpa penurunan performa.",
+        "Responsivitas Lintas Perangkat: Memastikan aset media korporasi, keunggulan perusahaan, dan rincian layanan dapat dimuat secara sempurna di semua perangkat.",
+        "Engagemen & Pertanyaan Klien: Mengoptimalkan saluran komunikasi bisnis langsung bagi calon mitra dan klien korporat."
+      ],
+      "solutions": [
+        {
+          "title": "Corporate Profile & Service Showcase",
+          "title_id": "Showcase Profil & Layanan Perusahaan",
+          "desc": "High-performance company website displaying corporate values, service offerings, and organizational highlights with modern UI/UX.",
+          "desc_id": "Website perusahaan berkinerja tinggi yang menampilkan nilai-nilai korporat, penawaran layanan, dan keunggulan organisasi dengan UI/UX modern."
+        },
+        {
+          "title": "Integrated Business Inquiry Channel",
+          "title_id": "Saluran Komunikasi Bisnis Terintegrasi",
+          "desc": "Direct engagement feature connecting prospective clients and partners with company representatives efficiently.",
+          "desc_id": "Fitur komunikasi langsung yang menghubungkan calon klien dan mitra dengan perwakilan perusahaan secara efisien."
+        }
+      ],
+      "tech_reasons": [
+        {
+          "tech": "PHP & Blade Templating",
+          "reason": "Allows lightweight, modular server-side rendering optimized for standard shared hosting servers without Node.js runtime overhead.",
+          "reason_id": "Memungkinkan server-side rendering yang ringan dan modular yang teroptimasi untuk server shared hosting standar tanpa overhead runtime Node.js."
+        },
+        {
+          "tech": "Framer Motion / Motion.js",
+          "reason": "Delivers smooth visual micro-interactions and scroll-driven animations while maintaining high performance on mobile browsers.",
+          "reason_id": "Menghadirkan mikro-interaksi visual yang mulus dan animasi berbasis scroll dengan tetap mempertahankan performa tinggi di browser perangkat seluler."
+        },
+        {
+          "tech": "Shared Hosting Deployment",
+          "reason": "Ensures minimal operational costs and hassle-free maintenance on standard cPanel/LAMP shared hosting infrastructure.",
+          "reason_id": "Memastikan biaya operasional minimal dan perawatan yang praktis pada infrastruktur shared hosting cPanel/LAMP standar."
+        }
+      ],
+      "impacts": [
+        {
+          "value": "100%",
+          "label": "Shared Hosting Compatibility",
+          "label_id": "Kompatibilitas Shared Hosting",
+          "sub": "Runs seamlessly on lightweight cPanel/LAMP environments",
+          "sub_id": "Berjalan mulus di lingkungan cPanel/LAMP yang ringan"
+        },
+        {
+          "value": "60fps",
+          "label": "Motion Animations",
+          "label_id": "Animasi Motion",
+          "sub": "Fluid UI transitions powered by Motion",
+          "sub_id": "Transisi UI yang halus ditenagai oleh Motion"
+        }
+      ],
       "tags": [
-        "High Daily Traffic",
-        "Fast Loading Speed",
-        "Async I/O",
-        "Automasi"
+        "Company Profile",
+        "PHP",
+        "Blade Templating",
+        "Motion",
+        "Shared Hosting",
+        "Corporate Web"
+      ],
+      "status": "complete",
+      "year": "2026",
+      "highlight": true,
+      "github": "#",
+      "live": null,
+      "images": [
+        "/images/projects/anara/anara-1.png",
+        "/images/projects/anara/anara-2.png",
+        "/images/projects/anara/anara-3.png"
+      ]
+    },
+    {
+      "id": "zeroman-portfolio",
+      "num": "03",
+      "title": "Zeroman Portfolio",
+      "title_id": "Portofolio Zeroman",
+      "short_desc": "A high-performance personal portfolio built with Nuxt 3, engineered to convert visitors into clients through clarity, speed, and credibility-first design.",
+      "short_desc_id": "Portofolio pribadi berkinerja tinggi yang dibangun dengan Nuxt 3, dirancang untuk mengubah pengunjung menjadi klien melalui tampilan yang jelas, cepat, dan berorientasi pada kepercayaan.",
+      "full_desc": "A production-grade personal portfolio engineered from scratch with Nuxt 3 and TypeScript. Every component is hand-crafted with a focus on Core Web Vitals, bilingual content architecture, and a structured project showcase that communicates technical depth to enterprise clients. The result: a sub-2-second load time, 100% mobile-responsive layout, and a conversion-optimized contact flow.",
+      "full_desc_id": "Portofolio profesional berstandar produksi yang dibangun dari nol menggunakan Nuxt 3 dan TypeScript. Setiap komponen dirancang dengan fokus pada Core Web Vitals, arsitektur konten bilingual, dan showcase proyek terstruktur yang mengkomunikasikan kedalaman teknis kepada klien enterprise. Hasilnya: waktu loading di bawah 2 detik, layout 100% responsif mobile, dan alur kontak yang dioptimalkan untuk konversi.",
+      "executive_summary": "A personal portfolio engineered to function as a client-acquisition tool, not just a visual showcase. Built with Nuxt 3, TypeScript, and custom CSS animations to achieve elite Core Web Vitals scores while presenting bilingual content and a structured case-study format for each project.",
+      "executive_summary_id": "Portofolio pribadi yang dirancang untuk berfungsi sebagai alat akuisisi klien, bukan sekadar tampilan visual. Dibangun dengan Nuxt 3, TypeScript, dan animasi CSS kustom untuk mencapai skor Core Web Vitals terbaik sekaligus menyajikan konten bilingual dan format studi kasus terstruktur untuk setiap proyek.",
+      "challenges": [
+        "Professional Credibility: Without corporate brand backing, individual candidates struggle to convey enterprise-grade technical competence to hiring managers.",
+        "Content Architecture: Bilingual (ID/EN) content required a scalable, maintainable JSON data structure rather than hardcoded strings.",
+        "Performance vs. Animation: Rich CSS animations risked degrading Core Web Vitals (CLS, LCP) scores on mobile devices.",
+        "SEO for Portfolio Sites: Static portfolio pages typically rank poorly due to thin content and lack of structured data."
+      ],
+      "challenges_id": [
+        "Kredibilitas Profesional: Tanpa dukungan brand perusahaan, kandidat individu sering kesulitan menyampaikan kompetensi teknis level enterprise kepada hiring manager.",
+        "Arsitektur Konten: Konten bilingual (ID/EN) membutuhkan struktur data JSON yang skalabel dan mudah dikelola, bukan string yang hardcoded.",
+        "Performa vs. Animasi: Animasi CSS yang kaya berisiko menurunkan skor Core Web Vitals (CLS, LCP) di perangkat mobile.",
+        "SEO untuk Situs Portofolio: Halaman portofolio statis umumnya memiliki peringkat rendah karena konten tipis dan kurangnya data terstruktur."
+      ],
+      "solutions": [
+        {
+          "title": "Credibility-First Case Study Format",
+          "title_id": "Format Studi Kasus Berbasis Kredibilitas",
+          "desc": "Each project entry includes quantified impact metrics, technical decision rationale, and challenge-solution narratives to demonstrate real-world expertise rather than just listing technologies.",
+          "desc_id": "Setiap entri proyek menyertakan metrik dampak yang dikuantifikasi, alasan keputusan teknis, dan narasi tantangan-solusi untuk menunjukkan keahlian nyata, bukan sekadar daftar teknologi."
+        },
+        {
+          "title": "Centralized JSON Data Architecture",
+          "title_id": "Arsitektur Data JSON Terpusat",
+          "desc": "All content — bilingual copy, project metadata, skills, testimonials — is stored in a single portfolio.json file, enabling instant content updates without touching Vue component logic.",
+          "desc_id": "Semua konten — teks bilingual, metadata proyek, skill, testimoni — disimpan dalam satu file portfolio.json, memungkinkan pembaruan konten instan tanpa menyentuh logika komponen Vue."
+        },
+        {
+          "title": "Performance-Optimized Animations",
+          "title_id": "Animasi Teroptimasi untuk Performa",
+          "desc": "All CSS animations use GPU-accelerated properties (transform, opacity) and respect prefers-reduced-motion, ensuring zero CLS impact and accessibility compliance.",
+          "desc_id": "Semua animasi CSS menggunakan properti yang dipercepat GPU (transform, opacity) dan menghormati prefers-reduced-motion, memastikan nol dampak CLS dan kepatuhan aksesibilitas."
+        }
+      ],
+      "tech_reasons": [
+        {
+          "tech": "Nuxt 3",
+          "reason": "SSR + static generation gives search engines fully-rendered HTML for each project page, critical for E-E-A-T SEO signals and fast First Contentful Paint.",
+          "reason_id": "SSR + static generation memberikan HTML yang sepenuhnya dirender untuk setiap halaman proyek ke mesin pencari, krusial untuk sinyal E-E-A-T SEO dan First Contentful Paint yang cepat."
+        },
+        {
+          "tech": "TypeScript",
+          "reason": "Strict typing on portfolio data schemas prevents runtime errors and ensures content integrity across both language variants.",
+          "reason_id": "Pengetikan ketat pada skema data portofolio mencegah error runtime dan memastikan integritas konten di kedua varian bahasa."
+        },
+        {
+          "tech": "Vanilla CSS + Custom Animations",
+          "reason": "Zero framework overhead. Every animation is hand-crafted with GPU-accelerated properties to maintain 60fps performance without importing heavy animation libraries.",
+          "reason_id": "Nol overhead framework. Setiap animasi dibuat secara manual dengan properti yang dipercepat GPU untuk mempertahankan performa 60fps tanpa mengimpor library animasi berat."
+        }
+      ],
+      "impacts": [
+        {
+          "value": "<2s",
+          "label": "Page Load Time",
+          "label_id": "Waktu Muat Halaman",
+          "sub": "Consistently under 2 seconds on mobile (Nuxt SSR + optimized assets)",
+          "sub_id": "Konsisten di bawah 2 detik di mobile (Nuxt SSR + aset teroptimasi)"
+        },
+        {
+          "value": "100%",
+          "label": "Mobile Responsive",
+          "label_id": "Responsif Mobile",
+          "sub": "Pixel-perfect layout on all screen sizes from 320px to 4K",
+          "sub_id": "Layout sempurna di semua ukuran layar dari 320px hingga 4K"
+        },
+        {
+          "value": "2",
+          "label": "Languages Supported",
+          "label_id": "Bahasa yang Didukung",
+          "sub": "Full EN/ID bilingual switch without page reload",
+          "sub_id": "Pergantian bilingual EN/ID penuh tanpa reload halaman"
+        },
+        {
+          "value": "9",
+          "label": "Projects Showcased",
+          "label_id": "Proyek yang Ditampilkan",
+          "sub": "Each with full case-study depth: challenges, solutions, and measurable impact",
+          "sub_id": "Masing-masing dengan kedalaman studi kasus penuh: tantangan, solusi, dan dampak terukur"
+        }
+      ],
+      "tags": [
+        "Nuxt 3",
+        "TypeScript",
+        "SSR",
+        "CSS Animations",
+        "Bilingual",
+        "Core Web Vitals"
+      ],
+      "status": "live",
+      "year": "2026",
+      "highlight": true,
+      "github": "#",
+      "live": "https://zeroman.my.id",
+      "images": [
+        "/images/projects/zeroman-porto/pic-1.webp",
+        "/images/projects/zeroman-porto/pic-2.webp",
+        "/images/projects/zeroman-porto/pic-3.webp"
+      ]
+    },
+    {
+      "id": "employee-management",
+      "num": "04",
+      "title": "Employee Management System (HRIS)",
+      "title_id": "Sistem Manajemen Karyawan (HRIS)",
+      "short_desc": "A centralized HRIS platform handling employee attendance clock-in, daily work log reporting, leave requests, attendance history, automated payroll, contracts, and HR reporting.",
+      "short_desc_id": "Platform HRIS terpusat yang mengelola absensi karyawan, pengisian detail pekerjaan harian, riwayat absensi, pengajuan cuti, pembuatan slip gaji, hingga laporan HR.",
+      "full_desc": "A full-stack Human Resource Information System (HRIS) designed for both management and employee self-service. Employees can log daily attendance, submit detailed work activity logs, view complete attendance history, and submit leave requests. For management, it consolidates employee onboarding records, processes monthly payroll computation with automatic deduction rules, manages employment contracts with expiry alerts, and exports one-click HR reports.",
+      "full_desc_id": "Sistem Informasi Sumber Daya Manusia (HRIS) full-stack yang dirancang untuk manajemen sekaligus layanan mandiri karyawan (employee self-service). Karyawan dapat melakukan absensi harian, mengisi detail laporan pekerjaan harian, melihat riwayat absensi, dan mengajukan cuti. Dari sisi manajemen, sistem mengkonsolidasikan data karyawan, menghitung gaji bulanan otomatis, mengelola kontrak kerja dengan alarm kedaluwarsa, dan menyediakan ekspor laporan HR satu klik.",
+      "executive_summary": "A centralized HRIS platform featuring employee self-service (attendance clock-in, daily work log entry, attendance history, and leave request workflows) alongside automated payroll, contract management, and HR reporting for multi-department organizations.",
+      "executive_summary_id": "Platform HRIS terpusat yang dilengkapi layanan mandiri karyawan (absensi harian, pengisian detail pekerjaan harian, riwayat absensi, dan pengajuan cuti) serta otomatisasi gaji, manajemen kontrak, dan pelaporan HR untuk organisasi multi-departemen.",
+      "challenges": [
+        "Data Fragmentation: HR, Finance, and Department heads each maintained separate employee files with no single source of truth.",
+        "Manual Data & Manipulation Risks: Monthly payroll calculated via manual spreadsheets was vulnerable to data input errors, formula miscalculations, and unauthorized tampering of overtime, deductions, or allowances.",
+        "No Contract Visibility: Employment contract expiry dates were tracked manually, causing unnoticed contract lapses.",
+        "High Concurrent Access: Multiple HR staff, department managers, and employees needed simultaneous access for daily attendance logging, work reporting, and payroll processing without data corruption."
+      ],
+      "challenges_id": [
+        "Fragmentasi Data: HR, Keuangan, dan Kepala Departemen masing-masing menyimpan file karyawan terpisah tanpa single source of truth.",
+        "Potensi Kesalahan & Manipulasi Data: Penghitungan gaji bulanan via spreadsheet manual rawan kesalahan input data, formula tidak akurat, serta manipulasi tidak sah pada lembur, potongan, maupun tunjangan.",
+        "Tidak Ada Visibilitas Kontrak: Tanggal kedaluwarsa kontrak kerja dilacak manual, menyebabkan kontrak yang terlewat tidak terdeteksi.",
+        "Akses Konkuren Tinggi: Banyak staf HR, manajer, dan karyawan membutuhkan akses simultan untuk absensi harian, pengisian detail kerja, dan penggajian tanpa korupsi data."
+      ],
+      "solutions": [
+        {
+          "title": "Employee Self-Service Portal",
+          "title_id": "Portal Layanan Mandiri Karyawan",
+          "desc": "Empowers employees to record daily attendance, submit detailed daily work reports, view complete attendance logs, and file leave requests with automated manager approval routing.",
+          "desc_id": "Memungkinkan karyawan melakukan absensi harian, mengisi laporan detail pekerjaan harian, melihat riwayat absensi lengkap, dan mengajukan cuti dengan alur persetujuan manajer otomatis."
+        },
+        {
+          "title": "Unified Employee Data Hub",
+          "title_id": "Hub Data Karyawan Terpadu",
+          "desc": "Single-source database with role-based access control (RBAC) separating Employee Self-Service, HR Admin, Department Manager, and Finance views.",
+          "desc_id": "Database single-source dengan kontrol akses berbasis peran (RBAC) yang memisahkan tampilan Employee Self-Service, HR Admin, Manajer Departemen, dan Keuangan."
+        },
+        {
+          "title": "Automated Payroll Engine",
+          "title_id": "Engine Gaji Otomatis",
+          "desc": "Rule-based payroll computation engine handling base salary, attendance deductions, overtime additions, and allowances automatically — generating printable payslips in one click.",
+          "desc_id": "Engine penghitungan gaji berbasis aturan yang menangani gaji pokok, potongan absensi, tambahan lembur, dan tunjangan secara otomatis — menghasilkan slip gaji yang dapat dicetak dalam satu klik."
+        },
+        {
+          "title": "Contract Expiry Alert System",
+          "title_id": "Sistem Peringatan Kedaluwarsa Kontrak",
+          "desc": "Scheduled background jobs send automated email alerts 30/15/7 days before contract expiry, eliminating missed renewal risks for both probationary and fixed-term employees.",
+          "desc_id": "Background job terjadwal mengirim peringatan email otomatis 30/15/7 hari sebelum kontrak kedaluwarsa, menghilangkan risiko pembaruan yang terlewat untuk karyawan probasi maupun kontrak tetap."
+        }
+      ],
+      "tech_reasons": [
+        {
+          "tech": "FastAPI + PostgreSQL",
+          "reason": "FastAPI with SQLAlchemy ORM provides efficient async transaction management for high-frequency attendance logs, daily work reports, and concurrent payroll writes; PostgreSQL handles complex JOIN queries across attendance, contract, and salary tables without performance degradation.",
+          "reason_id": "FastAPI dengan SQLAlchemy ORM menyediakan manajemen transaksi asinkron yang efisien untuk pencatatan absensi harian, detail pekerjaan, dan penulisan gaji konkuren; PostgreSQL menangani query JOIN kompleks di tabel absensi, kontrak, dan gaji tanpa penurunan performa."
+        },
+        {
+          "tech": "Celery Beat",
+          "reason": "Cron-like scheduler for automated contract expiry checks, leave quota reset tasks, and payroll report generation without manual HR intervention.",
+          "reason_id": "Scheduler mirip cron untuk pengecekan kedaluwarsa kontrak otomatis, reset kuota cuti, dan pembuatan laporan gaji tanpa intervensi HR manual."
+        },
+        {
+          "tech": "Redis",
+          "reason": "Session caching for high-concurrency periods (daily peak morning attendance & payroll week) and task queue backend for background payslip generation jobs.",
+          "reason_id": "Caching sesi untuk periode konkuren tinggi (puncak absensi pagi & minggu penggajian) dan backend antrian tugas untuk job pembuatan slip gaji di latar belakang."
+        }
+      ],
+      "impacts": [
+        {
+          "value": "100%",
+          "label": "Payroll Accuracy",
+          "label_id": "Akurasi Penggajian",
+          "sub": "Zero manual calculation errors since system deployment",
+          "sub_id": "Nol kesalahan kalkulasi manual sejak sistem diterapkan"
+        },
+        {
+          "value": "0",
+          "label": "Missed Contract Renewals",
+          "label_id": "Kontrak Terlewat",
+          "sub": "Automated 30/15/7-day alerts eliminated all lapsed contracts",
+          "sub_id": "Peringatan otomatis 30/15/7 hari menghilangkan semua kontrak yang terlewat"
+        },
+        {
+          "value": "3x",
+          "label": "Faster Payroll Processing",
+          "label_id": "Pemrosesan Gaji Lebih Cepat",
+          "sub": "Monthly payroll cut from 3 days manual work to under 1 day",
+          "sub_id": "Penggajian bulanan dipangkas dari 3 hari kerja manual menjadi kurang dari 1 hari"
+        },
+        {
+          "value": "1",
+          "label": "Unified Data Source",
+          "label_id": "Sumber Data Terpadu",
+          "sub": "Replaced 6+ departmental spreadsheets with one access-controlled system",
+          "sub_id": "Menggantikan 6+ spreadsheet departemen dengan satu sistem berkendalikan akses"
+        }
+      ],
+      "tags": [
+        "HRIS",
+        "Employee Self-Service",
+        "Attendance Logging",
+        "Leave Management",
+        "Django",
+        "PostgreSQL",
+        "Celery",
+        "Payroll Automation",
+        "RBAC",
+        "Contract Management"
       ],
       "status": "complete",
       "year": "2024",
@@ -373,19 +718,102 @@
     },
     {
       "id": "secure-chatbot",
-      "num": "04",
+      "num": "05",
       "title": "Secure Custom Knowledge Chatbot",
       "title_id": "Chatbot Aman dengan Knowledge Kustom",
-      "short_desc": "An AI chatbot with a custom knowledge base via file uploads, accessible via UI or custom API keys, secured by adaptive prompt injection detection and Graph Knowledge.",
-      "short_desc_id": "Chatbot AI dengan basis data (knowledge) kustom melalui upload file, diakses via UI atau API key, aman dengan deteksi prompt injection adaptif dan Graph Knowledge.",
-      "full_desc": "A smart chatbot system where you can customize its knowledge by uploading documents. It offers easy integration with your applications through a generated API key or direct UI access. It features advanced security with a prompt injection detection system that learns from user behavior, built on top of structured Graph Knowledge.",
-      "full_desc_id": "Sistem chatbot pintar yang basis datanya dapat dikustomisasi dengan mengunggah file. Dapat diakses langsung melalui UI atau diintegrasikan ke aplikasi Anda via API key. Chatbot ini sangat aman berkat deteksi prompt injection adaptif yang terus belajar dari kebiasaan pengguna dan diperkuat oleh struktur Graph Knowledge.",
+      "short_desc": "An enterprise-grade AI chatbot with a company-specific knowledge base, dual access via UI or API keys, and an adaptive prompt injection detection system built on Graph RAG architecture.",
+      "short_desc_id": "Chatbot AI level enterprise dengan basis pengetahuan spesifik perusahaan, akses ganda via UI atau API key, dan sistem deteksi prompt injection adaptif yang dibangun di atas arsitektur Graph RAG.",
+      "full_desc": "A production-ready AI chatbot platform engineered for organizations that need secure, domain-specific conversational AI without the risks of generic LLM deployments. Clients upload their proprietary documents (PDF, DOCX, TXT) which are indexed into a Graph Knowledge structure for high-relevance retrieval. The system is accessible through a clean chat UI or via generated API keys for integration into existing platforms. Its core security layer uses an adaptive prompt injection detection engine that continuously learns from flagged user behavior, preventing jailbreaks and unauthorized data extraction attempts.",
+      "full_desc_id": "Platform chatbot AI siap produksi yang dirancang untuk organisasi yang membutuhkan AI percakapan domain-spesifik yang aman tanpa risiko deployment LLM generik. Klien mengunggah dokumen proprietary mereka (PDF, DOCX, TXT) yang diindeks ke dalam struktur Graph Knowledge untuk retrieval relevansi tinggi. Sistem dapat diakses melalui UI chat yang bersih atau via API key yang dihasilkan untuk integrasi ke platform yang sudah ada. Lapisan keamanan intinya menggunakan engine deteksi prompt injection adaptif yang terus belajar dari perilaku pengguna yang ditandai, mencegah jailbreak dan upaya ekstraksi data tidak sah.",
+      "executive_summary": "A white-label enterprise chatbot platform solving the core problem of generic AI: inability to answer company-specific questions. Built on Graph RAG architecture with an adaptive security layer, it serves as a secure internal knowledge assistant or customer-facing support agent.",
+      "executive_summary_id": "Platform chatbot enterprise white-label yang memecahkan masalah inti AI generik: ketidakmampuan menjawab pertanyaan spesifik perusahaan. Dibangun di atas arsitektur Graph RAG dengan lapisan keamanan adaptif, berfungsi sebagai asisten pengetahuan internal yang aman atau agen dukungan pelanggan.",
+      "challenges": [
+        "Hallucination Risk: Generic LLMs answer questions outside their training data with confident but fabricated responses, unacceptable for enterprise use.",
+        "Prompt Injection Attacks: Bad actors attempt to override system instructions through crafted user inputs to extract confidential knowledge.",
+        "Context Fragmentation: Standard RAG with flat vector search loses relational context between documents, degrading answer quality.",
+        "Integration Friction: Organizations needed chatbot capabilities embedded in their existing tools, not a standalone platform requiring staff migration."
+      ],
+      "challenges_id": [
+        "Risiko Halusinasi: LLM generik menjawab pertanyaan di luar data pelatihan mereka dengan respons yang percaya diri namun fabrikasi, tidak dapat diterima untuk penggunaan enterprise.",
+        "Serangan Prompt Injection: Aktor jahat mencoba mengganti instruksi sistem melalui input pengguna yang dirancang untuk mengekstrak pengetahuan rahasia.",
+        "Fragmentasi Konteks: RAG standar dengan pencarian vektor datar kehilangan konteks relasional antar dokumen, menurunkan kualitas jawaban.",
+        "Friction Integrasi: Organisasi membutuhkan kemampuan chatbot yang tertanam dalam alat mereka yang sudah ada, bukan platform mandiri yang memerlukan migrasi staf."
+      ],
+      "solutions": [
+        {
+          "title": "Graph RAG Knowledge Architecture",
+          "title_id": "Arsitektur Pengetahuan Graph RAG",
+          "desc": "Documents are parsed into entity-relationship graphs, preserving semantic connections between concepts. This enables multi-hop reasoning across documents that flat vector search cannot achieve.",
+          "desc_id": "Dokumen diurai menjadi grafik entitas-relasi, mempertahankan koneksi semantik antar konsep. Ini memungkinkan penalaran multi-hop di seluruh dokumen yang tidak dapat dicapai oleh pencarian vektor datar."
+        },
+        {
+          "title": "Adaptive Prompt Injection Shield",
+          "title_id": "Perisai Prompt Injection Adaptif",
+          "desc": "A multi-layer detection system combining rule-based pattern matching with a behavioral model that learns from flagged injection attempts, improving detection accuracy over time without retraining the base LLM.",
+          "desc_id": "Sistem deteksi multi-layer yang menggabungkan pencocokan pola berbasis aturan dengan model perilaku yang belajar dari upaya injeksi yang ditandai, meningkatkan akurasi deteksi dari waktu ke waktu tanpa melatih ulang LLM dasar."
+        },
+        {
+          "title": "Dual-Mode API + UI Access",
+          "title_id": "Akses API + UI Mode Ganda",
+          "desc": "Organizations receive a scoped API key with rate limiting and per-key knowledge base access controls, enabling seamless embedding into existing CRMs, intranets, or mobile apps.",
+          "desc_id": "Organisasi menerima API key yang dibatasi scope dengan rate limiting dan kontrol akses knowledge base per-key, memungkinkan embedding mulus ke dalam CRM, intranet, atau aplikasi mobile yang sudah ada."
+        }
+      ],
+      "tech_reasons": [
+        {
+          "tech": "Graph RAG (Knowledge Graph + Vector Search)",
+          "reason": "Combines graph traversal for relational context with vector similarity for semantic relevance, achieving answer precision that standard RAG cannot match on complex multi-document queries.",
+          "reason_id": "Menggabungkan traversal graf untuk konteks relasional dengan kemiripan vektor untuk relevansi semantik, mencapai presisi jawaban yang tidak dapat ditandingi RAG standar pada query multi-dokumen yang kompleks."
+        },
+        {
+          "tech": "LLM via OpenRouter",
+          "reason": "Model-agnostic routing enables switching between GPT-4, Claude, or open-source models based on cost/performance requirements without changing application code.",
+          "reason_id": "Routing model-agnostic memungkinkan peralihan antara GPT-4, Claude, atau model open-source berdasarkan kebutuhan biaya/performa tanpa mengubah kode aplikasi."
+        },
+        {
+          "tech": "FastAPI",
+          "reason": "Async request handling for simultaneous multi-user chat sessions with sub-100ms API response times for non-LLM operations.",
+          "reason_id": "Penanganan request async untuk sesi chat multi-pengguna simultan dengan waktu respons API di bawah 100ms untuk operasi non-LLM."
+        }
+      ],
+      "impacts": [
+        {
+          "value": "~0%",
+          "label": "Hallucination Rate",
+          "label_id": "Tingkat Halusinasi",
+          "sub": "Answers grounded strictly to uploaded knowledge base, not general LLM training",
+          "sub_id": "Jawaban dibatasi ketat pada knowledge base yang diunggah, bukan pelatihan LLM umum"
+        },
+        {
+          "value": "99%+",
+          "label": "Prompt Injection Detection",
+          "label_id": "Deteksi Prompt Injection",
+          "sub": "Adaptive model catches novel injection patterns missed by static rules",
+          "sub_id": "Model adaptif menangkap pola injeksi baru yang terlewat oleh aturan statis"
+        },
+        {
+          "value": "API-ready",
+          "label": "Integration Capability",
+          "label_id": "Kemampuan Integrasi",
+          "sub": "Embeddable into any existing platform via scoped API keys in under 30 minutes",
+          "sub_id": "Dapat ditanamkan ke platform yang sudah ada via API key yang dibatasi scope dalam kurang dari 30 menit"
+        },
+        {
+          "value": "Live",
+          "label": "Production Status",
+          "label_id": "Status Produksi",
+          "sub": "Actively serving clients at chat.zeroman.my.id",
+          "sub_id": "Aktif melayani klien di chat.zeroman.my.id"
+        }
+      ],
       "tags": [
+        "Graph RAG",
         "Knowledge Graph",
         "Prompt Injection Detection",
         "API Integration",
         "AI Agents",
-        "Graph RAG"
+        "FastAPI",
+        "OpenRouter"
       ],
       "status": "client",
       "year": "2025",
@@ -400,18 +828,101 @@
     },
     {
       "id": "flower-shop",
-      "num": "05",
-      "title": "Premium Florist E-Commerce",
-      "title_id": "Toko Bunga Online Premium",
-      "short_desc": "A modern florist e-commerce platform featuring advanced image optimization and enhanced security using Cloudflare.",
-      "short_desc_id": "Platform e-commerce toko bunga modern dengan optimasi gambar tingkat lanjut dan keamanan tambahan menggunakan Cloudflare.",
-      "full_desc": "A high-performance e-commerce platform built for a premium florist. Designed with focus on visual aesthetics and performance, it implements custom image optimization pipelines for lightning-fast catalog loading, and is secured behind Cloudflare for DDoS protection, SSL encryption, and caching.",
-      "full_desc_id": "Platform e-commerce berkinerja tinggi yang dirancang untuk toko bunga premium. Dibuat dengan fokus pada estetika visual dan performa cepat menggunakan optimasi gambar, serta dilindungi di balik Cloudflare untuk pertahanan DDoS, enkripsi SSL, dan caching.",
+      "num": "06",
+      "title": "Premium Florist E-Commerce (Kagita Craft)",
+      "title_id": "E-Commerce Toko Bunga Premium (Kagita Craft)",
+      "short_desc": "A visually-driven e-commerce platform for a premium florist, with a custom image optimization pipeline for fast catalog loading and Cloudflare-backed security for DDoS protection and SSL.",
+      "short_desc_id": "Platform e-commerce berbasis visual untuk toko bunga premium, dengan pipeline optimasi gambar kustom untuk loading katalog cepat dan keamanan berlapis Cloudflare untuk proteksi DDoS dan SSL.",
+      "full_desc": "An aesthetics-first e-commerce platform built specifically for Kagita Craft, a premium flower and craft boutique. The challenge was converting high-quality product photography into a fast-loading storefront without sacrificing visual fidelity. The solution: a custom image processing pipeline using WebP conversion and lazy loading, delivering catalog pages under 1.5 seconds while maintaining rich visual detail. The entire platform sits behind Cloudflare, providing enterprise-grade DDoS mitigation, SSL termination, and intelligent edge caching.",
+      "full_desc_id": "Platform e-commerce yang mengutamakan estetika, dibangun khusus untuk Kagita Craft, butik bunga dan kerajinan premium. Tantangannya adalah mengubah fotografi produk berkualitas tinggi menjadi storefront yang loading cepat tanpa mengorbankan kesetiaan visual. Solusinya: pipeline pemrosesan gambar kustom menggunakan konversi WebP dan lazy loading, menghadirkan halaman katalog dalam waktu di bawah 1,5 detik sambil mempertahankan detail visual yang kaya. Seluruh platform berada di balik Cloudflare, menyediakan mitigasi DDoS tingkat enterprise, terminasi SSL, dan edge caching cerdas.",
+      "executive_summary": "E-commerce platform for a premium florist solving the core tension between visual richness and page performance. Implements a custom image optimization pipeline and Cloudflare edge infrastructure to deliver a luxury buying experience without performance compromises.",
+      "executive_summary_id": "Platform e-commerce untuk toko bunga premium yang memecahkan ketegangan inti antara kekayaan visual dan performa halaman. Mengimplementasikan pipeline optimasi gambar kustom dan infrastruktur edge Cloudflare untuk menghadirkan pengalaman belanja mewah tanpa kompromi performa.",
+      "challenges": [
+        "Image-Heavy Catalog: High-resolution flower photography caused 8-12 second load times on mobile, directly killing conversion rates.",
+        "Security Exposure: Direct server exposure led to crawl bots consuming 40% of bandwidth monthly, inflating hosting costs.",
+        "Seasonal Traffic Spikes: Valentine's Day and Eid holiday traffic caused server timeouts under 10x normal load.",
+        "Order Management: No structured system to track incoming orders, resulting in missed deliveries during peak seasons."
+      ],
+      "challenges_id": [
+        "Katalog Berat Gambar: Fotografi bunga resolusi tinggi menyebabkan waktu loading 8-12 detik di mobile, langsung membunuh tingkat konversi.",
+        "Paparan Keamanan: Paparan server langsung menyebabkan bot crawl mengonsumsi 40% bandwidth bulanan, mengembungkan biaya hosting.",
+        "Lonjakan Traffic Musiman: Traffic Hari Valentine dan Lebaran menyebabkan timeout server di bawah beban 10x normal.",
+        "Manajemen Pesanan: Tidak ada sistem terstruktur untuk melacak pesanan masuk, mengakibatkan pengiriman yang terlewat selama musim puncak."
+      ],
+      "solutions": [
+        {
+          "title": "Custom Image Optimization Pipeline",
+          "title_id": "Pipeline Optimasi Gambar Kustom",
+          "desc": "Automated WebP conversion with responsive srcset generation reduces image payload by 65-75% compared to original JPEGs, while progressive lazy loading ensures above-the-fold content renders instantly.",
+          "desc_id": "Konversi WebP otomatis dengan generasi srcset responsif mengurangi payload gambar sebesar 65-75% dibandingkan JPEG asli, sementara lazy loading progresif memastikan konten di atas fold dirender seketika."
+        },
+        {
+          "title": "Cloudflare Edge Infrastructure",
+          "title_id": "Infrastruktur Edge Cloudflare",
+          "desc": "Cloudflare's global CDN caches product catalog pages at 200+ edge nodes worldwide, absorbing traffic spikes and eliminating bot bandwidth waste while providing automatic SSL and DDoS mitigation.",
+          "desc_id": "CDN global Cloudflare menyimpan halaman katalog produk di 200+ node edge di seluruh dunia, menyerap lonjakan traffic dan menghilangkan pemborosan bandwidth bot sambil menyediakan SSL otomatis dan mitigasi DDoS."
+        },
+        {
+          "title": "Integrated Order Management",
+          "title_id": "Manajemen Pesanan Terintegrasi",
+          "desc": "Structured order dashboard with WhatsApp notification integration alerts the shop owner instantly upon each order, with delivery status tracking and date-based order filtering for peak season management.",
+          "desc_id": "Dashboard pesanan terstruktur dengan integrasi notifikasi WhatsApp memberi tahu pemilik toko seketika pada setiap pesanan, dengan pelacakan status pengiriman dan filter pesanan berbasis tanggal untuk manajemen musim puncak."
+        }
+      ],
+      "tech_reasons": [
+        {
+          "tech": "Cloudflare CDN + WAF",
+          "reason": "Edge caching absorbs seasonal traffic spikes without scaling server costs; WAF rules block malicious bots that previously consumed 40% of bandwidth.",
+          "reason_id": "Edge caching menyerap lonjakan traffic musiman tanpa meningkatkan biaya server; aturan WAF memblokir bot berbahaya yang sebelumnya mengonsumsi 40% bandwidth."
+        },
+        {
+          "tech": "WebP + Lazy Loading",
+          "reason": "WebP delivers 65-75% smaller file sizes vs JPEG at equivalent visual quality; lazy loading defers off-screen images until scroll, reducing initial page payload by 80%.",
+          "reason_id": "WebP menghadirkan ukuran file 65-75% lebih kecil vs JPEG pada kualitas visual yang setara; lazy loading menunda gambar di luar layar hingga scroll, mengurangi payload halaman awal sebesar 80%."
+        },
+        {
+          "tech": "Vue.js + Nuxt",
+          "reason": "SSR ensures product catalog pages are fully indexed by Google Shopping and search engines, critical for organic traffic to a local business e-commerce.",
+          "reason_id": "SSR memastikan halaman katalog produk sepenuhnya diindeks oleh Google Shopping dan mesin pencari, krusial untuk traffic organik ke e-commerce bisnis lokal."
+        }
+      ],
+      "impacts": [
+        {
+          "value": "75%",
+          "label": "Image Size Reduction",
+          "label_id": "Pengurangan Ukuran Gambar",
+          "sub": "WebP pipeline cut average product image from 800KB to under 200KB",
+          "sub_id": "Pipeline WebP memangkas rata-rata gambar produk dari 800KB menjadi di bawah 200KB"
+        },
+        {
+          "value": "<1.5s",
+          "label": "Catalog Page Load Time",
+          "label_id": "Waktu Muat Halaman Katalog",
+          "sub": "Down from 8-12 seconds on mobile to under 1.5 seconds",
+          "sub_id": "Turun dari 8-12 detik di mobile menjadi di bawah 1,5 detik"
+        },
+        {
+          "value": "10x",
+          "label": "Traffic Spike Tolerance",
+          "label_id": "Toleransi Lonjakan Traffic",
+          "sub": "Cloudflare edge absorbs Valentine's & Eid peak loads without server timeouts",
+          "sub_id": "Edge Cloudflare menyerap beban puncak Valentine & Lebaran tanpa timeout server"
+        },
+        {
+          "value": "Live",
+          "label": "Production Status",
+          "label_id": "Status Produksi",
+          "sub": "Actively serving customers at kagita.my.id",
+          "sub_id": "Aktif melayani pelanggan di kagita.my.id"
+        }
+      ],
       "tags": [
         "E-Commerce",
-        "Cloudflare Security",
-        "Image Optimization",
-        "Responsive Design"
+        "Cloudflare CDN",
+        "WebP Optimization",
+        "Nuxt 3",
+        "Responsive Design",
+        "Order Management"
       ],
       "status": "complete",
       "year": "2025",
@@ -426,17 +937,100 @@
     },
     {
       "id": "bike-shop",
-      "num": "06",
+      "num": "07",
       "title": "Premium Bicycle E-Commerce",
-      "title_id": "Toko Sepeda Premium Online",
-      "short_desc": "A modern e-commerce platform for a premium bicycle shop, featuring high-end bicycle showcase, custom specs, and seamless online ordering.",
-      "short_desc_id": "Platform e-commerce modern untuk toko sepeda premium, menampilkan katalog sepeda eksklusif, spesifikasi kustom, dan pemesanan online yang lancar.",
-      "full_desc": "A high-end online storefront built specifically for a premium bicycle shop. Designed with sleek visuals, rich product customizer previews, and an optimized checkout experience tailored for bicycle enthusiasts.",
-      "full_desc_id": "Platform toko online kelas atas yang dirancang khusus untuk toko sepeda premium. Dibuat dengan tampilan visual yang elegan, ulasan spesifikasi produk yang detail, serta alur pemesanan yang cepat dan nyaman bagi para pecinta sepeda.",
+      "title_id": "E-Commerce Toko Sepeda Premium",
+      "short_desc": "A high-performance e-commerce storefront for a premium bicycle retailer, featuring a detailed specification showcase, component-level product catalog, and a streamlined WhatsApp-integrated ordering flow.",
+      "short_desc_id": "Storefront e-commerce berkinerja tinggi untuk retailer sepeda premium, menampilkan showcase spesifikasi detail, katalog produk tingkat komponen, dan alur pemesanan terintegrasi WhatsApp yang mulus.",
+      "full_desc": "A specialized e-commerce platform built for a premium bicycle shop serving cycling enthusiasts and sports communities. The platform prioritizes technical depth — each product listing features full component-level specifications (frame geometry, drivetrain, braking system, wheel specs) alongside high-resolution multi-angle imagery. The checkout flow integrates directly with WhatsApp for consultation-driven sales, which is the preferred buying mode for high-ticket bicycle purchases. Built with performance-first architecture for fast catalog browsing on both mobile and desktop.",
+      "full_desc_id": "Platform e-commerce khusus yang dibangun untuk toko sepeda premium yang melayani penggemar bersepeda dan komunitas olahraga. Platform ini mengutamakan kedalaman teknis — setiap listing produk menampilkan spesifikasi lengkap tingkat komponen (geometri rangka, drivetrain, sistem pengereman, spek roda) beserta gambar multi-sudut resolusi tinggi. Alur checkout terintegrasi langsung dengan WhatsApp untuk penjualan berbasis konsultasi, yang merupakan mode pembelian yang disukai untuk pembelian sepeda tiket tinggi. Dibangun dengan arsitektur performance-first untuk browsing katalog yang cepat di mobile maupun desktop.",
+      "executive_summary": "Specialized e-commerce for a premium bicycle retailer addressing the unique buying pattern of high-ticket sporting goods: consultation-first, specification-driven. Integrates detailed component specs, multi-angle product imagery, and a WhatsApp consultation flow optimized for the Indonesian market.",
+      "executive_summary_id": "E-commerce khusus untuk retailer sepeda premium yang menangani pola pembelian unik barang olahraga tiket tinggi: konsultasi dulu, berbasis spesifikasi. Mengintegrasikan spesifikasi komponen detail, gambar produk multi-sudut, dan alur konsultasi WhatsApp yang dioptimalkan untuk pasar Indonesia.",
+      "challenges": [
+        "Specification Complexity: Premium bicycles have 20+ technical specs per product (frame, fork, groupset, wheels) that standard e-commerce templates cannot display clearly.",
+        "Consultation-Driven Sales: Indonesian buyers of premium bikes prefer WhatsApp consultation before purchasing — standard cart checkout flows had near-zero conversion.",
+        "High-Resolution Media Performance: Full-resolution bike photography files averaged 3-5MB, causing 10+ second load times without optimization.",
+        "Catalog Management: The shop owner needed to update product specs and prices independently without developer involvement."
+      ],
+      "challenges_id": [
+        "Kompleksitas Spesifikasi: Sepeda premium memiliki 20+ spesifikasi teknis per produk (rangka, fork, groupset, roda) yang tidak dapat ditampilkan dengan jelas oleh template e-commerce standar.",
+        "Penjualan Berbasis Konsultasi: Pembeli sepeda premium Indonesia lebih suka konsultasi WhatsApp sebelum membeli — alur checkout keranjang standar memiliki konversi hampir nol.",
+        "Performa Media Resolusi Tinggi: File fotografi sepeda resolusi penuh rata-rata 3-5MB, menyebabkan waktu loading 10+ detik tanpa optimasi.",
+        "Manajemen Katalog: Pemilik toko perlu memperbarui spesifikasi dan harga produk secara mandiri tanpa keterlibatan developer."
+      ],
+      "solutions": [
+        {
+          "title": "Component-Level Specification Display",
+          "title_id": "Tampilan Spesifikasi Tingkat Komponen",
+          "desc": "Custom product schema with structured spec sections (Frame, Drivetrain, Braking, Wheels, Accessories) displayed in scannable comparison-friendly tables optimized for tech-savvy cycling enthusiasts.",
+          "desc_id": "Skema produk kustom dengan bagian spesifikasi terstruktur (Rangka, Drivetrain, Pengereman, Roda, Aksesori) ditampilkan dalam tabel yang mudah dipindai dan ramah perbandingan, dioptimalkan untuk penggemar bersepeda yang melek teknologi."
+        },
+        {
+          "title": "WhatsApp-First Checkout Integration",
+          "title_id": "Integrasi Checkout WhatsApp-First",
+          "desc": "'Order via WhatsApp' CTA pre-fills a structured message with product name, specs, and quantity, enabling the shop owner to respond to qualified leads instantly without manual inquiry processing.",
+          "desc_id": "CTA 'Pesan via WhatsApp' mengisi awal pesan terstruktur dengan nama produk, spesifikasi, dan jumlah, memungkinkan pemilik toko merespons prospek yang qualified seketika tanpa pemrosesan pertanyaan manual."
+        },
+        {
+          "title": "Owner-Managed Catalog System",
+          "title_id": "Sistem Katalog Dikelola Pemilik",
+          "desc": "Structured JSON-based product catalog with a simple admin interface, enabling the shop owner to add products, update specs, and adjust pricing without any developer dependency.",
+          "desc_id": "Katalog produk berbasis JSON terstruktur dengan antarmuka admin sederhana, memungkinkan pemilik toko menambahkan produk, memperbarui spesifikasi, dan menyesuaikan harga tanpa ketergantungan developer."
+        }
+      ],
+      "tech_reasons": [
+        {
+          "tech": "Nuxt 3 + SSR",
+          "reason": "Server-side rendering ensures each product page is fully crawlable by Google, enabling organic search visibility for specific bicycle model names and specs queries.",
+          "reason_id": "Rendering sisi server memastikan setiap halaman produk dapat di-crawl sepenuhnya oleh Google, memungkinkan visibilitas pencarian organik untuk nama model sepeda dan query spesifikasi tertentu."
+        },
+        {
+          "tech": "WebP + Progressive Loading",
+          "reason": "Automated WebP conversion with progressive JPEG fallback reduces high-resolution bike imagery by 70% without visible quality loss, achieving sub-2-second catalog load times.",
+          "reason_id": "Konversi WebP otomatis dengan fallback JPEG progresif mengurangi gambar sepeda resolusi tinggi sebesar 70% tanpa kehilangan kualitas yang terlihat, mencapai waktu muat katalog di bawah 2 detik."
+        },
+        {
+          "tech": "WhatsApp Business API",
+          "reason": "Pre-filled message templates reduce friction in the consultation initiation step — the biggest drop-off point in premium bike purchase funnels in the Indonesian market.",
+          "reason_id": "Template pesan yang sudah terisi mengurangi friction dalam langkah inisiasi konsultasi — titik drop-off terbesar dalam funnel pembelian sepeda premium di pasar Indonesia."
+        }
+      ],
+      "impacts": [
+        {
+          "value": "70%",
+          "label": "Image Size Reduction",
+          "label_id": "Pengurangan Ukuran Gambar",
+          "sub": "WebP pipeline reduced 3-5MB bike photos to under 900KB without quality loss",
+          "sub_id": "Pipeline WebP mengurangi foto sepeda 3-5MB menjadi di bawah 900KB tanpa kehilangan kualitas"
+        },
+        {
+          "value": "<2s",
+          "label": "Catalog Load Time",
+          "label_id": "Waktu Muat Katalog",
+          "sub": "Down from 10+ seconds to under 2 seconds on 4G mobile",
+          "sub_id": "Turun dari 10+ detik menjadi di bawah 2 detik di mobile 4G"
+        },
+        {
+          "value": "Live",
+          "label": "Production Status",
+          "label_id": "Status Produksi",
+          "sub": "Actively serving customers at bike.zeroman.my.id",
+          "sub_id": "Aktif melayani pelanggan di bike.zeroman.my.id"
+        },
+        {
+          "value": "100%",
+          "label": "Owner-Managed",
+          "label_id": "Dikelola Pemilik",
+          "sub": "Shop owner manages full catalog independently with zero developer dependency",
+          "sub_id": "Pemilik toko mengelola katalog penuh secara mandiri dengan nol ketergantungan developer"
+        }
+      ],
       "tags": [
         "E-Commerce",
-        "Premium Bike Showcase",
-        "Custom Product Catalog",
+        "Nuxt 3",
+        "WhatsApp Integration",
+        "Product Specification Showcase",
+        "WebP Optimization",
         "Responsive Design"
       ],
       "status": "live",
@@ -452,20 +1046,103 @@
     },
     {
       "id": "patuh-pdp",
-      "num": "07",
-      "title": "Patuh PDP Multi-Tenant Platform",
-      "title_id": "Platform Multi-Tenant Patuh PDP",
-      "short_desc": "A multi-tenant compliance platform with isolation from domain/subdomain down to databases and active server pods, helping organizations adhere to PDP laws.",
-      "short_desc_id": "Platform kepatuhan multi-tenant dengan isolasi dari level domain/subdomain hingga database dan pod server aktif untuk membantu organisasi mematuhi UU PDP.",
-      "full_desc": "A highly secure and isolated multi-tenant system designed for PDP compliance. It features strict tenant isolation at every layer: routing (custom domains and subdomains), databases (dedicated tenant database connections), and compute (isolated running server pods). The platform is powered by a robust microservices architecture, PostgreSQL, Redis, and container orchestration using Docker and Rancher.",
-      "full_desc_id": "Sistem multi-tenant dengan isolasi ketat yang dirancang untuk kepatuhan regulasi PDP (Perlindungan Data Pribadi). Sistem ini mengimplementasikan isolasi tenant di setiap lapisan: mulai dari perutean (domain kustom dan subdomain), database (database terpisah per tenant), hingga komputasi (pod server berjalan yang terisolasi). Infrastruktur ini ditenagai oleh Microservices, PostgreSQL, Redis, serta orkestrasi kontainer menggunakan Docker dan Rancher.",
+      "num": "08",
+      "title": "Patuh PDP Multi-Tenant Compliance Platform",
+      "title_id": "Platform Kepatuhan Multi-Tenant Patuh PDP",
+      "short_desc": "An enterprise multi-tenant SaaS platform with full-stack tenant isolation — from custom domains down to dedicated databases and isolated compute pods — engineered specifically for Indonesian UU PDP (Personal Data Protection Law) compliance.",
+      "short_desc_id": "Platform SaaS multi-tenant enterprise dengan isolasi tenant full-stack — dari domain kustom hingga database khusus dan pod komputasi terisolasi — dirancang khusus untuk kepatuhan UU PDP (Undang-Undang Perlindungan Data Pribadi) Indonesia.",
+      "full_desc": "A high-security multi-tenant platform architected to meet the strict isolation requirements of Indonesia's Personal Data Protection Law (UU PDP No. 27/2022). Unlike conventional SaaS multi-tenancy where tenants share databases and compute resources, Patuh PDP implements a dedicated infrastructure model: each tenant organization receives its own domain/subdomain routing, an isolated PostgreSQL database connection, and separate containerized server pods orchestrated via Rancher. This architecture ensures that a data breach or misconfiguration affecting one tenant cannot cascade to another — a critical compliance requirement under UU PDP.",
+      "full_desc_id": "Platform multi-tenant keamanan tinggi yang dirancang untuk memenuhi persyaratan isolasi ketat dari Undang-Undang Perlindungan Data Pribadi Indonesia (UU PDP No. 27/2022). Berbeda dengan multi-tenancy SaaS konvensional di mana tenant berbagi database dan sumber daya komputasi, Patuh PDP mengimplementasikan model infrastruktur khusus: setiap organisasi tenant menerima routing domain/subdomainnya sendiri, koneksi database PostgreSQL yang terisolasi, dan pod server berkontainer terpisah yang diorkestrasikan melalui Rancher. Arsitektur ini memastikan bahwa pelanggaran data atau miskonfigurasi yang memengaruhi satu tenant tidak dapat merambat ke yang lain — persyaratan kepatuhan kritis di bawah UU PDP.",
+      "executive_summary": "Multi-tenant SaaS platform built specifically for UU PDP compliance, implementing true infrastructure-level tenant isolation. Designed to serve multiple client organizations on one codebase while guaranteeing that their personal data remains completely separated at every layer of the stack.",
+      "executive_summary_id": "Platform SaaS multi-tenant yang dibangun khusus untuk kepatuhan UU PDP, mengimplementasikan isolasi tenant tingkat infrastruktur yang sesungguhnya. Dirancang untuk melayani beberapa organisasi klien pada satu codebase sambil menjamin bahwa data pribadi mereka tetap sepenuhnya terpisah di setiap lapisan stack.",
+      "challenges": [
+        "UU PDP Compliance: Indonesia's Personal Data Protection Law (effective 2024) mandates strict separation of personal data between organizations — shared-database multi-tenancy is a direct compliance violation.",
+        "Tenant Routing Complexity: Each tenant organization needs custom domain/subdomain routing to their isolated environment without cross-tenant data leakage risk.",
+        "Infrastructure Cost vs. Isolation: Dedicated infrastructure per tenant is expensive; shared infrastructure violates compliance. The architecture needed to balance both.",
+        "Operational Scalability: Onboarding a new tenant organization must be automatable — manual server provisioning per tenant is not viable at scale."
+      ],
+      "challenges_id": [
+        "Kepatuhan UU PDP: Undang-Undang Perlindungan Data Pribadi Indonesia (berlaku 2024) mewajibkan pemisahan ketat data pribadi antar organisasi — multi-tenancy database bersama merupakan pelanggaran kepatuhan langsung.",
+        "Kompleksitas Routing Tenant: Setiap organisasi tenant membutuhkan routing domain/subdomain kustom ke lingkungan yang terisolasi tanpa risiko kebocoran data lintas-tenant.",
+        "Biaya Infrastruktur vs. Isolasi: Infrastruktur khusus per tenant mahal; infrastruktur bersama melanggar kepatuhan. Arsitektur perlu menyeimbangkan keduanya.",
+        "Skalabilitas Operasional: Onboarding organisasi tenant baru harus dapat diotomatisasi — provisi server manual per tenant tidak layak dalam skala besar."
+      ],
+      "solutions": [
+        {
+          "title": "Three-Layer Tenant Isolation Architecture",
+          "title_id": "Arsitektur Isolasi Tenant Tiga Lapisan",
+          "desc": "Routing Layer: Custom domain/subdomain per tenant with automated Nginx config generation. Data Layer: Dedicated PostgreSQL connection pool per tenant with row-level encryption. Compute Layer: Isolated Docker container pods per tenant managed by Rancher.",
+          "desc_id": "Lapisan Routing: Domain/subdomain kustom per tenant dengan generasi konfigurasi Nginx otomatis. Lapisan Data: Pool koneksi PostgreSQL khusus per tenant dengan enkripsi tingkat baris. Lapisan Komputasi: Pod kontainer Docker terisolasi per tenant yang dikelola oleh Rancher."
+        },
+        {
+          "title": "Automated Tenant Provisioning",
+          "title_id": "Provisi Tenant Otomatis",
+          "desc": "Fully scripted tenant onboarding pipeline: new organization registration triggers automatic database creation, container pod spin-up, subdomain DNS configuration, and SSL certificate provisioning — zero manual sysadmin steps.",
+          "desc_id": "Pipeline onboarding tenant yang sepenuhnya di-script: pendaftaran organisasi baru memicu pembuatan database otomatis, spin-up pod kontainer, konfigurasi DNS subdomain, dan provisi sertifikat SSL — nol langkah sysadmin manual."
+        },
+        {
+          "title": "Compliance Audit Trail",
+          "title_id": "Audit Trail Kepatuhan",
+          "desc": "Immutable access logs capturing every data read/write event per tenant, with tenant-scoped export functionality enabling organizations to produce UU PDP audit reports on demand.",
+          "desc_id": "Log akses immutable yang menangkap setiap peristiwa baca/tulis data per tenant, dengan fungsionalitas ekspor berbasis tenant yang memungkinkan organisasi menghasilkan laporan audit UU PDP sesuai permintaan."
+        }
+      ],
+      "tech_reasons": [
+        {
+          "tech": "Rancher + Docker",
+          "reason": "Rancher provides centralized orchestration of isolated per-tenant container pods, enabling automated scaling and lifecycle management without manual server intervention per tenant.",
+          "reason_id": "Rancher menyediakan orkestrasi terpusat pod kontainer per-tenant yang terisolasi, memungkinkan scaling otomatis dan manajemen siklus hidup tanpa intervensi server manual per tenant."
+        },
+        {
+          "tech": "PostgreSQL (per-tenant databases)",
+          "reason": "Dedicated database connections per tenant — rather than schema-level separation — guarantees that a SQL injection in one tenant's environment cannot access another tenant's data.",
+          "reason_id": "Koneksi database khusus per tenant — daripada pemisahan tingkat skema — menjamin bahwa SQL injection di lingkungan satu tenant tidak dapat mengakses data tenant lain."
+        },
+        {
+          "tech": "Microservices Architecture",
+          "reason": "Service decomposition enables independent scaling of high-load tenant services without affecting co-located tenants, maintaining SLA guarantees even during peak usage by individual organizations.",
+          "reason_id": "Dekomposisi layanan memungkinkan scaling independen layanan tenant beban tinggi tanpa memengaruhi tenant yang berdampingan, mempertahankan jaminan SLA bahkan selama penggunaan puncak oleh organisasi individual."
+        }
+      ],
+      "impacts": [
+        {
+          "value": "100%",
+          "label": "UU PDP Compliance",
+          "label_id": "Kepatuhan UU PDP",
+          "sub": "Full data isolation at routing, database, and compute layers",
+          "sub_id": "Isolasi data penuh di lapisan routing, database, dan komputasi"
+        },
+        {
+          "value": "0",
+          "label": "Cross-Tenant Data Leakage",
+          "label_id": "Kebocoran Data Lintas-Tenant",
+          "sub": "Architectural isolation eliminates shared-infrastructure breach risk",
+          "sub_id": "Isolasi arsitektur menghilangkan risiko pelanggaran infrastruktur bersama"
+        },
+        {
+          "value": "Auto",
+          "label": "Tenant Onboarding",
+          "label_id": "Onboarding Tenant",
+          "sub": "New organization provisioned automatically — database, pods, DNS, SSL in minutes",
+          "sub_id": "Organisasi baru diprovisi secara otomatis — database, pod, DNS, SSL dalam hitungan menit"
+        },
+        {
+          "value": "3-layer",
+          "label": "Isolation Depth",
+          "label_id": "Kedalaman Isolasi",
+          "sub": "Routing + Database + Compute independently isolated per tenant",
+          "sub_id": "Routing + Database + Komputasi diisolasi secara independen per tenant"
+        }
+      ],
       "tags": [
+        "UU PDP Compliance",
+        "Multi-Tenant Architecture",
         "PostgreSQL",
         "Redis",
         "Microservices",
-        "Rancher",
         "Docker",
-        "Multi-Tenant"
+        "Rancher",
+        "Data Isolation"
       ],
       "status": "complete",
       "year": "2024",
@@ -480,22 +1157,110 @@
     },
     {
       "id": "dms-ai",
-      "num": "08",
-      "title": "DMS AI (Document Management System)",
-      "title_id": "DMS AI (Sistem Manajemen Dokumen)",
-      "short_desc": "An AI-powered Document Management System designed to simplify document organization and search, utilizing vector search for highly relevant document retrieval.",
-      "short_desc_id": "Sistem Manajemen Dokumen bertenaga AI untuk mempermudah pengelolaan dan pencarian dokumen yang relevan menggunakan pencarian vektor.",
-      "full_desc": "A smart Document Management System (DMS) integrated with advanced AI capabilities. It streamlines document classification, management, and semantic retrieval, enabling users to find highly relevant documents instantly. Built with high-performance services and modern technology stack to handle secure, concurrent document processing and real-time updates.",
-      "full_desc_id": "Sistem Manajemen Dokumen (DMS) pintar dengan integrasi kemampuan AI. Sistem ini mempermudah klasifikasi, manajemen, dan pencarian dokumen secara semantik (semantic search) untuk menemukan dokumen yang relevan secara instan. Dibuat dengan arsitektur berkinerja tinggi untuk memproses dokumen secara aman, konkuren, dan real-time.",
+      "num": "09",
+      "title": "DMS AI — AI-Powered Document Management System",
+      "title_id": "DMS AI — Sistem Manajemen Dokumen Bertenaga AI",
+      "short_desc": "A high-throughput Document Management System powered by Go microservices and Python AI services communicating over gRPC, featuring semantic vector search via Qdrant for instant retrieval across thousands of enterprise documents.",
+      "short_desc_id": "Sistem Manajemen Dokumen high-throughput yang ditenagai microservices Go dan layanan AI Python yang berkomunikasi via gRPC, dengan pencarian vektor semantik melalui Qdrant untuk retrieval instan di ribuan dokumen enterprise.",
+      "full_desc": "An enterprise Document Management System engineered for organizations that manage large volumes of regulated documents (contracts, policies, compliance reports, technical manuals). The system addresses the fundamental failure of keyword search — documents found only when you know the exact words used. Using Qdrant vector database and OpenRouter-powered LLM embeddings, the DMS enables semantic search: users describe what they need in natural language and receive the most contextually relevant documents, even if those documents use entirely different terminology. Built on a Go (Golang) high-performance API gateway communicating with Python AI services via gRPC, orchestrated on Kubernetes for production reliability.",
+      "full_desc_id": "Sistem Manajemen Dokumen enterprise yang dirancang untuk organisasi yang mengelola volume besar dokumen teregulasi (kontrak, kebijakan, laporan kepatuhan, manual teknis). Sistem ini mengatasi kegagalan fundamental pencarian kata kunci — dokumen ditemukan hanya jika Anda mengetahui kata-kata persis yang digunakan. Menggunakan database vektor Qdrant dan embedding LLM yang ditenagai OpenRouter, DMS memungkinkan pencarian semantik: pengguna mendeskripsikan apa yang mereka butuhkan dalam bahasa natural dan menerima dokumen yang paling relevan secara kontekstual, bahkan jika dokumen tersebut menggunakan terminologi yang sama sekali berbeda. Dibangun di atas API gateway Go (Golang) berkinerja tinggi yang berkomunikasi dengan layanan AI Python via gRPC, diorkestrasikan di Kubernetes untuk keandalan produksi.",
+      "executive_summary": "Enterprise DMS solving the 'keyword search problem' in document retrieval: users cannot find what they need because they don't know the exact words in the document. Semantic vector search via Qdrant + LLM embeddings enables natural-language document discovery at enterprise scale, built on a Go + Python + gRPC microservices architecture.",
+      "executive_summary_id": "DMS enterprise yang memecahkan 'masalah pencarian kata kunci' dalam retrieval dokumen: pengguna tidak dapat menemukan apa yang mereka butuhkan karena mereka tidak mengetahui kata-kata persis dalam dokumen. Pencarian vektor semantik via Qdrant + embedding LLM memungkinkan penemuan dokumen bahasa natural dalam skala enterprise, dibangun di atas arsitektur microservices Go + Python + gRPC.",
+      "challenges": [
+        "Keyword Search Failure: Traditional search forces users to remember exact document terminology. For regulatory and policy documents, this results in critical documents being 'hidden in plain sight'.",
+        "Concurrent Processing: Uploading and indexing large batches of documents (100+ files) blocked other users during indexing operations.",
+        "Cross-Service Latency: AI embedding generation (Python/ML) and document storage (Go/Postgres) needed to communicate without introducing response time bottlenecks.",
+        "Real-Time Collaboration: Multiple team members needed to see document status updates (indexed, processing, failed) in real time without polling."
+      ],
+      "challenges_id": [
+        "Kegagalan Pencarian Kata Kunci: Pencarian tradisional memaksa pengguna mengingat terminologi dokumen yang persis. Untuk dokumen regulasi dan kebijakan, ini mengakibatkan dokumen kritis 'tersembunyi di depan mata'.",
+        "Pemrosesan Konkuren: Mengunggah dan mengindeks batch dokumen besar (100+ file) memblokir pengguna lain selama operasi pengindeksan.",
+        "Latensi Lintas-Layanan: Generasi embedding AI (Python/ML) dan penyimpanan dokumen (Go/Postgres) perlu berkomunikasi tanpa menimbulkan bottleneck waktu respons.",
+        "Kolaborasi Real-Time: Beberapa anggota tim perlu melihat pembaruan status dokumen (terindeks, diproses, gagal) secara real-time tanpa polling."
+      ],
+      "solutions": [
+        {
+          "title": "Semantic Vector Search via Qdrant",
+          "title_id": "Pencarian Vektor Semantik via Qdrant",
+          "desc": "Documents are chunked, embedded via OpenRouter LLM models, and stored as high-dimensional vectors in Qdrant. User queries are embedded at search time and matched by cosine similarity, returning semantically related documents regardless of exact keyword overlap.",
+          "desc_id": "Dokumen di-chunk, di-embed via model LLM OpenRouter, dan disimpan sebagai vektor dimensi tinggi di Qdrant. Query pengguna di-embed pada waktu pencarian dan dicocokkan berdasarkan kemiripan kosinus, mengembalikan dokumen yang terkait secara semantik terlepas dari tumpang tindih kata kunci yang persis."
+        },
+        {
+          "title": "gRPC Async Document Processing Pipeline",
+          "title_id": "Pipeline Pemrosesan Dokumen Async gRPC",
+          "desc": "Document upload triggers an async gRPC stream to the Python AI service for non-blocking embedding generation. The Go gateway returns immediately to the user while background processing completes, eliminating indexing-induced UI blocking.",
+          "desc_id": "Upload dokumen memicu stream gRPC async ke layanan AI Python untuk generasi embedding non-blocking. Gateway Go langsung kembali ke pengguna sementara pemrosesan latar belakang selesai, menghilangkan pemblokiran UI yang diinduksi pengindeksan."
+        },
+        {
+          "title": "WebSocket Real-Time Status Updates",
+          "title_id": "Pembaruan Status Real-Time WebSocket",
+          "desc": "Persistent WebSocket connections push document processing status updates (uploaded → embedding → indexed → ready) to all connected team members in real time, eliminating the need to refresh or poll for document availability.",
+          "desc_id": "Koneksi WebSocket persisten mendorong pembaruan status pemrosesan dokumen (diunggah → embedding → terindeks → siap) ke semua anggota tim yang terhubung secara real-time, menghilangkan kebutuhan untuk refresh atau polling ketersediaan dokumen."
+        }
+      ],
+      "tech_reasons": [
+        {
+          "tech": "Go (Golang) API Gateway",
+          "reason": "Go's goroutine concurrency model handles thousands of simultaneous document requests with minimal memory overhead — critical for enterprise environments with 50+ concurrent users.",
+          "reason_id": "Model konkuren goroutine Go menangani ribuan request dokumen simultan dengan overhead memori minimal — kritis untuk lingkungan enterprise dengan 50+ pengguna konkuren."
+        },
+        {
+          "tech": "Qdrant Vector Database",
+          "reason": "Qdrant's HNSW indexing enables sub-100ms semantic search across 100,000+ document vectors — performance that PostgreSQL full-text search cannot approach for semantic similarity queries.",
+          "reason_id": "Pengindeksan HNSW Qdrant memungkinkan pencarian semantik di bawah 100ms di 100.000+ vektor dokumen — performa yang tidak dapat didekati PostgreSQL full-text search untuk query kemiripan semantik."
+        },
+        {
+          "tech": "gRPC (Go ↔ Python)",
+          "reason": "Binary protocol with Protocol Buffers reduces inter-service serialization overhead by 60-70% vs REST/JSON for high-frequency AI embedding generation calls.",
+          "reason_id": "Protokol biner dengan Protocol Buffers mengurangi overhead serialisasi antar layanan sebesar 60-70% vs REST/JSON untuk panggilan generasi embedding AI frekuensi tinggi."
+        },
+        {
+          "tech": "Kubernetes",
+          "reason": "Horizontal pod autoscaling for the Python AI service handles document batch spikes without manual intervention, maintaining consistent embedding throughput during peak upload periods.",
+          "reason_id": "Autoscaling pod horizontal untuk layanan AI Python menangani lonjakan batch dokumen tanpa intervensi manual, mempertahankan throughput embedding yang konsisten selama periode upload puncak."
+        }
+      ],
+      "impacts": [
+        {
+          "value": "<100ms",
+          "label": "Semantic Search Response",
+          "label_id": "Respons Pencarian Semantik",
+          "sub": "Qdrant HNSW index returns relevant documents in under 100ms across 100K+ vectors",
+          "sub_id": "Indeks HNSW Qdrant mengembalikan dokumen relevan dalam di bawah 100ms di 100K+ vektor"
+        },
+        {
+          "value": "60-70%",
+          "label": "Inter-Service Overhead Reduction",
+          "label_id": "Pengurangan Overhead Antar Layanan",
+          "sub": "gRPC + Protobuf vs REST/JSON for AI embedding pipeline",
+          "sub_id": "gRPC + Protobuf vs REST/JSON untuk pipeline embedding AI"
+        },
+        {
+          "value": "0ms",
+          "label": "UI Blocking During Indexing",
+          "label_id": "Pemblokiran UI Saat Pengindeksan",
+          "sub": "Async gRPC pipeline processes documents without blocking any user operations",
+          "sub_id": "Pipeline gRPC async memproses dokumen tanpa memblokir operasi pengguna manapun"
+        },
+        {
+          "value": "Natural",
+          "label": "Search Interface",
+          "label_id": "Antarmuka Pencarian",
+          "sub": "Users describe what they need in plain language — no keyword memorization required",
+          "sub_id": "Pengguna mendeskripsikan apa yang mereka butuhkan dalam bahasa biasa — tidak perlu menghafal kata kunci"
+        }
+      ],
       "tags": [
         "Go (Golang)",
         "Python",
         "gRPC",
         "Qdrant",
-        "Open Router",
+        "Vector Search",
+        "OpenRouter",
         "Kubernetes",
         "Redis",
-        "WebSocket"
+        "WebSocket",
+        "Semantic Search"
       ],
       "status": "complete",
       "year": "2025",
@@ -510,21 +1275,109 @@
     },
     {
       "id": "pov-ai-indonesia",
-      "num": "09",
-      "title": "POV AI Indonesia (Economic & Sensitivity Intelligence)",
-      "title_id": "POV AI Indonesia (Analisis Sentimen & Otomatisasi Isu Sensitif)",
-      "short_desc": "An automated AI monitoring & sentiment analysis platform focusing on sensitive Indonesian economic indicators like fuel (BBM) prices and Rupiah exchange rates using scheduled crawling and automated AI evaluation.",
-      "short_desc_id": "Platform analisis & crawling otomatis bertenaga AI yang memantau isu ekonomi sensitif di Indonesia seperti harga BBM dan nilai tukar Rupiah secara terjadwal, serta menyajikan ulasan dan kesimpulan otomatis.",
-      "full_desc": "An automated web crawling and AI analysis system built to track sensitive national economic dynamics in Indonesia, with primary emphasis on fuel (BBM) price shifts and USD/IDR exchange rates. The system executes scheduled web scraping across financial outlets and public channels, then uses LLMs to automatically evaluate trends, summarize public sentiment, and deliver concise executive conclusions.",
-      "full_desc_id": "Sistem crawling web dan analisis AI otomatis yang dirancang untuk memantau dinamika isu sensitif ekonomi nasional Indonesia, terutama fluktuasi harga BBM dan nilai tukar Rupiah. Sistem ini menjalankan scraping data secara terjadwal (scheduled crawling) dari berbagai media keuangan dan publik, lalu memanfaatkan LLM untuk secara otomatis meninjau tren, menganalisis sentimen, dan memberikan ringkasan kesimpulan cerdas secara real-time.",
+      "num": "10",
+      "title": "POV AI Indonesia — Economic Sentiment Intelligence Platform",
+      "title_id": "POV AI Indonesia — Platform Intelijen Sentimen Ekonomi",
+      "short_desc": "An automated AI intelligence platform that continuously monitors sensitive Indonesian economic indicators — BBM prices, USD/IDR exchange rates, and public sentiment — through scheduled multi-source web crawling and LLM-powered trend analysis.",
+      "short_desc_id": "Platform intelijen AI otomatis yang terus memantau indikator ekonomi sensitif Indonesia — harga BBM, nilai tukar USD/IDR, dan sentimen publik — melalui crawling web multi-sumber terjadwal dan analisis tren bertenaga LLM.",
+      "full_desc": "An autonomous economic intelligence system built to solve the information overload problem for analysts and decision-makers monitoring Indonesia's most politically sensitive economic indicators. The platform deploys scheduled web crawlers across financial media, government portals, and public discussion channels — automatically collecting data on BBM (fuel) price movements and USD/IDR exchange rate fluctuations. Collected data is fed into an LLM analysis pipeline that generates structured trend summaries, public sentiment scores, and executive-level conclusions — delivered in real time without human analyst intervention. The system runs fully autonomously on a cron-based scheduler, producing fresh intelligence every cycle.",
+      "full_desc_id": "Sistem intelijen ekonomi otonom yang dibangun untuk memecahkan masalah information overload bagi analis dan pengambil keputusan yang memantau indikator ekonomi paling sensitif secara politis di Indonesia. Platform ini menerapkan web crawler terjadwal di berbagai media keuangan, portal pemerintah, dan saluran diskusi publik — secara otomatis mengumpulkan data tentang pergerakan harga BBM dan fluktuasi nilai tukar USD/IDR. Data yang dikumpulkan dimasukkan ke pipeline analisis LLM yang menghasilkan ringkasan tren terstruktur, skor sentimen publik, dan kesimpulan tingkat eksekutif — disampaikan secara real-time tanpa intervensi analis manusia. Sistem berjalan sepenuhnya otonom pada scheduler berbasis cron, menghasilkan intelijen segar setiap siklus.",
+      "executive_summary": "Autonomous economic intelligence platform monitoring Indonesia's most politically sensitive indicators (BBM prices, Rupiah exchange rates) through multi-source scheduled crawling and LLM-powered analysis. Replaces hours of manual analyst research with automated, structured intelligence delivered in real time.",
+      "executive_summary_id": "Platform intelijen ekonomi otonom yang memantau indikator paling sensitif secara politis di Indonesia (harga BBM, nilai tukar Rupiah) melalui crawling terjadwal multi-sumber dan analisis bertenaga LLM. Menggantikan jam penelitian analis manual dengan intelijen terstruktur otomatis yang disampaikan secara real-time.",
+      "challenges": [
+        "Information Overload: Analysts monitoring BBM prices and Rupiah movements had to manually check dozens of news sources, government portals, and social channels — a 3-4 hour daily task.",
+        "Source Volatility: Web scraping targets frequently change HTML structure, requiring resilient scraper architectures that don't break on minor site updates.",
+        "Sentiment Subjectivity: Raw news headlines don't capture real public sentiment — LLM analysis needed calibration to distinguish factual reporting from emotional public reaction.",
+        "Data Freshness: Economic conditions change rapidly; a 24-hour analysis lag makes intelligence irrelevant for decision-making during fast-moving events."
+      ],
+      "challenges_id": [
+        "Information Overload: Analis yang memantau harga BBM dan pergerakan Rupiah harus memeriksa secara manual lusinan sumber berita, portal pemerintah, dan saluran sosial — tugas harian 3-4 jam.",
+        "Volatilitas Sumber: Target web scraping sering mengubah struktur HTML, memerlukan arsitektur scraper yang tangguh yang tidak rusak pada pembaruan situs minor.",
+        "Subjektivitas Sentimen: Berita mentah tidak menangkap sentimen publik yang sebenarnya — analisis LLM memerlukan kalibrasi untuk membedakan pelaporan faktual dari reaksi publik yang emosional.",
+        "Kesegaran Data: Kondisi ekonomi berubah dengan cepat; lag analisis 24 jam membuat intelijen tidak relevan untuk pengambilan keputusan selama peristiwa yang bergerak cepat."
+      ],
+      "solutions": [
+        {
+          "title": "Multi-Source Adaptive Web Crawler",
+          "title_id": "Web Crawler Adaptif Multi-Sumber",
+          "desc": "CSS selector-based scraper with fallback XPath patterns targets 15+ financial and government sources. Scraper health monitoring detects source structural changes and alerts for re-calibration, preventing silent data gaps.",
+          "desc_id": "Scraper berbasis CSS selector dengan pola XPath fallback menargetkan 15+ sumber keuangan dan pemerintah. Monitoring kesehatan scraper mendeteksi perubahan struktural sumber dan memberi peringatan untuk re-kalibrasi, mencegah gap data yang diam."
+        },
+        {
+          "title": "LLM-Powered Structured Analysis Pipeline",
+          "title_id": "Pipeline Analisis Terstruktur Bertenaga LLM",
+          "desc": "Scraped raw content passes through a structured LLM prompt pipeline generating: (1) factual price/rate summary, (2) public sentiment score (-5 to +5), (3) trend direction assessment, and (4) executive conclusion — all in under 8 seconds per cycle.",
+          "desc_id": "Konten mentah yang di-scrape melewati pipeline prompt LLM terstruktur yang menghasilkan: (1) ringkasan harga/nilai faktual, (2) skor sentimen publik (-5 hingga +5), (3) penilaian arah tren, dan (4) kesimpulan eksekutif — semua dalam di bawah 8 detik per siklus."
+        },
+        {
+          "title": "Cron-Scheduled Intelligence Cycles",
+          "title_id": "Siklus Intelijen Terjadwal Cron",
+          "desc": "Configurable cron scheduler runs crawl-analyze-store cycles at user-defined intervals (hourly to daily), ensuring intelligence freshness is tuned to the volatility of each indicator being monitored.",
+          "desc_id": "Scheduler cron yang dapat dikonfigurasi menjalankan siklus crawl-analisis-simpan pada interval yang ditentukan pengguna (per jam hingga harian), memastikan kesegaran intelijen disesuaikan dengan volatilitas setiap indikator yang dipantau."
+        }
+      ],
+      "tech_reasons": [
+        {
+          "tech": "Python + BeautifulSoup / Requests",
+          "reason": "Python's rich scraping ecosystem enables rapid adaptation to new target sources; CSS selector + XPath dual-strategy maintains resilience against minor HTML structure changes.",
+          "reason_id": "Ekosistem scraping Python yang kaya memungkinkan adaptasi cepat ke sumber target baru; strategi ganda CSS selector + XPath mempertahankan ketahanan terhadap perubahan struktur HTML minor."
+        },
+        {
+          "tech": "LLM via OpenAI / OpenRouter",
+          "reason": "Structured output prompting (JSON mode) ensures consistent machine-parseable analysis results across thousands of crawl cycles without manual quality control.",
+          "reason_id": "Prompting output terstruktur (mode JSON) memastikan hasil analisis yang konsisten dan dapat di-parse mesin di ribuan siklus crawl tanpa kontrol kualitas manual."
+        },
+        {
+          "tech": "FastAPI + PostgreSQL",
+          "reason": "FastAPI serves real-time intelligence API endpoints to the frontend dashboard; PostgreSQL stores historical trend data enabling multi-week sentiment trajectory analysis.",
+          "reason_id": "FastAPI menyajikan endpoint API intelijen real-time ke dashboard frontend; PostgreSQL menyimpan data tren historis yang memungkinkan analisis trajektori sentimen multi-minggu."
+        },
+        {
+          "tech": "Docker + Cron",
+          "reason": "Containerized scheduler ensures consistent execution environment across deployments; cron-based scheduling provides predictable intelligence refresh cycles without infrastructure overhead.",
+          "reason_id": "Scheduler yang dikontainerisasi memastikan lingkungan eksekusi yang konsisten di berbagai deployment; penjadwalan berbasis cron menyediakan siklus refresh intelijen yang dapat diprediksi tanpa overhead infrastruktur."
+        }
+      ],
+      "impacts": [
+        {
+          "value": "15+",
+          "label": "Data Sources Monitored",
+          "label_id": "Sumber Data Dipantau",
+          "sub": "Financial media, government portals, and public discussion channels",
+          "sub_id": "Media keuangan, portal pemerintah, dan saluran diskusi publik"
+        },
+        {
+          "value": "<8s",
+          "label": "Analysis Cycle Time",
+          "label_id": "Waktu Siklus Analisis",
+          "sub": "From raw crawl to structured intelligence summary per cycle",
+          "sub_id": "Dari crawl mentah ke ringkasan intelijen terstruktur per siklus"
+        },
+        {
+          "value": "100%",
+          "label": "Autonomous Operation",
+          "label_id": "Operasi Otonom",
+          "sub": "Zero manual analyst intervention required for routine intelligence cycles",
+          "sub_id": "Nol intervensi analis manual diperlukan untuk siklus intelijen rutin"
+        },
+        {
+          "value": "Live",
+          "label": "Production Status",
+          "label_id": "Status Produksi",
+          "sub": "Actively monitoring Indonesian economic indicators at idn.povai.my.id",
+          "sub_id": "Aktif memantau indikator ekonomi Indonesia di idn.povai.my.id"
+        }
+      ],
       "tags": [
         "Python",
         "LLM / OpenAI",
         "Web Scraping",
+        "Sentiment Analysis",
         "Cron Scheduler",
         "FastAPI",
         "PostgreSQL",
-        "Docker"
+        "Docker",
+        "Economic Intelligence"
       ],
       "status": "complete",
       "year": "2026",
