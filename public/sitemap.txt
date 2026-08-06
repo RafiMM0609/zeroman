@@ -1,0 +1,12 @@
+https://zeroman.my.id/
+https://zeroman.my.id/about
+https://zeroman.my.id/contact
+https://zeroman.my.id/geo
+https://zeroman.my.id/project
+https://zeroman.my.id/project?id=zeroman-portfolio
+https://zeroman.my.id/project?id=employee-management
+https://zeroman.my.id/project?id=secure-chatbot
+https://zeroman.my.id/project?id=flower-shop
+https://zeroman.my.id/project?id=patuh-pdp
+https://zeroman.my.id/project?id=dms-ai
+https://zeroman.my.id/project?id=pov-ai-indonesia

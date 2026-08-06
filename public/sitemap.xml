@@ -1,133 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- Home Page -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zeroman.my.id/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/?lang=id" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/" />
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- About Page -->
   <url>
     <loc>https://zeroman.my.id/about</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/about?lang=en" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/about?lang=id" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/about" />
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Contact Page -->
   <url>
     <loc>https://zeroman.my.id/contact</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/contact?lang=en" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/contact?lang=id" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/contact" />
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Geolocation Detector Page -->
   <url>
     <loc>https://zeroman.my.id/geo</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/geo?lang=en" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/geo?lang=id" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/geo" />
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-
-  <!-- Project Base Page -->
   <url>
     <loc>https://zeroman.my.id/project</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/project?lang=en" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/project?lang=id" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/project" />
     <lastmod>2026-08-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Project Details -->
-  <!-- 01. Zeroman Portfolio -->
   <url>
     <loc>https://zeroman.my.id/project?id=zeroman-portfolio</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/project?lang=en&amp;id=zeroman-portfolio" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/project?lang=id&amp;id=zeroman-portfolio" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/project?id=zeroman-portfolio" />
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- 02. Employee Management System -->
   <url>
     <loc>https://zeroman.my.id/project?id=employee-management</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/project?lang=en&amp;id=employee-management" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/project?lang=id&amp;id=employee-management" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/project?id=employee-management" />
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- 03. Secure Custom Knowledge Chatbot -->
   <url>
     <loc>https://zeroman.my.id/project?id=secure-chatbot</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/project?lang=en&amp;id=secure-chatbot" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/project?lang=id&amp;id=secure-chatbot" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/project?id=secure-chatbot" />
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- 04. Premium Florist E-Commerce -->
   <url>
     <loc>https://zeroman.my.id/project?id=flower-shop</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/project?lang=en&amp;id=flower-shop" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/project?lang=id&amp;id=flower-shop" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/project?id=flower-shop" />
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- 05. Patuh PDP Multi-Tenant Platform -->
   <url>
     <loc>https://zeroman.my.id/project?id=patuh-pdp</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/project?lang=en&amp;id=patuh-pdp" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/project?lang=id&amp;id=patuh-pdp" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/project?id=patuh-pdp" />
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- 06. DMS AI -->
   <url>
     <loc>https://zeroman.my.id/project?id=dms-ai</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/project?lang=en&amp;id=dms-ai" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/project?lang=id&amp;id=dms-ai" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/project?id=dms-ai" />
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- 07. POV AI Indonesia -->
   <url>
     <loc>https://zeroman.my.id/project?id=pov-ai-indonesia</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://zeroman.my.id/project?lang=en&amp;id=pov-ai-indonesia" />
-    <xhtml:link rel="alternate" hreflang="id" href="https://zeroman.my.id/project?lang=id&amp;id=pov-ai-indonesia" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://zeroman.my.id/project?id=pov-ai-indonesia" />
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
