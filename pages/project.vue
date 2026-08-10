@@ -112,11 +112,11 @@
               </div>
             </div>
 
-            <!-- Tech Stack Rationale Table -->
+            <!-- Tech Stack Table -->
             <div v-if="getEeatList(project, 'tech_reasons')" class="eeat-section">
               <h2 class="eeat-h2">
                 <span class="title-accent">//</span>
-                {{ lang === 'id' ? 'Mengapa Tech Stack Ini?' : 'Tech Stack Rationale' }}
+                {{ lang === 'id' ? 'Mengapa Tech Stack Ini?' : 'Tech Stack' }}
               </h2>
               <div class="eeat-table-wrapper">
                 <table class="eeat-tech-table">

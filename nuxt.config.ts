@@ -42,6 +42,34 @@ export default defineNuxtConfig({
     '~/assets/css/style.css'
   ],
 
+  modules: [
+    '@nuxtjs/sitemap'
+  ],
+
+  site: {
+    url: 'https://zeroman.my.id'
+  },
+
+  sitemap: {
+    urls: [
+      '/',
+      '/about',
+      '/contact',
+      '/geo',
+      '/project',
+      '/project?id=corporate-risk-management',
+      '/project?id=anara-company-profile',
+      '/project?id=zeroman-portfolio',
+      '/project?id=employee-management',
+      '/project?id=secure-chatbot',
+      '/project?id=flower-shop',
+      '/project?id=bike-shop',
+      '/project?id=patuh-pdp',
+      '/project?id=dms-ai',
+      '/project?id=pov-ai-indonesia'
+    ]
+  },
+
   runtimeConfig: {
     telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || '',
     telegramChatId: process.env.TELEGRAM_CHAT_ID || '',
