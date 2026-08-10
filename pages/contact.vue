@@ -195,6 +195,16 @@ const description = computed(() => {
     : 'Get in touch with Mahrus for freelance projects, technical consulting, or full-time roles. I respond within 24 hours.'
 })
 
+const route = useRoute()
+
+const canonicalUrl = computed(() => {
+  const langQuery = route.query?.lang
+  if (langQuery === 'en' || langQuery === 'id') {
+    return `https://zeroman.my.id/contact?lang=${langQuery}`
+  }
+  return 'https://zeroman.my.id/contact'
+})
+
 useHead({
   title,
   meta: [
@@ -202,7 +212,7 @@ useHead({
     { property: 'og:title', content: title },
     { property: 'og:description', content: description },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://zeroman.my.id/contact' },
+    { property: 'og:url', content: canonicalUrl },
     { property: 'og:image', content: 'https://zeroman.my.id/images/og-image.png' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: title },
@@ -210,7 +220,7 @@ useHead({
     { name: 'twitter:image', content: 'https://zeroman.my.id/images/og-image.png' }
   ],
   link: [
-    { rel: 'canonical', href: 'https://zeroman.my.id/contact' },
+    { rel: 'canonical', href: canonicalUrl },
     { rel: 'alternate', hreflang: 'en', href: 'https://zeroman.my.id/contact?lang=en' },
     { rel: 'alternate', hreflang: 'id', href: 'https://zeroman.my.id/contact?lang=id' },
     { rel: 'alternate', hreflang: 'x-default', href: 'https://zeroman.my.id/contact' }

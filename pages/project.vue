@@ -323,6 +323,15 @@ const jsonLd = computed(() => {
   }
 })
 
+const canonicalUrl = computed(() => {
+  const langQuery = route.query?.lang
+  const idQuery = project.value?.id || route.query?.id
+  const params = []
+  if (langQuery === 'en' || langQuery === 'id') params.push(`lang=${langQuery}`)
+  if (idQuery) params.push(`id=${idQuery}`)
+  return `https://zeroman.my.id/project${params.length ? `?${params.join('&')}` : ''}`
+})
+
 useHead({
   title: seoTitle,
   meta: [
@@ -330,7 +339,7 @@ useHead({
     { property: 'og:title', content: seoTitle },
     { property: 'og:description', content: seoDescription },
     { property: 'og:type', content: 'article' },
-    { property: 'og:url', content: computed(() => `https://zeroman.my.id/project?id=${project.value?.id || ''}`) },
+    { property: 'og:url', content: canonicalUrl },
     { property: 'og:image', content: seoImage },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: seoTitle },
@@ -338,7 +347,7 @@ useHead({
     { name: 'twitter:image', content: seoImage }
   ],
   link: [
-    { rel: 'canonical', href: computed(() => `https://zeroman.my.id/project${project.value?.id ? `?id=${project.value.id}` : ''}`) },
+    { rel: 'canonical', href: canonicalUrl },
     { rel: 'alternate', hreflang: 'en', href: computed(() => `https://zeroman.my.id/project?lang=en${project.value?.id ? `&id=${project.value.id}` : ''}`) },
     { rel: 'alternate', hreflang: 'id', href: computed(() => `https://zeroman.my.id/project?lang=id${project.value?.id ? `&id=${project.value.id}` : ''}`) },
     { rel: 'alternate', hreflang: 'x-default', href: computed(() => `https://zeroman.my.id/project${project.value?.id ? `?id=${project.value.id}` : ''}`) }

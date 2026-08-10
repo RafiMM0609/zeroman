@@ -120,6 +120,16 @@ const description = computed(() => {
     : 'Automatically detect visitor location to serve the best customized content corresponding to your region.'
 })
 
+const route = useRoute()
+
+const canonicalUrl = computed(() => {
+  const langQuery = route.query?.lang
+  if (langQuery === 'en' || langQuery === 'id') {
+    return `https://zeroman.my.id/geo?lang=${langQuery}`
+  }
+  return 'https://zeroman.my.id/geo'
+})
+
 useHead({
   title,
   meta: [
@@ -127,7 +137,7 @@ useHead({
     { property: 'og:title', content: title },
     { property: 'og:description', content: description },
     { property: 'og:type', content: 'website' },
-    { property: 'og:url', content: 'https://zeroman.my.id/geo' },
+    { property: 'og:url', content: canonicalUrl },
     { property: 'og:image', content: 'https://zeroman.my.id/images/og-image.png' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: title },
@@ -135,7 +145,7 @@ useHead({
     { name: 'twitter:image', content: 'https://zeroman.my.id/images/og-image.png' }
   ],
   link: [
-    { rel: 'canonical', href: 'https://zeroman.my.id/geo' },
+    { rel: 'canonical', href: canonicalUrl },
     { rel: 'alternate', hreflang: 'en', href: 'https://zeroman.my.id/geo?lang=en' },
     { rel: 'alternate', hreflang: 'id', href: 'https://zeroman.my.id/geo?lang=id' },
     { rel: 'alternate', hreflang: 'x-default', href: 'https://zeroman.my.id/geo' }

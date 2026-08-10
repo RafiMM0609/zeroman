@@ -169,6 +169,16 @@ const description = computed(() => {
     : 'Learn about Mahrus\'s journey as a Software Engineer & AI Architect focusing on speed, readability, and scalable systems.'
 })
 
+const route = useRoute()
+
+const canonicalUrl = computed(() => {
+  const langQuery = route.query?.lang
+  if (langQuery === 'en' || langQuery === 'id') {
+    return `https://zeroman.my.id/about?lang=${langQuery}`
+  }
+  return 'https://zeroman.my.id/about'
+})
+
 useHead({
   title,
   meta: [
@@ -176,7 +186,7 @@ useHead({
     { property: 'og:title', content: title },
     { property: 'og:description', content: description },
     { property: 'og:type', content: 'profile' },
-    { property: 'og:url', content: 'https://zeroman.my.id/about' },
+    { property: 'og:url', content: canonicalUrl },
     { property: 'og:image', content: 'https://zeroman.my.id/images/og-image.png' },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: title },
@@ -184,7 +194,7 @@ useHead({
     { name: 'twitter:image', content: 'https://zeroman.my.id/images/og-image.png' }
   ],
   link: [
-    { rel: 'canonical', href: 'https://zeroman.my.id/about' },
+    { rel: 'canonical', href: canonicalUrl },
     { rel: 'alternate', hreflang: 'en', href: 'https://zeroman.my.id/about?lang=en' },
     { rel: 'alternate', hreflang: 'id', href: 'https://zeroman.my.id/about?lang=id' },
     { rel: 'alternate', hreflang: 'x-default', href: 'https://zeroman.my.id/about' }
