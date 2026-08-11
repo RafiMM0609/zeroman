@@ -52,33 +52,6 @@
           </div>
         </div>
 
-        <!-- Working Process Section -->
-        <div class="process-section fade-up">
-          <div class="section-header" style="margin-bottom: 40px;">
-            <div class="section-eyebrow" id="eyebrow-process">
-              {{ lang === 'id' ? '// cara kerja' : '// how it works' }}
-            </div>
-            <h2 class="section-title" id="title-process" style="font-size: clamp(1.4rem, 2.5vw, 2rem);">
-              {{ lang === 'id' ? 'Proses Kolaborasi' : 'Collaboration Process' }}
-            </h2>
-          </div>
-          <div class="process-steps" id="process-steps">
-            <div
-              v-for="(step, idx) in processSteps"
-              :key="idx"
-              class="process-step fade-up"
-              :class="`delay-${idx + 1}`"
-              :id="`process-step-${idx + 1}`"
-            >
-              <div class="process-num">{{ String(idx + 1).padStart(2, '0') }}</div>
-              <div class="process-body">
-                <h3 class="process-title">{{ lang === 'id' ? step.titleId : step.titleEn }}</h3>
-                <p class="process-desc">{{ lang === 'id' ? step.descId : step.descEn }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- CTA -->
         <div class="services-cta fade-up" id="services-cta-section">
           <div class="cta-banner" style="text-align: center;">
@@ -97,7 +70,7 @@
                 }}
               </p>
               <NuxtLink to="/contact" class="btn-primary" id="services-cta-btn" style="display: inline-flex;">
-                <span>{{ lang === 'id' ? 'Konsultasi Gratis →' : 'Free Consultation →' }}</span>
+                <span>{{ lang === 'id' ? 'Konsultasi Gratis' : 'Free Consultation' }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -118,33 +91,6 @@ const { translate, lang } = useLanguage()
 useScrollReveal()
 
 const portfolio = portfolioData
-
-const processSteps = [
-  {
-    titleEn: 'Discovery & Brief',
-    titleId: 'Diskusi & Brief',
-    descEn: 'We start with a conversation to understand your goals, constraints, and desired outcomes.',
-    descId: 'Mulai dengan diskusi untuk memahami tujuan, batasan, dan hasil yang Anda inginkan.'
-  },
-  {
-    titleEn: 'Proposal & Planning',
-    titleId: 'Proposal & Perencanaan',
-    descEn: 'I prepare a detailed proposal with timeline, tech stack choices, and milestone breakdown.',
-    descId: 'Saya menyiapkan proposal detail dengan timeline, pilihan tech stack, dan breakdown milestone.'
-  },
-  {
-    titleEn: 'Development & Iterations',
-    titleId: 'Pengembangan & Iterasi',
-    descEn: 'Agile-style development with regular check-ins and demos so you stay in the loop.',
-    descId: 'Pengembangan gaya agile dengan check-in rutin dan demo agar Anda selalu up-to-date.'
-  },
-  {
-    titleEn: 'Launch & Handover',
-    titleId: 'Launch & Serah Terima',
-    descEn: 'Deployment to production, full documentation, and knowledge transfer to your team.',
-    descId: 'Deployment ke produksi, dokumentasi lengkap, dan transfer pengetahuan ke tim Anda.'
-  }
-]
 
 // === SEO ===
 const seoTitle = computed(() =>

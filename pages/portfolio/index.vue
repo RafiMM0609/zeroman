@@ -102,7 +102,7 @@
                 }}
               </p>
               <NuxtLink to="/contact" class="btn-primary" id="portfolio-cta-btn" style="display: inline-flex;">
-                <span>{{ lang === 'id' ? 'Mulai Diskusi →' : 'Start a Conversation →' }}</span>
+                <span>{{ lang === 'id' ? 'Mulai Diskusi' : 'Start a Conversation' }}</span>
               </NuxtLink>
             </div>
           </div>
