@@ -6,7 +6,7 @@
           <span class="logo-zero">zero</span><span class="logo-man">man</span>
         </NuxtLink>
         <p class="footer-copy" id="footer-copy">
-          {{ lang === 'id' ? '© 2026 — Dibangun dengan tangan, bukan dari template.' : '© 2026 — Built by hand, not by template.' }}
+          {{ lang === 'id' ? '© 2026 — Dibangun dengan tangan, zeroman mahrus.' : '© 2026 — Built by hand, zeroman mahrus.' }}
         </p>
         <div class="footer-social">
           <a 

@@ -80,7 +80,7 @@
           <NuxtLink 
             v-for="p in (portfolio.projects || [])" 
             :key="p.id" 
-            :to="`/project?id=${p.id}`" 
+            :to="`/portfolio/${p.id}`" 
             class="project-item fade-up" 
             role="link" 
             tabindex="0"

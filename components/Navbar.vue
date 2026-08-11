@@ -26,11 +26,17 @@
       <NuxtLink to="/about" class="nav-link" exact-active-class="active" id="nav-about" @click="closeMobileMenu">
         {{ lang === 'id' ? 'Tentang' : 'About' }}
       </NuxtLink>
+      <NuxtLink to="/blog" class="nav-link" active-class="active" id="nav-blog" @click="closeMobileMenu">
+        Blog
+      </NuxtLink>
     </div>
     
     <div class="nav-split-right">
-      <NuxtLink :to="projectsLink" class="nav-link" id="nav-projects" @click="closeMobileMenu">
-        {{ lang === 'id' ? 'Proyek' : 'Projects' }}
+      <NuxtLink to="/portfolio" class="nav-link" active-class="active" id="nav-portfolio" @click="closeMobileMenu">
+        {{ lang === 'id' ? 'Portofolio' : 'Portfolio' }}
+      </NuxtLink>
+      <NuxtLink to="/services" class="nav-link" active-class="active" id="nav-services" @click="closeMobileMenu">
+        {{ lang === 'id' ? 'Layanan' : 'Services' }}
       </NuxtLink>
       <NuxtLink to="/contact" class="nav-cta" exact-active-class="active" id="nav-contact" @click="closeMobileMenu">
         <span v-html="lang === 'id' ? 'Rekrut Saya &rarr;' : 'Hire Me &rarr;'"></span>
@@ -83,9 +89,8 @@ const closeMobileMenu = () => {
   document.body.style.overflow = ''
 }
 
-const projectsLink = computed(() => {
-  return route.path === '/' ? '#projects' : '/#projects'
-})
+// Legacy: preserved untuk backward compat jika masih dipakai di tempat lain
+const projectsLink = '/portfolio'
 
 // Typewriter Logo Animation
 const textZero = ref('zero')

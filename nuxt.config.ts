@@ -51,22 +51,19 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
+    // Static routes + dynamic routes di-generate secara otomatis
     urls: [
       '/',
+      '/portfolio',
+      '/services',
+      '/blog',
       '/about',
       '/contact',
-      '/geo',
-      '/project',
-      '/project?id=corporate-risk-management',
-      '/project?id=anara-company-profile',
-      '/project?id=zeroman-portfolio',
-      '/project?id=employee-management',
-      '/project?id=secure-chatbot',
-      '/project?id=flower-shop',
-      '/project?id=bike-shop',
-      '/project?id=patuh-pdp',
-      '/project?id=dms-ai',
-      '/project?id=pov-ai-indonesia'
+      '/geo'
+    ],
+    // Dynamic portfolio routes — generate dari project IDs
+    sources: [
+      '/api/_sitemap/portfolio'
     ]
   },
 
