@@ -1,7 +1,10 @@
 <template>
   <div>
-    <section class="section" style="padding-top: 80px;">
+    <section class="section" style="padding-top: 48px;">
       <div class="container">
+
+        <!-- Breadcrumb -->
+        <AppBreadcrumb :items="breadcrumbItems" />
         
         <!-- FORM STATE -->
         <div class="contact-wrapper">
@@ -181,6 +184,11 @@ import { useScrollReveal } from '~/composables/useScrollReveal'
 import portfolioData from '~/public/data/portfolio.json'
 
 const { lang } = useLanguage()
+
+const breadcrumbItems = computed(() => [
+  { label: lang.value === 'id' ? 'Beranda' : 'Home', to: '/' },
+  { label: lang.value === 'id' ? 'Kontak' : 'Contact' }
+])
 
 // Dynamic SEO Head tags
 const title = computed(() => {

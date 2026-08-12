@@ -1,14 +1,10 @@
 <template>
   <div>
-    <section class="section" style="padding-top: 100px;">
+    <section class="section" style="padding-top: 48px;">
       <div class="container">
 
         <!-- Breadcrumb -->
-        <nav class="breadcrumb" aria-label="Breadcrumb" id="breadcrumb-services">
-          <NuxtLink to="/" class="breadcrumb-link">{{ lang === 'id' ? 'Beranda' : 'Home' }}</NuxtLink>
-          <span class="breadcrumb-sep" aria-hidden="true">/</span>
-          <span class="breadcrumb-current" aria-current="page">Services</span>
-        </nav>
+        <AppBreadcrumb :items="breadcrumbItems" />
 
         <!-- Header -->
         <div class="section-header fade-up">
@@ -91,6 +87,11 @@ const { translate, lang } = useLanguage()
 useScrollReveal()
 
 const portfolio = portfolioData
+
+const breadcrumbItems = computed(() => [
+  { label: lang.value === 'id' ? 'Beranda' : 'Home', to: '/' },
+  { label: 'Services' }
+])
 
 // === SEO ===
 const seoTitle = computed(() =>

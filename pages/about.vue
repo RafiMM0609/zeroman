@@ -1,7 +1,10 @@
 <template>
   <div>
-    <section class="section" style="padding-top: 80px;">
+    <section class="section" style="padding-top: 48px;">
       <div class="container">
+
+        <!-- ═══ BREADCRUMB ═══ -->
+        <AppBreadcrumb :items="breadcrumbItems" />
 
         <!-- ═══ HEADLINE & MANIFESTO ═══ -->
         <div class="about-hook-wrap fade-up" id="about-headline-container">
@@ -156,6 +159,12 @@ import portfolioData from '~/public/data/portfolio.json'
 
 const { translate, lang } = useLanguage()
 
+// Breadcrumb items
+const breadcrumbItems = computed(() => [
+  { label: lang.value === 'id' ? 'Beranda' : 'Home', to: '/' },
+  { label: lang.value === 'id' ? 'Tentang' : 'About' }
+])
+
 // Dynamic SEO Head tags
 const title = computed(() => {
   return lang.value === 'id'
@@ -208,6 +217,27 @@ useHead({
         'name': 'About Mahrus',
         'description': 'Learn about Mahrus, a Software Engineer & AI Architect specializing in custom web apps and multi-agent systems.',
         'url': 'https://zeroman.my.id/about'
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          {
+            '@type': 'ListItem',
+            'position': 1,
+            'name': 'Home',
+            'item': 'https://zeroman.my.id'
+          },
+          {
+            '@type': 'ListItem',
+            'position': 2,
+            'name': 'About',
+            'item': 'https://zeroman.my.id/about'
+          }
+        ]
       })
     }
   ]

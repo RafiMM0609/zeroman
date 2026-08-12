@@ -206,25 +206,25 @@ p {
 .nav-split-right {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.25rem;
   flex: 1;
 }
 
 .nav-split-left {
   justify-content: flex-end;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 
 .nav-split-right {
   justify-content: flex-start;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 
 /* ============================================================
    MAIN & SECTIONS
    ============================================================ */
 main {
-  margin-top: 80px;
+  margin-top: 0;
 }
 
 .section {
@@ -645,7 +645,7 @@ footer {
 .nav-cta {
   display: inline-flex;
   align-items: center;
-  padding: 8px 18px;
+  padding: 8px 16px;
   border-radius: var(--radius-md);
   background: rgba(212, 165, 116, 0.1);
   color: var(--accent-primary);
@@ -655,6 +655,7 @@ footer {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  white-space: nowrap;
   transition: all 0.3s ease;
 }
 

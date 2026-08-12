@@ -1,14 +1,10 @@
 <template>
   <div>
-    <section class="section" style="padding-top: 100px;">
+    <section class="section" style="padding-top: 48px;">
       <div class="container">
 
         <!-- Breadcrumb -->
-        <nav class="breadcrumb" aria-label="Breadcrumb" id="breadcrumb-blog">
-          <NuxtLink to="/" class="breadcrumb-link">{{ lang === 'id' ? 'Beranda' : 'Home' }}</NuxtLink>
-          <span class="breadcrumb-sep" aria-hidden="true">/</span>
-          <span class="breadcrumb-current" aria-current="page">Blog</span>
-        </nav>
+        <AppBreadcrumb :items="breadcrumbItems" />
 
         <!-- Header -->
         <div class="section-header fade-up">
@@ -121,6 +117,11 @@ import { useScrollReveal } from '~/composables/useScrollReveal'
 
 const { lang } = useLanguage()
 useScrollReveal()
+
+const breadcrumbItems = computed(() => [
+  { label: lang.value === 'id' ? 'Beranda' : 'Home', to: '/' },
+  { label: 'Blog' }
+])
 
 const route = useRoute()
 const activeCategory = computed(() => route.query.category || null)

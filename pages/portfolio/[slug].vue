@@ -1,17 +1,11 @@
 <template>
   <div v-if="project">
-    <section class="section" style="padding-top: 80px;">
+    <section class="section" style="padding-top: 48px;">
       <div class="container">
         <div class="project-detail">
 
           <!-- Breadcrumb -->
-          <nav class="breadcrumb" aria-label="Breadcrumb" id="breadcrumb">
-            <NuxtLink to="/" class="breadcrumb-link">{{ lang === 'id' ? 'Beranda' : 'Home' }}</NuxtLink>
-            <span class="breadcrumb-sep" aria-hidden="true">/</span>
-            <NuxtLink to="/portfolio" class="breadcrumb-link">Portfolio</NuxtLink>
-            <span class="breadcrumb-sep" aria-hidden="true">/</span>
-            <span class="breadcrumb-current" aria-current="page">{{ translate(project, 'title') }}</span>
-          </nav>
+          <AppBreadcrumb :items="breadcrumbItems" />
 
           <!-- Header -->
           <div class="project-detail-header fade-up">
@@ -243,6 +237,12 @@ const project = computed(() => {
   return list.find(p => p.id === id)
 })
 
+const breadcrumbItems = computed(() => [
+  { label: lang.value === 'id' ? 'Beranda' : 'Home', to: '/' },
+  { label: 'Portfolio', to: '/portfolio' },
+  { label: project.value ? translate(project.value, 'title') : slug.value }
+])
+
 // SSR error handling
 if (import.meta.server) {
   if (!slug.value || !project.value) {
@@ -331,7 +331,34 @@ useHead({
   script: computed(() => {
     const data = jsonLd.value
     if (!data) return []
-    return [{ type: 'application/ld+json', innerHTML: JSON.stringify(data) }]
+    const breadcrumbData = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        {
+          '@type': 'ListItem',
+          'position': 1,
+          'name': 'Home',
+          'item': 'https://zeroman.my.id'
+        },
+        {
+          '@type': 'ListItem',
+          'position': 2,
+          'name': 'Portfolio',
+          'item': 'https://zeroman.my.id/portfolio'
+        },
+        {
+          '@type': 'ListItem',
+          'position': 3,
+          'name': translate(project.value, 'title'),
+          'item': `https://zeroman.my.id/portfolio/${project.value.id}`
+        }
+      ]
+    }
+    return [
+      { type: 'application/ld+json', innerHTML: JSON.stringify(data) },
+      { type: 'application/ld+json', innerHTML: JSON.stringify(breadcrumbData) }
+    ]
   })
 })
 
