@@ -130,25 +130,36 @@ const activeCategory = computed(() => route.query.category || null)
  * Data artikel — nantinya bisa diganti dengan @nuxt/content atau fetch dari API.
  * Format slug: gunakan deskriptif-hyphenated sesuai standar SEO.
  */
-const articles = [
-  // Contoh struktur — isi dengan artikel nyata
-  // {
-  //   slug: 'membangun-multi-agent-ai-nuxt',
-  //   title: 'Building a Multi-Agent AI System with Nuxt 3',
-  //   titleId: 'Membangun Sistem AI Multi-Agent dengan Nuxt 3',
-  //   excerpt: 'A deep dive into architecting AI agent pipelines...',
-  //   excerptId: 'Eksplorasi mendalam membangun pipeline AI agent...',
-  //   category: 'ai-architecture',
-  //   date: '2025-01-15',
-  //   readTime: 8,
-  //   tags: ['AI', 'Nuxt', 'Multi-Agent'],
-  //   featured: true
-  // }
-]
+const { data: rawArticles } = await useAsyncData('blog-articles', () =>
+  queryCollection('blog').order('date', 'DESC').all()
+)
+
+const articles = computed(() => {
+  if (!rawArticles.value) return []
+  return rawArticles.value.map(item => {
+    const pathParts = (item.path || item._path || '').split('/').filter(Boolean)
+    const cat = item.category || (pathParts.length >= 3 ? pathParts[1] : 'general')
+    const articleSlug = item.stem ? item.stem.split('/').pop() : pathParts[pathParts.length - 1]
+
+    return {
+      ...item,
+      slug: articleSlug,
+      category: cat,
+      title: item.title || '',
+      titleId: item.titleId || item.title || '',
+      excerpt: item.excerpt || item.description || '',
+      excerptId: item.excerptId || item.description || '',
+      date: item.date || '',
+      readTime: item.readTime || 5,
+      tags: item.tags || [],
+      featured: Boolean(item.featured)
+    }
+  })
+})
 
 const categories = computed(() => {
   const catMap = {}
-  articles.forEach(a => {
+  articles.value.forEach(a => {
     if (!catMap[a.category]) {
       catMap[a.category] = { slug: a.category, labelEn: a.category, labelId: a.category, count: 0 }
     }
@@ -157,8 +168,8 @@ const categories = computed(() => {
   return Object.values(catMap)
 })
 
-const featuredArticle = computed(() => articles.find(a => a.featured) || null)
-const regularArticles = computed(() => articles.filter(a => !a.featured))
+const featuredArticle = computed(() => articles.value.find(a => a.featured) || null)
+const regularArticles = computed(() => articles.value.filter(a => !a.featured))
 
 // === SEO ===
 const seoTitle = computed(() =>

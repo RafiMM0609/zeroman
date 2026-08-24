@@ -202,22 +202,27 @@ p {
 /* ============================================================
    HEADER & NAVIGATION
    ============================================================/* Split Navbar helper structures */
-.nav-split-left,
-.nav-split-right {
+.nav-center {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  flex: 1;
+  justify-content: center;
+  gap: 1.75rem;
 }
 
-.nav-split-left {
+@media (min-width: 992px) {
+  .nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
   justify-content: flex-end;
-  margin-right: 1rem;
-}
-
-.nav-split-right {
-  justify-content: flex-start;
-  margin-left: 1rem;
+  gap: 1.25rem;
+  margin-left: auto;
 }
 
 /* ============================================================

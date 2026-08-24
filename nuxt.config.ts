@@ -43,7 +43,8 @@ export default defineNuxtConfig({
   ],
 
   modules: [
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxt/content'
   ],
 
   site: {
