@@ -87,11 +87,34 @@ const category = computed(() => route.params.category)
  * Data artikel — sama dengan blog/index.vue.
  * Nantinya ekstrak ke composable / @nuxt/content.
  */
-const allArticles = []
-
-const categoryArticles = computed(() =>
-  allArticles.filter(a => a.category === category.value)
+const { data: rawArticles } = await useAsyncData(`blog-category-${category.value}`, () =>
+  queryCollection('blog').order('date', 'DESC').all()
 )
+
+const categoryArticles = computed(() => {
+  if (!rawArticles.value) return []
+  return rawArticles.value
+    .map(item => {
+      const pathParts = (item.path || item._path || '').split('/').filter(Boolean)
+      const cat = item.category || (pathParts.length >= 3 ? pathParts[1] : 'general')
+      const articleSlug = item.stem ? item.stem.split('/').pop() : pathParts[pathParts.length - 1]
+
+      return {
+        ...item,
+        slug: articleSlug,
+        category: cat,
+        title: item.title || '',
+        titleId: item.titleId || item.title || '',
+        excerpt: item.excerpt || item.description || '',
+        excerptId: item.excerptId || item.description || '',
+        date: item.date || '',
+        readTime: item.readTime || 5,
+        tags: item.tags || [],
+        featured: Boolean(item.featured)
+      }
+    })
+    .filter(a => a.category.toLowerCase() === (category.value || '').toLowerCase())
+})
 
 const categoryLabel = computed(() => {
   // Format slug jadi readable label: ai-architecture → AI Architecture
