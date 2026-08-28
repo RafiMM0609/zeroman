@@ -36,7 +36,7 @@
             :id="`blog-card-${article.slug}`"
           >
             <div class="blog-card-top">
-              <span class="blog-card-category">{{ category }}</span>
+              <span class="blog-card-category">{{ formatCategoryLabel(article.category) }}</span>
               <span class="blog-card-read-time">{{ article.readTime }} {{ lang === 'id' ? 'menit' : 'min' }}</span>
             </div>
             <h2 class="blog-card-title">{{ lang === 'id' ? article.titleId : article.title }}</h2>
@@ -117,8 +117,7 @@ const categoryArticles = computed(() => {
 })
 
 const categoryLabel = computed(() => {
-  // Format slug jadi readable label: ai-architecture → AI Architecture
-  return (category.value || '').split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+  return formatCategoryLabel(category.value)
 })
 
 // === SEO ===

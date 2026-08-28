@@ -71,7 +71,7 @@
               class="related-card"
               :id="`related-${related.slug}`"
             >
-              <span class="related-cat">{{ related.category }}</span>
+              <span class="related-cat">{{ formatCategoryLabel(related.category) }}</span>
               <h3 class="related-card-title">{{ lang === 'id' ? related.titleId : related.title }}</h3>
               <span class="related-arrow">→</span>
             </NuxtLink>
@@ -143,7 +143,7 @@ if (import.meta.server && !article.value) {
 }
 
 const categoryLabel = computed(() =>
-  (category.value || '').split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+  formatCategoryLabel(category.value)
 )
 
 const articleTitle = computed(() =>

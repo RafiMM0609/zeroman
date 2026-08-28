@@ -40,7 +40,7 @@
             class="category-pill"
             :id="`blog-cat-${cat.slug}`"
           >
-            {{ lang === 'id' ? cat.labelId : cat.labelEn }}
+            {{ formatCategoryLabel(cat.slug) }}
             <span class="cat-count">{{ cat.count }}</span>
           </NuxtLink>
         </div>
@@ -51,7 +51,7 @@
             <div class="featured-card-body">
               <div class="featured-label">
                 <span class="featured-badge">{{ lang === 'id' ? '★ Unggulan' : '★ Featured' }}</span>
-                <span class="featured-category">{{ featuredArticle.category }}</span>
+                <span class="featured-category">{{ formatCategoryLabel(featuredArticle.category) }}</span>
               </div>
               <h2 class="featured-title">{{ lang === 'id' ? featuredArticle.titleId : featuredArticle.title }}</h2>
               <p class="featured-excerpt">{{ lang === 'id' ? featuredArticle.excerptId : featuredArticle.excerpt }}</p>
@@ -74,7 +74,7 @@
             :id="`blog-card-${article.slug}`"
           >
             <div class="blog-card-top">
-              <span class="blog-card-category">{{ article.category }}</span>
+              <span class="blog-card-category">{{ formatCategoryLabel(article.category) }}</span>
               <span class="blog-card-read-time">{{ article.readTime }} {{ lang === 'id' ? 'menit' : 'min' }}</span>
             </div>
             <h2 class="blog-card-title">{{ lang === 'id' ? article.titleId : article.title }}</h2>
