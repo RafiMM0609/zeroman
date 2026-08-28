@@ -1,7 +1,10 @@
 <template>
   <div>
-    <section class="section" style="padding-top: 100px;">
+    <section class="section" style="padding-top: 48px;">
       <div class="container">
+
+        <!-- Breadcrumb -->
+        <AppBreadcrumb :items="breadcrumbItems" />
 
         <!-- Header -->
         <div class="section-header fade-up">
@@ -102,7 +105,7 @@
                 }}
               </p>
               <NuxtLink to="/contact" class="btn-primary" id="portfolio-cta-btn" style="display: inline-flex;">
-                <span>{{ lang === 'id' ? 'Mulai Diskusi →' : 'Start a Conversation →' }}</span>
+                <span>{{ lang === 'id' ? 'Mulai Diskusi' : 'Start a Conversation' }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -121,6 +124,11 @@ import portfolioData from '~/public/data/portfolio.json'
 
 const { translate, lang } = useLanguage()
 useScrollReveal()
+
+const breadcrumbItems = computed(() => [
+  { label: lang.value === 'id' ? 'Beranda' : 'Home', to: '/' },
+  { label: 'Portfolio' }
+])
 
 const projects = portfolioData.projects || []
 
@@ -174,6 +182,25 @@ const jsonLd = {
   }
 }
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {
+      '@type': 'ListItem',
+      'position': 1,
+      'name': 'Home',
+      'item': 'https://zeroman.my.id'
+    },
+    {
+      '@type': 'ListItem',
+      'position': 2,
+      'name': 'Portfolio',
+      'item': 'https://zeroman.my.id/portfolio'
+    }
+  ]
+}
+
 useHead({
   title: seoTitle,
   meta: [
@@ -198,6 +225,10 @@ useHead({
     {
       type: 'application/ld+json',
       innerHTML: JSON.stringify(jsonLd)
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(breadcrumbJsonLd)
     }
   ]
 })

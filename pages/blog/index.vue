@@ -1,14 +1,10 @@
 <template>
   <div>
-    <section class="section" style="padding-top: 100px;">
+    <section class="section" style="padding-top: 48px;">
       <div class="container">
 
         <!-- Breadcrumb -->
-        <nav class="breadcrumb" aria-label="Breadcrumb" id="breadcrumb-blog">
-          <NuxtLink to="/" class="breadcrumb-link">{{ lang === 'id' ? 'Beranda' : 'Home' }}</NuxtLink>
-          <span class="breadcrumb-sep" aria-hidden="true">/</span>
-          <span class="breadcrumb-current" aria-current="page">Blog</span>
-        </nav>
+        <AppBreadcrumb :items="breadcrumbItems" />
 
         <!-- Header -->
         <div class="section-header fade-up">
@@ -44,7 +40,7 @@
             class="category-pill"
             :id="`blog-cat-${cat.slug}`"
           >
-            {{ lang === 'id' ? cat.labelId : cat.labelEn }}
+            {{ formatCategoryLabel(cat.slug) }}
             <span class="cat-count">{{ cat.count }}</span>
           </NuxtLink>
         </div>
@@ -55,7 +51,7 @@
             <div class="featured-card-body">
               <div class="featured-label">
                 <span class="featured-badge">{{ lang === 'id' ? '★ Unggulan' : '★ Featured' }}</span>
-                <span class="featured-category">{{ featuredArticle.category }}</span>
+                <span class="featured-category">{{ formatCategoryLabel(featuredArticle.category) }}</span>
               </div>
               <h2 class="featured-title">{{ lang === 'id' ? featuredArticle.titleId : featuredArticle.title }}</h2>
               <p class="featured-excerpt">{{ lang === 'id' ? featuredArticle.excerptId : featuredArticle.excerpt }}</p>
@@ -78,7 +74,7 @@
             :id="`blog-card-${article.slug}`"
           >
             <div class="blog-card-top">
-              <span class="blog-card-category">{{ article.category }}</span>
+              <span class="blog-card-category">{{ formatCategoryLabel(article.category) }}</span>
               <span class="blog-card-read-time">{{ article.readTime }} {{ lang === 'id' ? 'menit' : 'min' }}</span>
             </div>
             <h2 class="blog-card-title">{{ lang === 'id' ? article.titleId : article.title }}</h2>
@@ -122,6 +118,11 @@ import { useScrollReveal } from '~/composables/useScrollReveal'
 const { lang } = useLanguage()
 useScrollReveal()
 
+const breadcrumbItems = computed(() => [
+  { label: lang.value === 'id' ? 'Beranda' : 'Home', to: '/' },
+  { label: 'Blog' }
+])
+
 const route = useRoute()
 const activeCategory = computed(() => route.query.category || null)
 
@@ -129,25 +130,36 @@ const activeCategory = computed(() => route.query.category || null)
  * Data artikel — nantinya bisa diganti dengan @nuxt/content atau fetch dari API.
  * Format slug: gunakan deskriptif-hyphenated sesuai standar SEO.
  */
-const articles = [
-  // Contoh struktur — isi dengan artikel nyata
-  // {
-  //   slug: 'membangun-multi-agent-ai-nuxt',
-  //   title: 'Building a Multi-Agent AI System with Nuxt 3',
-  //   titleId: 'Membangun Sistem AI Multi-Agent dengan Nuxt 3',
-  //   excerpt: 'A deep dive into architecting AI agent pipelines...',
-  //   excerptId: 'Eksplorasi mendalam membangun pipeline AI agent...',
-  //   category: 'ai-architecture',
-  //   date: '2025-01-15',
-  //   readTime: 8,
-  //   tags: ['AI', 'Nuxt', 'Multi-Agent'],
-  //   featured: true
-  // }
-]
+const { data: rawArticles } = await useAsyncData('blog-articles', () =>
+  queryCollection('blog').order('date', 'DESC').all()
+)
+
+const articles = computed(() => {
+  if (!rawArticles.value) return []
+  return rawArticles.value.map(item => {
+    const pathParts = (item.path || item._path || '').split('/').filter(Boolean)
+    const cat = item.category || (pathParts.length >= 3 ? pathParts[1] : 'general')
+    const articleSlug = item.stem ? item.stem.split('/').pop() : pathParts[pathParts.length - 1]
+
+    return {
+      ...item,
+      slug: articleSlug,
+      category: cat,
+      title: item.title || '',
+      titleId: item.titleId || item.title || '',
+      excerpt: item.excerpt || item.description || '',
+      excerptId: item.excerptId || item.description || '',
+      date: item.date || '',
+      readTime: item.readTime || 5,
+      tags: item.tags || [],
+      featured: Boolean(item.featured)
+    }
+  })
+})
 
 const categories = computed(() => {
   const catMap = {}
-  articles.forEach(a => {
+  articles.value.forEach(a => {
     if (!catMap[a.category]) {
       catMap[a.category] = { slug: a.category, labelEn: a.category, labelId: a.category, count: 0 }
     }
@@ -156,8 +168,8 @@ const categories = computed(() => {
   return Object.values(catMap)
 })
 
-const featuredArticle = computed(() => articles.find(a => a.featured) || null)
-const regularArticles = computed(() => articles.filter(a => !a.featured))
+const featuredArticle = computed(() => articles.value.find(a => a.featured) || null)
+const regularArticles = computed(() => articles.value)
 
 // === SEO ===
 const seoTitle = computed(() =>

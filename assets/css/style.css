@@ -202,29 +202,34 @@ p {
 /* ============================================================
    HEADER & NAVIGATION
    ============================================================/* Split Navbar helper structures */
-.nav-split-left,
-.nav-split-right {
+.nav-center {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  flex: 1;
+  justify-content: center;
+  gap: 1.75rem;
 }
 
-.nav-split-left {
+@media (min-width: 992px) {
+  .nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
   justify-content: flex-end;
-  margin-right: 2rem;
-}
-
-.nav-split-right {
-  justify-content: flex-start;
-  margin-left: 2rem;
+  gap: 1.25rem;
+  margin-left: auto;
 }
 
 /* ============================================================
    MAIN & SECTIONS
    ============================================================ */
 main {
-  margin-top: 80px;
+  margin-top: 0;
 }
 
 .section {
@@ -645,7 +650,7 @@ footer {
 .nav-cta {
   display: inline-flex;
   align-items: center;
-  padding: 8px 18px;
+  padding: 8px 16px;
   border-radius: var(--radius-md);
   background: rgba(212, 165, 116, 0.1);
   color: var(--accent-primary);
@@ -655,6 +660,7 @@ footer {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  white-space: nowrap;
   transition: all 0.3s ease;
 }
 

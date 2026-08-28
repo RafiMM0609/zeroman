@@ -51,9 +51,13 @@
         <!-- Divider -->
         <hr class="article-divider" aria-hidden="true" />
 
-        <!-- Article Body -->
+<!-- Article Body -->
         <div class="article-body fade-up delay-1" itemprop="articleBody">
-          <div v-html="articleContent"></div>
+          <ContentRenderer :value="article">
+            <template #empty>
+              <p>Artikel tidak memiliki konten.</p>
+            </template>
+          </ContentRenderer>
         </div>
 
         <!-- Related Articles -->
@@ -67,7 +71,7 @@
               class="related-card"
               :id="`related-${related.slug}`"
             >
-              <span class="related-cat">{{ related.category }}</span>
+              <span class="related-cat">{{ formatCategoryLabel(related.category) }}</span>
               <h3 class="related-card-title">{{ lang === 'id' ? related.titleId : related.title }}</h3>
               <span class="related-arrow">→</span>
             </NuxtLink>
@@ -109,15 +113,29 @@ const route = useRoute()
 const category = computed(() => route.params.category)
 const slug = computed(() => route.params.slug)
 
-/**
- * Data artikel — nantinya ganti dengan @nuxt/content atau fetch API.
- * Struktur ini memudahkan migrasi ke @nuxt/content di masa depan.
- */
-const allArticles = []
+const { data: article } = await useAsyncData(`blog-detail-${category.value}-${slug.value}`, async () => {
+  return await queryCollection('blog')
+    .where('path', 'LIKE', `%${slug.value}%`)
+    .first()
+})
 
-const article = computed(() =>
-  allArticles.find(a => a.category === category.value && a.slug === slug.value) || null
+const { data: allArticlesRaw } = await useAsyncData('all-blog-articles', () =>
+  queryCollection('blog').order('date', 'DESC').all()
 )
+
+const allArticles = computed(() => {
+  if (!allArticlesRaw.value) return []
+  return allArticlesRaw.value.map(item => {
+    const pathParts = (item.path || item._path || '').split('/').filter(Boolean)
+    const cat = item.category || (pathParts.length >= 3 ? pathParts[1] : 'general')
+    const articleSlug = item.stem ? item.stem.split('/').pop() : pathParts[pathParts.length - 1]
+    return {
+      ...item,
+      slug: articleSlug,
+      category: cat
+    }
+  })
+})
 
 // Jika artikel tidak ditemukan
 if (import.meta.server && !article.value) {
@@ -125,7 +143,7 @@ if (import.meta.server && !article.value) {
 }
 
 const categoryLabel = computed(() =>
-  (category.value || '').split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+  formatCategoryLabel(category.value)
 )
 
 const articleTitle = computed(() =>
@@ -141,7 +159,7 @@ const articleContent = computed(() =>
 )
 
 const relatedArticles = computed(() =>
-  allArticles
+  allArticles.value
     .filter(a => a.category === category.value && a.slug !== slug.value)
     .slice(0, 3)
 )

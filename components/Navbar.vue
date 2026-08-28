@@ -19,49 +19,49 @@
     </div>
 
     <div class="nav-menu" :class="{ 'is-open': isMobileMenuOpen }">
-    <div class="nav-split-left">
-      <NuxtLink to="/" class="nav-link" exact-active-class="active" id="nav-home" @click="closeMobileMenu">
-        {{ lang === 'id' ? 'Beranda' : 'Home' }}
-      </NuxtLink>
-      <NuxtLink to="/about" class="nav-link" exact-active-class="active" id="nav-about" @click="closeMobileMenu">
-        {{ lang === 'id' ? 'Tentang' : 'About' }}
-      </NuxtLink>
-      <NuxtLink to="/blog" class="nav-link" active-class="active" id="nav-blog" @click="closeMobileMenu">
-        Blog
-      </NuxtLink>
-    </div>
-    
-    <div class="nav-split-right">
-      <NuxtLink to="/portfolio" class="nav-link" active-class="active" id="nav-portfolio" @click="closeMobileMenu">
-        {{ lang === 'id' ? 'Portofolio' : 'Portfolio' }}
-      </NuxtLink>
-      <NuxtLink to="/services" class="nav-link" active-class="active" id="nav-services" @click="closeMobileMenu">
-        {{ lang === 'id' ? 'Layanan' : 'Services' }}
-      </NuxtLink>
-      <NuxtLink to="/contact" class="nav-cta" exact-active-class="active" id="nav-contact" @click="closeMobileMenu">
-        <span v-html="lang === 'id' ? 'Rekrut Saya &rarr;' : 'Hire Me &rarr;'"></span>
-      </NuxtLink>
-      <div class="nav-lang-switcher" id="nav-lang-switcher" role="group" aria-label="Language selector">
-        <button 
-          class="lang-btn" 
-          :class="{ active: lang === 'en' }" 
-          id="lang-btn-en" 
-          @click="setLang('en')" 
-          title="English"
-        >En</button>
-        <button 
-          class="lang-btn" 
-          :class="{ active: lang === 'id' }" 
-          id="lang-btn-id" 
-          @click="setLang('id')" 
-          title="Bahasa Indonesia"
-        >In</button>
+      <div class="nav-center">
+        <NuxtLink to="/" class="nav-link" exact-active-class="active" id="nav-home" @click="closeMobileMenu">
+          {{ lang === 'id' ? 'Beranda' : 'Home' }}
+        </NuxtLink>
+        <NuxtLink to="/about" class="nav-link" exact-active-class="active" id="nav-about" @click="closeMobileMenu">
+          {{ lang === 'id' ? 'Tentang' : 'About' }}
+        </NuxtLink>
+        <NuxtLink to="/blog" class="nav-link" active-class="active" id="nav-blog" @click="closeMobileMenu">
+          Blog
+        </NuxtLink>
+        <NuxtLink to="/portfolio" class="nav-link" active-class="active" id="nav-portfolio" @click="closeMobileMenu">
+          {{ lang === 'id' ? 'Portofolio' : 'Portfolio' }}
+        </NuxtLink>
+        <NuxtLink to="/services" class="nav-link" active-class="active" id="nav-services" @click="closeMobileMenu">
+          {{ lang === 'id' ? 'Layanan' : 'Services' }}
+        </NuxtLink>
       </div>
-      <NuxtLink to="/geo" class="nav-link-geo" exact-active-class="active" id="nav-geo" @click="closeMobileMenu">
-        <span class="geo-dot"></span>
-        <span>Geo</span>
-      </NuxtLink>
-    </div>
+
+      <div class="nav-right">
+        <div class="nav-lang-switcher" id="nav-lang-switcher" role="group" aria-label="Language selector">
+          <button 
+            class="lang-btn" 
+            :class="{ active: lang === 'en' }" 
+            id="lang-btn-en" 
+            @click="setLang('en')" 
+            title="English"
+          >En</button>
+          <button 
+            class="lang-btn" 
+            :class="{ active: lang === 'id' }" 
+            id="lang-btn-id" 
+            @click="setLang('id')" 
+            title="Bahasa Indonesia"
+          >In</button>
+        </div>
+        <NuxtLink to="/contact" class="nav-cta" exact-active-class="active" id="nav-contact" @click="closeMobileMenu">
+          <span v-html="lang === 'id' ? 'Rekrut Saya &rarr;' : 'Hire Me &rarr;'"></span>
+        </NuxtLink>
+        <NuxtLink to="/geo" class="nav-link-geo" exact-active-class="active" id="nav-geo" @click="closeMobileMenu">
+          <span class="geo-dot"></span>
+          <span>Geo</span>
+        </NuxtLink>
+      </div>
     </div>
   </nav>
 </template>
