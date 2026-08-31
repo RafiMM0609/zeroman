@@ -169,7 +169,10 @@ const categories = computed(() => {
 })
 
 const featuredArticle = computed(() => articles.value.find(a => a.featured) || null)
-const regularArticles = computed(() => articles.value)
+const regularArticles = computed(() => {
+  if (!featuredArticle.value) return articles.value
+  return articles.value.filter(a => a.slug !== featuredArticle.value.slug)
+})
 
 // === SEO ===
 const seoTitle = computed(() =>

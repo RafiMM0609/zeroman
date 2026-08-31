@@ -7,7 +7,7 @@ category: "apps-architecture"
 date: "2026-08-27"
 readTime: 7
 tags: ["Architecture", "Modular Monolith", "Python", "Backend", "Design Patterns"]
-featured: true
+featured: false
 ogImage: "https://zeroman.my.id/images/og-image.png"
 ---
 
