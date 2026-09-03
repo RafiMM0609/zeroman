@@ -1,8 +1,8 @@
 <template>
   
-  <nav id="main-nav" role="navigation" aria-label="Main navigation">
+  <nav id="main-nav" role="navigation" aria-label="Main navigation" :class="{ 'menu-is-open': isMobileMenuOpen }">
     <div class="nav-header">
-      <NuxtLink to="/" class="nav-logo" id="nav-logo" @mouseenter="handleHover">
+      <NuxtLink to="/" class="nav-logo" id="nav-logo" @mouseenter="handleHover" @click="closeMobileMenu">
         <span class="logo-zero">{{ textZero }}</span><span class="logo-man">{{ textMan }}</span><span class="logo-cursor" aria-hidden="true"></span>
       </NuxtLink>
       
@@ -11,6 +11,7 @@
         :class="{ 'is-active': isMobileMenuOpen }"
         @click="toggleMobileMenu" 
         aria-label="Toggle navigation"
+        :aria-expanded="isMobileMenuOpen"
       >
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -21,19 +22,24 @@
     <div class="nav-menu" :class="{ 'is-open': isMobileMenuOpen }">
       <div class="nav-center">
         <NuxtLink to="/" class="nav-link" exact-active-class="active" id="nav-home" @click="closeMobileMenu">
-          {{ lang === 'id' ? 'Beranda' : 'Home' }}
+          <span class="nav-link-text">{{ lang === 'id' ? 'Beranda' : 'Home' }}</span>
+          <span class="nav-link-arrow" aria-hidden="true">&rarr;</span>
         </NuxtLink>
         <NuxtLink to="/about" class="nav-link" exact-active-class="active" id="nav-about" @click="closeMobileMenu">
-          {{ lang === 'id' ? 'Tentang' : 'About' }}
+          <span class="nav-link-text">{{ lang === 'id' ? 'Tentang' : 'About' }}</span>
+          <span class="nav-link-arrow" aria-hidden="true">&rarr;</span>
         </NuxtLink>
         <NuxtLink to="/blog" class="nav-link" active-class="active" id="nav-blog" @click="closeMobileMenu">
-          Blog
+          <span class="nav-link-text">Blog</span>
+          <span class="nav-link-arrow" aria-hidden="true">&rarr;</span>
         </NuxtLink>
         <NuxtLink to="/portfolio" class="nav-link" active-class="active" id="nav-portfolio" @click="closeMobileMenu">
-          {{ lang === 'id' ? 'Portofolio' : 'Portfolio' }}
+          <span class="nav-link-text">{{ lang === 'id' ? 'Portofolio' : 'Portfolio' }}</span>
+          <span class="nav-link-arrow" aria-hidden="true">&rarr;</span>
         </NuxtLink>
         <NuxtLink to="/services" class="nav-link" active-class="active" id="nav-services" @click="closeMobileMenu">
-          {{ lang === 'id' ? 'Layanan' : 'Services' }}
+          <span class="nav-link-text">{{ lang === 'id' ? 'Layanan' : 'Services' }}</span>
+          <span class="nav-link-arrow" aria-hidden="true">&rarr;</span>
         </NuxtLink>
       </div>
 
@@ -67,7 +73,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useLanguage } from '~/composables/useLanguage'
 
 const { lang, setLang } = useLanguage()
@@ -88,6 +94,10 @@ const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
   document.body.style.overflow = ''
 }
+
+watch(() => route.fullPath, () => {
+  closeMobileMenu()
+})
 
 // Legacy: preserved untuk backward compat jika masih dipakai di tempat lain
 const projectsLink = '/portfolio'
