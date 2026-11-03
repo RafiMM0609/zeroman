@@ -7,17 +7,18 @@
           class="hero-chip" 
           id="hero-chip" 
           style="margin-bottom: 24px;"
+          data-reveal="focus"
           ref="heroChip"
           @mousemove="handleChipMouseMove"
           @mouseleave="handleChipMouseLeave"
         >
           <span>{{ translate(portfolio.hero, 'chip') }}</span>
         </div>
-        <h1 class="hero-title" id="hero-title" v-html="translate(portfolio.hero, 'title')"></h1>
-        <p class="hero-desc" id="hero-desc">
+        <h1 class="hero-title" id="hero-title" data-reveal="rise" data-reveal-step="1" v-html="translate(portfolio.hero, 'title')"></h1>
+        <p class="hero-desc" id="hero-desc" data-reveal="drift" data-reveal-step="2">
           {{ translate(portfolio.hero, 'desc') }}
         </p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <div class="hero-actions" data-reveal="rise" data-reveal-step="3">
           <NuxtLink to="/contact" class="btn-primary" id="hero-cta-primary">
             <span>{{ translate(portfolio.hero, 'cta_primary') }}</span>
           </NuxtLink>
@@ -31,12 +32,12 @@
     <!-- Stats Section -->
     <section class="section" id="stats" style="padding-top: 0;">
       <div class="container">
-        <div class="stats-grid">
+        <div class="stats-grid reveal-group">
           <div 
             v-for="(stat, i) in (portfolio.stats || [])" 
             :key="i"
-            class="stat-card fade-up"
-            :class="`delay-${i + 1}`"
+            class="stat-card"
+            :data-reveal-step="i"
           >
             <div v-if="stat.icon" class="stat-icon-wrap">
               <i :class="`icon-${stat.icon}`"></i>
@@ -69,7 +70,7 @@
     <!-- Projects Section -->
     <section class="section" id="projects">
       <div class="container">
-        <div class="section-header fade-up">
+        <div class="section-header" data-reveal="rise">
           <div class="section-eyebrow" id="eyebrow-projects">
             {{ translate(portfolio.sections, 'selected_work') }}
           </div>
@@ -78,16 +79,18 @@
         
         <div class="projects-list" id="projects-list">
           <NuxtLink 
-            v-for="p in (portfolio.projects || [])" 
+            v-for="(p, i) in (portfolio.projects || [])" 
             :key="p.id" 
             :to="`/portfolio/${p.id}`" 
-            class="project-item fade-up" 
+            class="project-item" 
+            data-reveal="settle"
+            :data-reveal-step="Math.min(i, 5)"
             role="link" 
             tabindex="0"
           >
             <div class="project-num">{{ p.num }}</div>
             <div v-if="p.images && p.images.length" class="project-img-preview">
-              <img :src="p.images[0]" :alt="translate(p, 'title')" width="180" height="110" loading="lazy" />
+              <img :src="p.images[0]" :alt="translate(p, 'title')" width="150" height="94" loading="lazy" />
             </div>
             <div class="project-info">
               <h3 class="project-name">{{ translate(p, 'title') }}</h3>
@@ -101,7 +104,7 @@
                 </span>
               </div>
             </div>
-            <div class="project-arrow">↗</div>
+            <div class="project-arrow" aria-hidden="true">↗</div>
           </NuxtLink>
         </div>
       </div>
@@ -110,7 +113,7 @@
     <!-- Services Section -->
     <section class="section" id="services">
       <div class="container">
-        <div class="section-header fade-up">
+        <div class="section-header" data-reveal="rise">
           <div class="section-eyebrow" id="eyebrow-services">
             {{ translate(portfolio.sections, 'what_i_do') }}
           </div>
@@ -121,8 +124,9 @@
           <div 
             v-for="(s, i) in (portfolio.services || [])" 
             :key="s.id" 
-            class="service-card fade-up"
-            :class="{ ['delay-' + i]: i > 0 }"
+            class="service-card"
+            data-reveal="settle"
+            :data-reveal-step="i"
             :id="`service-${s.id}`"
           >
             <div class="service-icon-wrap">
@@ -144,7 +148,7 @@
     <!-- Testimonials Section -->
     <section class="section" id="testimonials">
       <div class="container">
-        <div class="section-header fade-up">
+        <div class="section-header" data-reveal="rise">
           <div class="section-eyebrow" id="eyebrow-testimonials">
             {{ translate(portfolio.sections, 'client_stories') }}
           </div>
@@ -155,8 +159,9 @@
           <div 
             v-for="(t, i) in (portfolio.testimonials || [])" 
             :key="t.id"
-            class="testimonial-card fade-up"
-            :class="`delay-${i + 1}`"
+            class="testimonial-card"
+            data-reveal="settle"
+            :data-reveal-step="i"
           >
             <div class="testimonial-stars">
               <span v-for="n in (t.rating || 5)" :key="n">★</span>
@@ -179,7 +184,7 @@
     <!-- CTA Banner Section -->
     <section class="section" style="padding-bottom: 2rem;">
       <div class="container">
-        <div class="cta-banner fade-up">
+        <div class="cta-banner" data-reveal="rise">
           <div class="cta-overlay" aria-hidden="true"></div>
           <div class="cta-content">
             <div class="section-eyebrow" id="cta-eyebrow" style="justify-content: center; margin-bottom: 20px;">

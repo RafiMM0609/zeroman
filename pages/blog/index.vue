@@ -7,14 +7,14 @@
         <AppBreadcrumb :items="breadcrumbItems" />
 
         <!-- Header -->
-        <div class="section-header fade-up">
+        <div class="section-header" data-reveal="rise">
           <div class="section-eyebrow" id="eyebrow-blog">
             {{ lang === 'id' ? '// catatan & artikel' : '// notes & articles' }}
           </div>
           <h1 class="section-title" id="title-blog">
             {{ lang === 'id' ? 'Blog & Artikel' : 'Blog & Articles' }}
           </h1>
-          <p class="blog-lead fade-up delay-1">
+          <p class="blog-lead" data-reveal="drift" data-reveal-step="1">
             {{ lang === 'id'
               ? 'Catatan teknis, studi kasus, dan panduan seputar software engineering, arsitektur sistem, dan AI dari pengalaman nyata.'
               : 'Technical notes, case studies, and guides on software engineering, system architecture, and AI from real-world experience.'
@@ -23,7 +23,7 @@
         </div>
 
         <!-- Category Pills -->
-        <div class="blog-categories fade-up delay-1" id="blog-categories" role="navigation" aria-label="Kategori Blog">
+        <div class="blog-categories" data-reveal="drift" data-reveal-step="1" id="blog-categories" role="navigation" aria-label="Kategori Blog">
           <NuxtLink
             to="/blog"
             class="category-pill"
@@ -46,7 +46,7 @@
         </div>
 
         <!-- Featured Article -->
-        <div v-if="featuredArticle" class="blog-featured fade-up delay-2" id="blog-featured">
+        <div v-if="featuredArticle" class="blog-featured" data-reveal="settle" data-reveal-step="2" id="blog-featured">
           <NuxtLink :to="`/blog/${featuredArticle.category}/${featuredArticle.slug}`" class="featured-card" id="featured-article-link">
             <div class="featured-card-body">
               <div class="featured-label">
@@ -67,10 +67,12 @@
         <!-- Articles Grid -->
         <div class="blog-grid" id="blog-grid">
           <NuxtLink
-            v-for="article in regularArticles"
+            v-for="(article, i) in regularArticles"
             :key="article.slug"
             :to="`/blog/${article.category}/${article.slug}`"
-            class="blog-card fade-up"
+            class="blog-card"
+            data-reveal="settle"
+            :data-reveal-step="i"
             :id="`blog-card-${article.slug}`"
           >
             <div class="blog-card-top">
@@ -89,7 +91,7 @@
         </div>
 
         <!-- Empty / Coming Soon State -->
-        <div v-if="articles.length === 0" class="blog-empty fade-up" id="blog-empty">
+        <div v-if="articles.length === 0" class="blog-empty" data-reveal="rise" id="blog-empty">
           <div class="blog-empty-icon">📝</div>
           <h2 class="blog-empty-title">
             {{ lang === 'id' ? 'Artikel Segera Hadir' : 'Articles Coming Soon' }}
@@ -269,7 +271,7 @@ useHead({
   text-transform: uppercase;
   background: transparent;
   border: 1px solid var(--border-mid);
-  border-radius: 100px;
+  border-radius: var(--radius-pill);
   color: var(--fg-muted);
   text-decoration: none;
   transition: all 0.2s ease;

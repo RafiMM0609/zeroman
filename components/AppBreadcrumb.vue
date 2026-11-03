@@ -1,5 +1,5 @@
 <template>
-  <nav class="breadcrumb-nav fade-up" aria-label="Breadcrumb">
+  <nav class="breadcrumb-nav" data-reveal="drift" aria-label="Breadcrumb">
     <ol class="breadcrumb-list">
       <li 
         v-for="(item, index) in items" 

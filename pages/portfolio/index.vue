@@ -7,14 +7,14 @@
         <AppBreadcrumb :items="breadcrumbItems" />
 
         <!-- Header -->
-        <div class="section-header fade-up">
+        <div class="section-header" data-reveal="rise">
           <div class="section-eyebrow" id="eyebrow-portfolio">
             {{ lang === 'id' ? '// seleksi karya' : '// selected work' }}
           </div>
           <h1 class="section-title" id="title-portfolio">
             {{ lang === 'id' ? 'Portofolio Proyek' : 'Project Portfolio' }}
           </h1>
-          <p class="portfolio-lead fade-up delay-1">
+          <p class="portfolio-lead" data-reveal="drift" data-reveal-step="1">
             {{ lang === 'id'
               ? 'Koleksi proyek nyata — dari sistem enterprise, aplikasi web, hingga arsitektur AI yang telah dibangun dan dioperasikan.'
               : 'A collection of real-world projects — from enterprise systems and web applications to AI architectures built and deployed in production.'
@@ -23,7 +23,7 @@
         </div>
 
         <!-- Filter Tabs -->
-        <div class="portfolio-filter fade-up delay-1" id="portfolio-filter" role="tablist" aria-label="Filter proyek">
+        <div class="portfolio-filter" data-reveal="drift" data-reveal-step="1" id="portfolio-filter" role="tablist" aria-label="Filter proyek">
           <button
             v-for="tab in filterTabs"
             :key="tab.key"
@@ -42,10 +42,11 @@
         <!-- Projects Grid -->
         <div class="portfolio-grid" id="portfolio-grid" role="tabpanel">
           <NuxtLink
-            v-for="p in filteredProjects"
-            :key="p.id"
+            v-for="(p, i) in filteredProjects"
+            :key="activeFilter + p.id"
             :to="`/portfolio/${p.id}`"
-            class="portfolio-card fade-up"
+            class="portfolio-card"
+            :style="{ '--card-step': i }"
             :id="`portfolio-card-${p.id}`"
           >
             <!-- Card Thumbnail -->
@@ -83,12 +84,12 @@
         </div>
 
         <!-- Empty State -->
-        <div v-if="filteredProjects.length === 0" class="portfolio-empty fade-up">
+        <div v-if="filteredProjects.length === 0" class="portfolio-empty" data-reveal="rise">
           <p>{{ lang === 'id' ? 'Tidak ada proyek di kategori ini.' : 'No projects in this category.' }}</p>
         </div>
 
         <!-- CTA -->
-        <div class="portfolio-cta fade-up" id="portfolio-cta-section">
+        <div class="portfolio-cta" data-reveal="rise" id="portfolio-cta-section">
           <div class="cta-banner" style="text-align: center;">
             <div class="cta-overlay" aria-hidden="true"></div>
             <div class="cta-content">
@@ -255,30 +256,30 @@ useHead({
 .filter-tab {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 18px;
+  gap: var(--space-2);
+  padding: 7px 16px;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   background: transparent;
   border: 1px solid var(--border-mid);
-  border-radius: 100px;
-  color: var(--fg-muted);
+  border-radius: var(--radius-pill);
+  color: var(--text-subtle);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: var(--t-color), color var(--dur-fast) var(--ease-smooth);
 }
 
 .filter-tab:hover {
-  border-color: var(--accent-primary);
-  color: var(--fg);
+  border-color: rgba(212, 165, 116, 0.5);
+  color: var(--text);
 }
 
 .filter-tab.active {
-  background: var(--accent-primary);
+  background: rgba(212, 165, 116, 0.14);
   border-color: var(--accent-primary);
-  color: #fff;
+  color: var(--accent-primary);
 }
 
 .filter-count {
@@ -290,27 +291,56 @@ useHead({
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-  margin-bottom: 64px;
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
 }
 
-/* Card */
+/* Card
+   Uses a CSS animation instead of the IntersectionObserver reveal, because
+   filtering re-renders these nodes — an observer-managed opacity:0 base
+   state would leave freshly filtered cards invisible. */
 .portfolio-card {
   display: flex;
   flex-direction: column;
-  background: var(--glass);
+  background: var(--surface-2);
   border: 1px solid var(--border-mid);
   border-radius: var(--radius-lg);
   overflow: hidden;
   text-decoration: none;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-  backdrop-filter: blur(12px);
+  box-shadow: var(--edge-highlight);
+  transition: var(--t-lift);
+  animation: cardIn 520ms var(--ease-out) backwards;
+  animation-delay: calc(var(--card-step, 0) * 55ms);
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-card {
+    animation: none;
+  }
 }
 
 .portfolio-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
+  border-color: rgba(212, 165, 116, 0.3);
+  box-shadow: var(--edge-highlight-strong), var(--shadow-3);
+}
+
+.portfolio-card:focus-visible {
   border-color: var(--accent-primary);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
 }
 
 .portfolio-card-thumb {
@@ -318,19 +348,25 @@ useHead({
   width: 100%;
   aspect-ratio: 16/9;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--surface-inset);
+}
+
+.portfolio-card:hover .portfolio-card-thumb img {
+  transform: scale(1.05);
 }
 
 .portfolio-card-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: var(--t-media);
+  filter: grayscale(25%) brightness(88%);
 }
 
 .portfolio-card:hover .portfolio-card-thumb img {
-  transform: scale(1.04);
+  filter: grayscale(0%) brightness(100%);
 }
+
 
 .portfolio-card-placeholder {
   width: 100%;
@@ -345,7 +381,7 @@ useHead({
 .portfolio-card-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(to top, rgba(13, 10, 7, 0.82), rgba(13, 10, 7, 0.45));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -367,10 +403,10 @@ useHead({
 }
 
 .portfolio-card-body {
-  padding: 20px 24px 24px;
+  padding: var(--space-5);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-2);
   flex: 1;
 }
 

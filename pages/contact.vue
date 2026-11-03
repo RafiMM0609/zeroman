@@ -9,7 +9,7 @@
         <!-- FORM STATE -->
         <div class="contact-wrapper">
           <!-- LEFT: Info -->
-          <div class="fade-left">
+          <div data-reveal="drift">
             <div class="section-eyebrow" style="margin-bottom: 24px;">// start here</div>
 
             <h1 class="contact-info-title">
@@ -90,7 +90,7 @@
           </div>
 
           <!-- RIGHT: Form -->
-          <div class="fade-right">
+          <div data-reveal="drift">
             <form @submit.prevent="handleSubmit" class="contact-form" id="contact-form">
               <div class="form-group">
                 <label for="name">{{ lang === 'id' ? 'Nama / Perusahaan' : 'Name / Company' }}</label>
@@ -327,7 +327,7 @@ const handleSubmit = async () => {
 .success-modal-card {
   background: rgba(26, 19, 14, 0.95);
   border: 1px solid rgba(212, 165, 116, 0.3);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   padding: 40px 32px;
   max-width: 440px;
   width: 100%;
@@ -385,7 +385,7 @@ const handleSubmit = async () => {
 .success-modal-btn {
   width: 100%;
   padding: 14px 28px;
-  border-radius: var(--radius-md, 8px);
+  border-radius: var(--radius-md);
   border: none;
   background: var(--grad-primary);
   color: var(--bg);

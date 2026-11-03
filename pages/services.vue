@@ -7,14 +7,14 @@
         <AppBreadcrumb :items="breadcrumbItems" />
 
         <!-- Header -->
-        <div class="section-header fade-up">
+        <div class="section-header" data-reveal="rise">
           <div class="section-eyebrow" id="eyebrow-services">
             {{ lang === 'id' ? '// apa yang saya lakukan' : '// what I do' }}
           </div>
           <h1 class="section-title" id="title-services">
             {{ lang === 'id' ? 'Layanan & Keahlian' : 'Services & Expertise' }}
           </h1>
-          <p class="services-lead fade-up delay-1">
+          <p class="services-lead" data-reveal="drift" data-reveal-step="1">
             {{ lang === 'id'
               ? 'Dari website kustom hingga sistem AI multi-agent — saya membangun solusi digital yang scalable, cepat, dan benar-benar berfungsi untuk bisnis Anda.'
               : 'From custom websites to multi-agent AI systems — I build scalable, fast digital solutions that actually work for your business.'
@@ -27,8 +27,9 @@
           <div
             v-for="(s, i) in portfolio.services || []"
             :key="s.id"
-            class="service-detail-card fade-up"
-            :class="`delay-${i + 1}`"
+            class="service-detail-card"
+            data-reveal="settle"
+            :data-reveal-step="i"
             :id="`service-card-${s.id}`"
           >
             <div class="service-detail-icon-wrap">
@@ -49,7 +50,7 @@
         </div>
 
         <!-- CTA -->
-        <div class="services-cta fade-up" id="services-cta-section">
+        <div class="services-cta" data-reveal="rise" id="services-cta-section">
           <div class="cta-banner" style="text-align: center;">
             <div class="cta-overlay" aria-hidden="true"></div>
             <div class="cta-content">
@@ -191,84 +192,114 @@ useHead({
 .services-detail-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-  margin: 48px 0 72px;
+  gap: var(--space-5);
+  margin: var(--space-7) 0 var(--space-8);
 }
 
 .service-detail-card {
-  background: var(--glass);
-  border: 1px solid var(--border-mid);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  backdrop-filter: blur(12px);
-  transition: border-color 0.25s ease, transform 0.25s ease;
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--space-5);
+  background: var(--surface-2);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-lg);
+  padding: var(--card-pad);
+  box-shadow: var(--edge-highlight);
+  overflow: hidden;
+  transition: var(--t-lift);
+}
+
+/* Same accent-bar language as the homepage service cards */
+.service-detail-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent-secondary), var(--accent-deep));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--dur-base) var(--ease-out);
 }
 
 .service-detail-card:hover {
-  border-color: var(--accent-primary);
+  border-color: rgba(212, 165, 116, 0.28);
   transform: translateY(-3px);
+  box-shadow: var(--edge-highlight-strong), var(--shadow-3);
+}
+
+.service-detail-card:hover::before {
+  transform: scaleY(1);
 }
 
 .service-detail-icon-wrap {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-mid);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: rgba(212, 165, 116, 0.07);
+  border: 1px solid rgba(212, 165, 116, 0.16);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+/* BUGFIX: this wrapper had no internal rhythm, so the label, title and
+   description sat flush against each other with zero breathing room. */
+.service-detail-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .service-detail-label {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent-primary);
+  margin-bottom: var(--space-2);
 }
 
 .service-detail-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--fg);
-  line-height: 1.3;
-  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-3);
 }
 
 .service-detail-desc {
   font-size: 0.9rem;
-  color: var(--fg-dim);
-  line-height: 1.7;
+  color: var(--text-muted);
+  line-height: 1.65;
   font-weight: 300;
-  margin: 0;
+  margin: 0 0 var(--space-5);
 }
 
 .service-detail-features {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: var(--space-4) 0 0;
+  margin: auto 0 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
   border-top: 1px solid var(--border-mid);
-  padding-top: 16px;
-  margin-top: auto;
 }
 
 .service-detail-features li {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
+  gap: var(--space-2);
   font-size: 0.85rem;
-  color: var(--fg-dim);
+  color: var(--text-subtle);
   font-weight: 300;
+  line-height: 1.5;
 }
 
 .feature-check {
@@ -279,51 +310,58 @@ useHead({
 }
 
 /* Process Section */
-.process-section { margin-bottom: 72px; }
+.process-section { margin-bottom: var(--space-8); }
 
 .process-steps {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 24px;
+  gap: var(--space-5);
 }
 
 .process-step {
   display: flex;
-  gap: 20px;
+  gap: var(--space-4);
   align-items: flex-start;
-  padding: 24px;
-  background: var(--glass);
+  padding: var(--card-pad-sm);
+  background: var(--surface-1);
   border: 1px solid var(--border-mid);
   border-radius: var(--radius-lg);
-  backdrop-filter: blur(8px);
+  box-shadow: var(--edge-highlight);
+  transition: border-color var(--dur-base) var(--ease-smooth);
+}
+
+.process-step:hover {
+  border-color: rgba(212, 165, 116, 0.22);
 }
 
 .process-num {
   font-family: var(--font-mono);
-  font-size: 2rem;
-  font-weight: 900;
+  font-size: 1.6rem;
+  font-weight: 700;
   color: var(--accent-primary);
-  opacity: 0.3;
+  opacity: 0.35;
   line-height: 1;
   flex-shrink: 0;
 }
 
 .process-title {
+  font-family: var(--font-serif);
   font-size: 1rem;
-  font-weight: 700;
-  color: var(--fg);
-  margin: 0 0 8px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 var(--space-2);
+  line-height: 1.3;
 }
 
 .process-desc {
   font-size: 0.85rem;
-  color: var(--fg-dim);
-  line-height: 1.65;
+  color: var(--text-muted);
+  line-height: 1.6;
   font-weight: 300;
   margin: 0;
 }
 
-.services-cta { margin-top: 32px; }
+.services-cta { margin-top: var(--space-6); }
 
 @media (max-width: 640px) {
   .services-detail-grid,

@@ -7,7 +7,7 @@
         <AppBreadcrumb :items="breadcrumbItems" />
 
         <!-- ═══ HEADLINE & MANIFESTO ═══ -->
-        <div class="about-hook-wrap fade-up" id="about-headline-container">
+        <div class="about-hook-wrap" data-reveal="rise" id="about-headline-container">
           <div class="section-eyebrow">{{ translate(aboutHeadline, 'eyebrow') }}</div>
           <h1 class="section-title" style="margin-bottom: 0;" v-html="translate(aboutHeadline, 'title')"></h1>
 
@@ -35,7 +35,7 @@
         </div>
 
         <!-- ═══ SKILLS SECTION ═══ -->
-        <div class="section-header fade-up" style="margin-bottom: 56px; margin-top: 100px;">
+        <div class="section-header" data-reveal="rise" style="margin-bottom: var(--space-7); margin-top: var(--space-9);">
           <div class="section-eyebrow">{{ lang === 'id' ? '// stack & tools' : '// stack & tools' }}</div>
           <h2 class="section-title">
             <template v-if="lang === 'id'">Yang biasa saya <em>gunakan</em></template>
@@ -50,7 +50,7 @@
               <div 
                 v-for="s in (portfolio.skills || []).slice(0, 8)" 
                 :key="s.name" 
-                class="skill-bar-item fade-up"
+                class="skill-bar-item" data-reveal="settle"
               >
                 <div class="skill-bar-header">
                   <span class="skill-bar-name">{{ s.name }}</span>
@@ -72,7 +72,7 @@
               <span 
                 v-for="s in (portfolio.skills || [])" 
                 :key="s.name" 
-                class="skill-cloud-tag fade-up" 
+                class="skill-cloud-tag" data-reveal="focus" 
                 :data-cat="s.category"
               >
                 {{ s.name }}
@@ -82,7 +82,7 @@
         </div>
 
         <!-- ═══ TIMELINE ═══ -->
-        <div class="section-header fade-up" style="margin-top: 0; margin-bottom: 56px;">
+        <div class="section-header" data-reveal="rise" style="margin-top: 0; margin-bottom: var(--space-7);">
           <div class="section-eyebrow">{{ lang === 'id' ? '// perjalanan' : '// journey' }}</div>
           <h2 class="section-title">
             <template v-if="lang === 'id'">Dari mana saya <em>berasal</em></template>
@@ -90,7 +90,7 @@
           </h2>
         </div>
 
-        <div class="timeline fade-up">
+        <div class="timeline" data-reveal="rise">
           <div 
             v-for="(t, i) in (portfolio.timeline || [])" 
             :key="i" 
@@ -105,39 +105,20 @@
         </div>
 
         <!-- ═══ CTA BANNER ═══ -->
-        <div class="fade-up" style="
-          background: var(--glass);
-          border: 1px solid var(--border-mid);
-          border-radius: var(--radius-xl);
-          padding: 56px 48px;
-          text-align: center;
-          backdrop-filter: blur(20px);
-          position: relative;
-          overflow: hidden;
-          margin-top: 80px;
-        ">
-          <div style="
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0,229,255,0.04) 0%, transparent 70%);
-            pointer-events: none;
-          " aria-hidden="true"></div>
-
-          <div style="position: relative; z-index: 1;">
-            <div class="section-eyebrow" style="justify-content: center; margin-bottom: 20px;">
+        <!-- Replaced a hand-inlined duplicate of .cta-banner (which had its own
+             blur, radius, and cobalt accent leaking in) with the real shared
+             component classes, so this panel now matches the rest of the site. -->
+        <div class="cta-banner" data-reveal="rise">
+          <div class="cta-overlay" aria-hidden="true"></div>
+          <div class="cta-content">
+            <div class="section-eyebrow" style="justify-content: center; margin-bottom: var(--space-4);">
               {{ lang === 'id' ? '// siap berkolaborasi?' : '// ready to collaborate?' }}
             </div>
-            <h2 style="
-              font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-              font-weight: 800;
-              letter-spacing: -0.04em;
-              margin-bottom: 16px;
-              line-height: 1.1;
-            ">
+            <h2 class="cta-title">
               <template v-if="lang === 'id'">Punya proyek yang ingin<br><span class="text-gradient">kita bangun bersama?</span></template>
               <template v-else>Got a project you want<br><span class="text-gradient">to build together?</span></template>
             </h2>
-            <p style="color: var(--fg-dim); font-size: 1rem; margin-bottom: 36px; font-weight: 300;">
+            <p class="cta-desc">
               {{ lang === 'id' ? 'Saya membalas dalam waktu 24 jam.' : 'I reply within 24 hours.' }}
             </p>
             <NuxtLink to="/contact" class="btn-primary" id="about-cta-bottom" style="display: inline-flex;">

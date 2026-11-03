@@ -542,7 +542,7 @@ const formatChallenge = (item) => {
 
 .eeat-table-wrapper {
   overflow-x: auto;
-  border-radius: var(--radius-lg, 12px);
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border-mid, rgba(255,255,255,0.08));
   background: var(--glass, rgba(255,255,255,0.02));
 }
@@ -583,7 +583,7 @@ const formatChallenge = (item) => {
   background: rgba(212, 165, 116, 0.08);
   border: 1px solid rgba(212, 165, 116, 0.2);
   padding: 4px 10px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
 
 .tech-reason { color: var(--fg-dim); line-height: 1.6; font-weight: 300; }

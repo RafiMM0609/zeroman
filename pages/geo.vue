@@ -522,7 +522,7 @@ onMounted(async () => {
   font-size: 1.05rem; font-weight: 600; color: var(--text);
 }
 .tile-value.skeleton {
-  width: 70%; height: 1.2em; border-radius: 4px;
+  width: 70%; height: 1.2em; border-radius: var(--radius-sm);
   background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.06) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
@@ -535,7 +535,7 @@ onMounted(async () => {
 /* ── Language badge ── */
 .lang-badge {
   display: inline-flex; align-items: center; gap: 10px;
-  padding: 10px 22px; border-radius: 100px;
+  padding: 10px 22px; border-radius: var(--radius-pill);
   font-size: 0.85rem; font-weight: 600;
   border: 1px solid;
   margin-bottom: 32px;
@@ -598,7 +598,7 @@ onMounted(async () => {
 .ip-pill {
   font-family: var(--font-mono); font-size: 0.75rem;
   color: var(--text-subtle); background: var(--bg-alt);
-  border: 1px solid var(--border); border-radius: 100px;
+  border: 1px solid var(--border); border-radius: var(--radius-pill);
   padding: 6px 14px; display: inline-flex; align-items: center; gap: 8px;
 }
 .ip-dot { width: 6px; height: 6px; border-radius: 50%; background: #34d399; animation: blink 2s infinite; }
