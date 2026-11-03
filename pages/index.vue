@@ -125,6 +125,7 @@
             v-for="(s, i) in (portfolio.services || [])" 
             :key="s.id" 
             class="service-card"
+            data-spotlight
             data-reveal="settle"
             :data-reveal-step="i"
             :id="`service-${s.id}`"
@@ -208,6 +209,7 @@
 import { computed, ref } from 'vue'
 import { useLanguage } from '~/composables/useLanguage'
 import { useScrollReveal } from '~/composables/useScrollReveal'
+import { useCardSpotlight } from '~/composables/useCardSpotlight'
 import portfolioData from '~/public/data/portfolio.json'
 
 const { translate, lang } = useLanguage()
@@ -311,6 +313,9 @@ useHead({
 
 // Setup scroll reveal animation hook
 useScrollReveal()
+
+// Cursor spotlight for the service cards
+useCardSpotlight()
 
 const portfolio = portfolioData
 

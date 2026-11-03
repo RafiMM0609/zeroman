@@ -28,6 +28,7 @@
             v-for="(s, i) in portfolio.services || []"
             :key="s.id"
             class="service-detail-card"
+            data-spotlight
             data-reveal="settle"
             :data-reveal-step="i"
             :id="`service-card-${s.id}`"
@@ -82,10 +83,12 @@
 import { computed } from 'vue'
 import { useLanguage } from '~/composables/useLanguage'
 import { useScrollReveal } from '~/composables/useScrollReveal'
+import { useCardSpotlight } from '~/composables/useCardSpotlight'
 import portfolioData from '~/public/data/portfolio.json'
 
 const { translate, lang } = useLanguage()
 useScrollReveal()
+useCardSpotlight()
 
 const portfolio = portfolioData
 
@@ -210,16 +213,19 @@ useHead({
   transition: var(--t-lift);
 }
 
-/* Same accent-bar language as the homepage service cards */
+/* Same accent treatment as the homepage service cards: cursor spotlight plus
+   corner brackets, replacing the left bar. */
 .service-detail-card::before {
   content: '';
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--accent-secondary), var(--accent-deep));
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform var(--dur-base) var(--ease-out);
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%),
+      rgba(212, 165, 116, 0.09),
+      transparent 62%);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-smooth);
+  pointer-events: none;
 }
 
 .service-detail-card:hover {
@@ -229,7 +235,43 @@ useHead({
 }
 
 .service-detail-card:hover::before {
-  transform: scaleY(1);
+  opacity: 1;
+}
+
+.service-detail-card::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(1.015);
+  transition: opacity var(--dur-base) var(--ease-smooth),
+              transform var(--dur-base) var(--ease-out);
+  background-image:
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary));
+  background-repeat: no-repeat;
+  background-size:
+    14px 1px, 1px 14px,
+    14px 1px, 1px 14px,
+    14px 1px, 1px 14px,
+    14px 1px, 1px 14px;
+  background-position:
+    left top, left top,
+    right top, right top,
+    left bottom, left bottom,
+    right bottom, right bottom;
+}
+
+.service-detail-card:hover::after {
+  opacity: 0.5;
+  transform: scale(1);
 }
 
 .service-detail-icon-wrap {

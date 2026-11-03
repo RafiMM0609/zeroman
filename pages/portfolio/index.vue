@@ -351,8 +351,27 @@ useHead({
   background: var(--surface-inset);
 }
 
-.portfolio-card:hover .portfolio-card-thumb img {
-  transform: scale(1.05);
+/* Light sweep — a thin band of light crosses the still on hover, echoing the
+   cinematic/photographic framing without becoming a looping effect. */
+.portfolio-card-thumb::after {
+  content: '';
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(105deg,
+      transparent 42%,
+      rgba(255, 236, 205, 0.13) 48%,
+      rgba(255, 236, 205, 0.22) 50%,
+      rgba(255, 236, 205, 0.13) 52%,
+      transparent 58%);
+  transform: translateX(-62%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 720ms var(--ease-out), opacity 220ms var(--ease-smooth);
+}
+
+.portfolio-card:hover .portfolio-card-thumb::after {
+  transform: translateX(62%);
+  opacity: 1;
 }
 
 .portfolio-card-thumb img {
@@ -364,7 +383,18 @@ useHead({
 }
 
 .portfolio-card:hover .portfolio-card-thumb img {
+  transform: scale(1.05);
   filter: grayscale(0%) brightness(100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-card-thumb::after {
+    display: none;
+  }
+
+  .portfolio-card:hover .portfolio-card-thumb img {
+    transform: none;
+  }
 }
 
 

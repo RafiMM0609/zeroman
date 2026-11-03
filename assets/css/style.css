@@ -2157,16 +2157,29 @@ footer {
   transition: var(--t-lift);
 }
 
-/* Accent bar that grows down the left edge on hover */
+/* Accent treatment: cursor spotlight + corner brackets.
+   The old left bar was the most template-looking tell on the page, so it is
+   replaced with two ideas that carry meaning:
+   - a soft highlight that tracks the pointer, making the card read as a
+     physical surface rather than a flat rectangle;
+   - corner brackets that draw inward on hover, echoing a technical drawing.
+   Both degrade gracefully: without a pointer the card simply has brackets. */
 .service-card::before {
+  /* spotlight */
   content: '';
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--accent-secondary), var(--accent-deep));
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform var(--dur-base) var(--ease-out);
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%),
+      rgba(212, 165, 116, 0.09),
+      transparent 62%);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-smooth);
+  pointer-events: none;
+}
+
+.service-card:hover::before {
+  opacity: 1;
 }
 
 .service-card:hover {
@@ -2175,8 +2188,43 @@ footer {
   box-shadow: var(--edge-highlight-strong), var(--shadow-3);
 }
 
-.service-card:hover::before {
-  transform: scaleY(1);
+/* Corner brackets — four L-shaped rules that slide in from the corners.
+   Drawn with 8 background gradients (2 arms per corner) rather than
+   clip-path, so it stays readable and renders identically everywhere. */
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(1.015);
+  transition: opacity var(--dur-base) var(--ease-smooth),
+              transform var(--dur-base) var(--ease-out);
+  background-image:
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary)),
+    linear-gradient(var(--accent-primary), var(--accent-primary));
+  background-repeat: no-repeat;
+  background-size:
+    14px 1px, 1px 14px,
+    14px 1px, 1px 14px,
+    14px 1px, 1px 14px,
+    14px 1px, 1px 14px;
+  background-position:
+    left top, left top,
+    right top, right top,
+    left bottom, left bottom,
+    right bottom, right bottom;
+}
+
+.service-card:hover::after {
+  opacity: 0.5;
+  transform: scale(1);
 }
 
 .service-icon-wrap {
@@ -2283,26 +2331,22 @@ footer {
   border-bottom: 1px solid var(--border-mid);
   border-radius: 0;
   text-decoration: none;
-  transition: background-color var(--dur-base) var(--ease-smooth);
-}
-
-.project-item::before {
-  content: '';
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--accent-secondary), var(--accent-deep));
-  transform: scaleY(0);
-  transform-origin: center;
-  transition: transform var(--dur-base) var(--ease-out);
+  /* The row leans toward the arrow on hover — direction reads as "go here",
+     which a left bar never did. */
+  transition: background-color var(--dur-base) var(--ease-smooth),
+              padding-left var(--dur-base) var(--ease-out);
 }
 
 .project-item:hover {
   background: rgba(212, 165, 116, 0.028);
+  padding-left: calc(var(--space-4) + 10px);
 }
 
-.project-item:hover::before {
-  transform: scaleY(1);
+.project-item:focus-visible {
+  background: rgba(212, 165, 116, 0.05);
+  padding-left: calc(var(--space-4) + 10px);
+  outline: 2px solid var(--accent-primary);
+  outline-offset: -2px;
 }
 
 .project-num {
@@ -2322,15 +2366,15 @@ footer {
 }
 
 .project-img-preview {
-  width: 150px;
-  height: 94px;
+  width: 136px;
+  height: 86px;
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--border-mid);
   background: var(--surface-inset);
   flex-shrink: 0;
   position: relative;
-  transition: var(--t-lift);
+  transition: var(--t-lift), width var(--dur-slow) var(--ease-out), height var(--dur-slow) var(--ease-out);
 }
 
 .project-img-preview img {
@@ -2342,6 +2386,8 @@ footer {
 }
 
 .project-item:hover .project-img-preview {
+  width: 176px;
+  height: 108px;
   border-color: rgba(212, 165, 116, 0.35);
   box-shadow: var(--shadow-2);
 }
@@ -2377,13 +2423,52 @@ footer {
   color: var(--text-muted);
   margin-bottom: var(--space-3);
   max-width: 68ch;
+  /* Fixed at two lines so the row height never changes; the disclosure
+     happens in .project-meta below, whose space is reserved. Expanding the
+     description instead would push every row underneath it down on hover. */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
+/* Progressive disclosure: tags + status are the detail layer. Their slot is
+   always reserved (min-height), so revealing them costs no layout shift. */
 .project-meta {
   display: flex;
   align-items: center;
   gap: var(--space-4);
   flex-wrap: wrap;
+  min-height: 26px;
+  opacity: 0.35;
+  transform: translateY(2px);
+  transition: opacity var(--dur-base) var(--ease-smooth),
+              transform var(--dur-base) var(--ease-out);
+}
+
+.project-item:hover .project-meta,
+.project-item:focus-visible .project-meta {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .project-item:hover,
+  .project-item:focus-visible {
+    padding-left: var(--space-4);
+  }
+
+  .project-item:hover .project-img-preview {
+    width: 136px;
+    height: 86px;
+  }
+
+  .project-meta {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .project-tags {
