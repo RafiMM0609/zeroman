@@ -16,7 +16,7 @@
         </nav>
 
         <!-- Article Header -->
-        <header class="article-header fade-up">
+        <header class="article-header" data-reveal="rise">
           <div class="article-meta-top">
             <NuxtLink :to="`/blog/${category}`" class="article-category-badge" :id="`article-cat-${category}`">
               {{ categoryLabel }}
@@ -52,7 +52,7 @@
         <hr class="article-divider" aria-hidden="true" />
 
 <!-- Article Body -->
-        <div class="article-body fade-up delay-1" itemprop="articleBody">
+        <div class="article-body" data-reveal="rise" data-reveal-step="1" itemprop="articleBody">
           <ContentRenderer :value="article">
             <template #empty>
               <p>Artikel tidak memiliki konten.</p>
@@ -61,7 +61,7 @@
         </div>
 
         <!-- Related Articles -->
-        <div v-if="relatedArticles.length > 0" class="related-articles fade-up delay-2" id="related-articles">
+        <div v-if="relatedArticles.length > 0" class="related-articles" data-reveal="settle" id="related-articles">
           <h2 class="related-title">{{ lang === 'id' ? 'Artikel Terkait' : 'Related Articles' }}</h2>
           <div class="related-grid">
             <NuxtLink
@@ -79,7 +79,7 @@
         </div>
 
         <!-- CTA -->
-        <div class="article-cta fade-up delay-3" id="article-cta">
+        <div class="article-cta" data-reveal="rise" data-reveal-step="3" id="article-cta">
           <div class="cta-banner" style="text-align: center;">
             <div class="cta-overlay" aria-hidden="true"></div>
             <div class="cta-content">
@@ -105,6 +105,7 @@
 import { computed } from 'vue'
 import { useLanguage } from '~/composables/useLanguage'
 import { useScrollReveal } from '~/composables/useScrollReveal'
+import { fetchBlogByPath, fetchRelatedBlog } from '~/composables/useBlogArticles'
 
 const { lang } = useLanguage()
 useScrollReveal()
@@ -113,29 +114,20 @@ const route = useRoute()
 const category = computed(() => route.params.category)
 const slug = computed(() => route.params.slug)
 
-const { data: article } = await useAsyncData(`blog-detail-${category.value}-${slug.value}`, async () => {
-  return await queryCollection('blog')
-    .where('path', 'LIKE', `%${slug.value}%`)
-    .first()
-})
-
-const { data: allArticlesRaw } = await useAsyncData('all-blog-articles', () =>
-  queryCollection('blog').order('date', 'DESC').all()
+// Exact path match. The previous LIKE '%slug%' was ambiguous: "fundamental" is
+// a substring of "rag-fundamental", so /blog/apps-architecture/fundamental
+// rendered the RAG article instead of its own.
+const { data: article } = await useAsyncData(`blog-detail-${category.value}-${slug.value}`, () =>
+  fetchBlogByPath(category.value, slug.value)
 )
 
-const allArticles = computed(() => {
-  if (!allArticlesRaw.value) return []
-  return allArticlesRaw.value.map(item => {
-    const pathParts = (item.path || item._path || '').split('/').filter(Boolean)
-    const cat = item.category || (pathParts.length >= 3 ? pathParts[1] : 'general')
-    const articleSlug = item.stem ? item.stem.split('/').pop() : pathParts[pathParts.length - 1]
-    return {
-      ...item,
-      slug: articleSlug,
-      category: cat
-    }
-  })
-})
+// Related cards only need list fields — no bodies, and capped at three.
+const { data: allArticlesRaw } = await useAsyncData(
+  `blog-related-${category.value}-${slug.value}`,
+  () => fetchRelatedBlog(category.value, slug.value)
+)
+
+const allArticles = computed(() => allArticlesRaw.value || [])
 
 // Jika artikel tidak ditemukan
 if (import.meta.server && !article.value) {
@@ -158,11 +150,8 @@ const articleContent = computed(() =>
   article.value ? (lang.value === 'id' ? (article.value.contentId || article.value.content) : article.value.content) : ''
 )
 
-const relatedArticles = computed(() =>
-  allArticles.value
-    .filter(a => a.category === category.value && a.slug !== slug.value)
-    .slice(0, 3)
-)
+// Already filtered and capped by fetchRelatedBlog (same category, article excluded).
+const relatedArticles = computed(() => allArticles.value)
 
 // === SEO ===
 const canonicalUrl = computed(() => `https://zeroman.my.id/blog/${category.value}/${slug.value}`)

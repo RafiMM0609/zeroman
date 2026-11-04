@@ -116,6 +116,7 @@
 import { computed } from 'vue'
 import { useLanguage } from '~/composables/useLanguage'
 import { useScrollReveal } from '~/composables/useScrollReveal'
+import { fetchBlogList, normalizeBlogItem, buildCategoryFacets } from '~/composables/useBlogArticles'
 
 const { lang } = useLanguage()
 useScrollReveal()
@@ -129,46 +130,19 @@ const route = useRoute()
 const activeCategory = computed(() => route.query.category || null)
 
 /**
- * Data artikel — nantinya bisa diganti dengan @nuxt/content atau fetch dari API.
- * Format slug: gunakan deskriptif-hyphenated sesuai standar SEO.
+ * Article list for the index cards.
+ * Uses the shared list query, which selects only the fields a card renders —
+ * pulling the full document here added ~33 KB of unused markdown body.
  */
-const { data: rawArticles } = await useAsyncData('blog-articles', () =>
-  queryCollection('blog').order('date', 'DESC').all()
+const { data: rawArticles } = await useAsyncData('blog-articles-list', () =>
+  fetchBlogList()
 )
 
-const articles = computed(() => {
-  if (!rawArticles.value) return []
-  return rawArticles.value.map(item => {
-    const pathParts = (item.path || item._path || '').split('/').filter(Boolean)
-    const cat = item.category || (pathParts.length >= 3 ? pathParts[1] : 'general')
-    const articleSlug = item.stem ? item.stem.split('/').pop() : pathParts[pathParts.length - 1]
+const articles = computed(() =>
+  (rawArticles.value || []).map(normalizeBlogItem)
+)
 
-    return {
-      ...item,
-      slug: articleSlug,
-      category: cat,
-      title: item.title || '',
-      titleId: item.titleId || item.title || '',
-      excerpt: item.excerpt || item.description || '',
-      excerptId: item.excerptId || item.description || '',
-      date: item.date || '',
-      readTime: item.readTime || 5,
-      tags: item.tags || [],
-      featured: Boolean(item.featured)
-    }
-  })
-})
-
-const categories = computed(() => {
-  const catMap = {}
-  articles.value.forEach(a => {
-    if (!catMap[a.category]) {
-      catMap[a.category] = { slug: a.category, labelEn: a.category, labelId: a.category, count: 0 }
-    }
-    catMap[a.category].count++
-  })
-  return Object.values(catMap)
-})
+const categories = computed(() => buildCategoryFacets(articles.value))
 
 const featuredArticle = computed(() => articles.value.find(a => a.featured) || null)
 const regularArticles = computed(() => {

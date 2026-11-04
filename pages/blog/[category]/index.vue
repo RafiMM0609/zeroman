@@ -13,12 +13,12 @@
         </nav>
 
         <!-- Header -->
-        <div class="section-header fade-up">
+        <div class="section-header" data-reveal="rise">
           <div class="section-eyebrow" id="eyebrow-blog-cat">
             {{ lang === 'id' ? '// kategori' : '// category' }}
           </div>
           <h1 class="section-title" id="title-blog-cat">{{ categoryLabel }}</h1>
-          <p class="blog-cat-lead fade-up delay-1">
+          <p class="blog-cat-lead" data-reveal="drift" data-reveal-step="1">
             {{ lang === 'id'
               ? `Semua artikel dalam kategori "${categoryLabel}".`
               : `All articles in the "${categoryLabel}" category.`
@@ -32,7 +32,7 @@
             v-for="article in categoryArticles"
             :key="article.slug"
             :to="`/blog/${category}/${article.slug}`"
-            class="blog-card fade-up"
+            class="blog-card" data-reveal="settle"
             :id="`blog-card-${article.slug}`"
           >
             <div class="blog-card-top">
@@ -51,7 +51,7 @@
         </div>
 
         <!-- Empty State -->
-        <div v-if="categoryArticles.length === 0" class="blog-empty fade-up" id="blog-cat-empty">
+        <div v-if="categoryArticles.length === 0" class="blog-empty" data-reveal="rise" id="blog-cat-empty">
           <div class="blog-empty-icon">📂</div>
           <h2 class="blog-empty-title">
             {{ lang === 'id' ? 'Belum Ada Artikel' : 'No Articles Yet' }}
@@ -76,6 +76,7 @@
 import { computed } from 'vue'
 import { useLanguage } from '~/composables/useLanguage'
 import { useScrollReveal } from '~/composables/useScrollReveal'
+import { fetchBlogList, normalizeBlogItem } from '~/composables/useBlogArticles'
 
 const { lang } = useLanguage()
 useScrollReveal()
@@ -84,37 +85,18 @@ const route = useRoute()
 const category = computed(() => route.params.category)
 
 /**
- * Data artikel — sama dengan blog/index.vue.
- * Nantinya ekstrak ke composable / @nuxt/content.
+ * Category articles.
+ * Filtering now happens in the query instead of fetching every article and
+ * discarding most of them in the browser.
  */
-const { data: rawArticles } = await useAsyncData(`blog-category-${category.value}`, () =>
-  queryCollection('blog').order('date', 'DESC').all()
+const { data: rawArticles } = await useAsyncData(
+  `blog-category-${category.value}`,
+  () => fetchBlogList(category.value)
 )
 
-const categoryArticles = computed(() => {
-  if (!rawArticles.value) return []
-  return rawArticles.value
-    .map(item => {
-      const pathParts = (item.path || item._path || '').split('/').filter(Boolean)
-      const cat = item.category || (pathParts.length >= 3 ? pathParts[1] : 'general')
-      const articleSlug = item.stem ? item.stem.split('/').pop() : pathParts[pathParts.length - 1]
-
-      return {
-        ...item,
-        slug: articleSlug,
-        category: cat,
-        title: item.title || '',
-        titleId: item.titleId || item.title || '',
-        excerpt: item.excerpt || item.description || '',
-        excerptId: item.excerptId || item.description || '',
-        date: item.date || '',
-        readTime: item.readTime || 5,
-        tags: item.tags || [],
-        featured: Boolean(item.featured)
-      }
-    })
-    .filter(a => a.category.toLowerCase() === (category.value || '').toLowerCase())
-})
+const categoryArticles = computed(() =>
+  (rawArticles.value || []).map(normalizeBlogItem)
+)
 
 const categoryLabel = computed(() => {
   return formatCategoryLabel(category.value)
