@@ -6,7 +6,7 @@
           <span class="logo-zero">zero</span><span class="logo-man">man</span>
         </NuxtLink>
         <p class="footer-copy" id="footer-copy">
-          {{ lang === 'id' ? '© 2026 — Dibangun dengan tangan, zeroman mahrus.' : '© 2026 — Built by hand, zeroman mahrus.' }}
+          © 2026 — zeroman mahrus.
         </p>
         <div class="footer-social">
           <a 
@@ -47,9 +47,8 @@
 </template>
 
 <script setup>
-import { useLanguage } from '~/composables/useLanguage'
 import portfolioData from '~/public/data/portfolio.json'
 
-const { lang } = useLanguage()
+// The tagline is now language-neutral, so useLanguage() is no longer needed here.
 const profile = portfolioData.profile || {}
 </script>
